@@ -1,14 +1,35 @@
-<h1 class="text-center">Jobs Index</h1>
-<ul>
-  <% @jobs.each do |job| %>
-  <li>
-     <%= job.category %>
-     <%= job.description %>
-  </li>
-  <% end %>
-</ul>
+<div class="col-sm w-100 job-index-banner">
+  <h2 class="text-center mb-3 pt-3">Welcome back</h2>
+  <p>Name....here</p>
+</div>
 
-<%= link_to "Send New Request", new_job_path, class: "btn btn-primary" %>
+<div class="container w-100">
+  <div class="row">
+    <div class="col-sm-12">
+      <% @jobs.each do |job| %>
+        <div class="card mb-3 rounded" style="width: 22rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body mb-3">
+              <ul class="job-index-cards">
+                <li>
+                   <%= job.category %>
+                   <%= job.description %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="w-100 mt-3 sticky-btn p-3 bg-light border-top">
+  <%= link_to "Submit new job", new_job_path, class: "btn btn-primary w-100 px-6" %>
+</div>
+
+
+
+
 
 
 
