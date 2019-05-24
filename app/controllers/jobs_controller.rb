@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: [:show]
-  before_action :set_current_stage_attributes, only: [:show]
+  before_action :set_job, only: [:show, :edit]
+  before_action :set_current_stage_attributes, only: [:show, :edit]
   before_action :waiting_for_me?, only: [:show]
 
   def index
@@ -26,6 +26,18 @@ class JobsController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    case @job.current_stage
+    when 1
+      @contractors = User.where(contractor_type: @job.category)
+      render "jobs/action_forms/stage_one"
+    when 2
+      @quote = Quote.where(contractor: current_user, job: @job).first
+      render "jobs/action_forms/stage_two"
+    end
+  end
+
 
   private
 
@@ -91,7 +103,7 @@ class JobsController < ApplicationController
   end
 
   def belong_to_job?
-    current_user == @job.contractor || current_user == @job.property.tenant || current_user == @job.property.landlord
+    @job.contractors.include?(current_user) || current_user == @job.contractor || current_user == @job.property.tenant || current_user == @job.property.landlord
   end
 
   def waiting_for_me?
@@ -102,4 +114,6 @@ class JobsController < ApplicationController
       @waiting_for_me = false
     end
   end
+
+
 end
