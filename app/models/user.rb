@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :jobs, foreign_key: "contractor_id", class_name: "Job"
   has_many :quotes, foreign_key: "contractor_id", class_name: "Quote"
   has_many :contractor_availabilities, foreign_key: "contractor_id", class_name: "ContractorAvailabilities"
+  has_many :rented_properties, through: :tenancies, class_name: "Property"
 end
