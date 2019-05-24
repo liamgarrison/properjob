@@ -1,7 +1,6 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show]
   before_action :set_current_stage_attributes, only: [:show]
-  before_action :set_current_stage_attributes, only: [:show]
   before_action :waiting_for_me?, only: [:show]
 
   def index
@@ -96,7 +95,7 @@ class JobsController < ApplicationController
 
   def waiting_for_me?
     # Find out if the current user is the one we are waiting on.
-    if current_user.user_type == belong_to_job? && @current_stage_attributes[:waiting_for]
+    if belong_to_job? && @current_stage_attributes[:waiting_for] == current_user.user_type
       @waiting_for_me = true
     else
       @waiting_for_me = false
