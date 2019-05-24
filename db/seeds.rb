@@ -188,7 +188,7 @@ job_hoover = Job.create! ({
   contractor: contractor_2,
   current_stage: 8,
   final_price: 150,
-  resolved: true;
+  resolved: true,
   rating: 4
 })
 
