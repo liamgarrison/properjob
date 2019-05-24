@@ -18,7 +18,8 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.create(job_params)
-    @job.property = current_user.property
+    @job.property = Property.first
+    @job.current_stage = 1
     if @job.save
       redirect_to job_path(@job)
     else
