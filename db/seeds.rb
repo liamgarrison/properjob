@@ -16,7 +16,7 @@ tenant_1 = User.create! ({
   last_name:"Woods",
   email: "timmy@gmail.com",
   password: 123456,
-  remote_avatar_url: "",
+  remote_avatar_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558707960/beyi17egfookljd2i2gp.png",
   user_type: "tenant"
 })
 
@@ -25,7 +25,7 @@ landlord_1 = User.create! ({
   last_name: "Jones",
   email: "bobby@gmail.com",
   password: 123456,
-  remote_avatar_url: "",
+  remote_avatar_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558707946/joerhdoalcduig8nenwp.png",
   user_type: "landlord"
 })
 
@@ -34,7 +34,7 @@ contractor_1 = User.create! ({
   last_name: "Electric",
   email: "ellie@gmail.com",
   password: 123456,
-  remote_avatar_url: "",
+  remote_avatar_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558707923/mwfv7xkl9uquzqadgjmy.png",
   user_type: "contractor",
   contractor_type: "electrician"
 })
@@ -44,7 +44,7 @@ contractor_2 = User.create! ({
   last_name: "Anderson",
   email: "sparky@gmail.com",
   password: 123456,
-  remote_avatar_url: "",
+  remote_avatar_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558707979/u8hld1cp17rshv2pkay6.png",
   user_type: "contractor",
   contractor_type: "electrician"
 })
@@ -54,7 +54,7 @@ contractor_3 = User.create! ({
   last_name: "San Pedro",
   email: "miguel@gmail.com",
   password: 123456,
-  remote_avatar_url: "",
+  remote_avatar_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558707971/ugszwtmxvsiyrc5xud2c.png",
   user_type: "contractor",
   contractor_type: "electrician"
 })
@@ -95,7 +95,7 @@ job_tv = Job.create! ({
 quote_tv_1 = Quote.create! ({
   contractor: contractor_1,
   job: job_tv,
-  remote_quote_url_url: "",
+  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 100,
   submitted: true
 })
@@ -103,7 +103,7 @@ quote_tv_1 = Quote.create! ({
 quote_tv_2 = Quote.create! ({
   contractor: contractor_2,
   job: job_tv,
-  remote_quote_url_url: "",
+  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 150,
   submitted: true
 })
@@ -111,7 +111,7 @@ quote_tv_2 = Quote.create! ({
 quote_tv_3 = Quote.create! ({
   contractor: contractor_3,
   job: job_tv,
-  remote_quote_url_url: "",
+  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 200,
   submitted: true
 })
@@ -138,7 +138,7 @@ job_sockets = Job.create! ({
 quote_sockets_1 = Quote.create! ({
   contractor: contractor_1,
   job: job_sockets,
-  remote_quote_url_url: "",
+  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 100,
   submitted: true,
   accepted: true
@@ -147,7 +147,7 @@ quote_sockets_1 = Quote.create! ({
 quote_sockets_2 = Quote.create! ({
   contractor: contractor_2,
   job: job_sockets,
-  remote_quote_url_url: "",
+  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 150,
   submitted: true,
   accepted: false
@@ -156,7 +156,7 @@ quote_sockets_2 = Quote.create! ({
 quote_sockets_3 = Quote.create! ({
   contractor: contractor_3,
   job: job_sockets,
-  remote_quote_url_url: "",
+  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 200,
   submitted: true,
   accepted: false
@@ -189,14 +189,14 @@ job_hoover = Job.create! ({
   current_stage: 8,
   final_price: 150,
   resolved: true,
-  remote_invoice_url_url: "",
+  remote_invoice_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709664/ohkjr1mehg1bisbuuq8e.pdf",
   rating: 4
 })
 
 quote_hoover_1 = Quote.create! ({
   contractor: contractor_1,
   job: job_hoover,
-  remote_quote_url_url: "",
+  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 100,
   submitted: true,
   accepted: false
@@ -205,7 +205,7 @@ quote_hoover_1 = Quote.create! ({
 quote_hoover_2 = Quote.create! ({
   contractor: contractor_2,
   job: job_hoover,
-  remote_quote_url_url: "",
+  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 150,
   submitted: true,
   accepted: true
@@ -214,7 +214,7 @@ quote_hoover_2 = Quote.create! ({
 quote_hoover_3 = Quote.create! ({
   contractor: contractor_3,
   job: job_hoover,
-  remote_quote_url_url: "",
+  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 200,
   submitted: true,
   accepted: false
