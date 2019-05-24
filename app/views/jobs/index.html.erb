@@ -1,0 +1,15 @@
+<h1 class="text-center">Jobs Index</h1>
+<ul>
+  <% @jobs.each do |job| %>
+  <li>
+     <%= job.category %>
+     <%= job.description %>
+  </li>
+  <% end %>
+</ul>
+
+<%= link_to "Send New Request", new_job_path, class: "btn btn-primary" %>
+
+
+
+
