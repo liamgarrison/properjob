@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2019_05_24_112600) do
 
   # These are extensions that must be enabled in order to support this database
@@ -43,10 +44,20 @@ ActiveRecord::Schema.define(version: 2019_05_24_112600) do
     t.integer "final_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "invoice_url"
     t.boolean "resolved"
     t.integer "rating"
     t.index ["contractor_id"], name: "index_jobs_on_contractor_id"
     t.index ["property_id"], name: "index_jobs_on_property_id"
+  end
+
+  create_table "photo_videos", force: :cascade do |t|
+    t.integer "stage"
+    t.bigint "job_id"
+    t.string "photo_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_photo_videos_on_job_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -67,6 +78,7 @@ ActiveRecord::Schema.define(version: 2019_05_24_112600) do
     t.boolean "accepted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "quote_url"
     t.index ["contractor_id"], name: "index_quotes_on_contractor_id"
     t.index ["job_id"], name: "index_quotes_on_job_id"
   end
@@ -84,6 +96,7 @@ ActiveRecord::Schema.define(version: 2019_05_24_112600) do
     t.string "phone_number"
     t.string "user_type"
     t.string "contractor_type"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -93,6 +106,7 @@ ActiveRecord::Schema.define(version: 2019_05_24_112600) do
   add_foreign_key "job_stages", "jobs"
   add_foreign_key "jobs", "properties"
   add_foreign_key "jobs", "users", column: "contractor_id"
+  add_foreign_key "photo_videos", "jobs"
   add_foreign_key "properties", "users", column: "landlord_id"
   add_foreign_key "properties", "users", column: "tenant_id"
   add_foreign_key "quotes", "jobs"
