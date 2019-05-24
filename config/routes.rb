@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'jobs#index'
-  resources :jobs, only: [:show, :new, :create] do
+  resources :jobs, only: [:show, :new, :create, :edit, :update] do
     resources :quotes, only: [:new, :create, :edit, :update, :index]
   end
   devise_for :users

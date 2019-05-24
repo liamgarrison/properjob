@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: [:show]
-  before_action :set_current_stage_attributes, only: [:show]
+  before_action :set_job, only: [:show, :edit]
+  before_action :set_current_stage_attributes, only: [:show, :edit]
   before_action :waiting_for_me?, only: [:show]
 
   def index
@@ -26,6 +26,16 @@ class JobsController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    case @job.current_stage
+    when 1
+      @contractors = User.where(contractor_type: @job.category)
+      render "jobs/action_forms/stage_one"
+    end
+
+  end
+
 
   private
 
@@ -102,4 +112,6 @@ class JobsController < ApplicationController
       @waiting_for_me = false
     end
   end
+
+
 end
