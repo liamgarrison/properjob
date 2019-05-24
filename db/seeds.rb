@@ -16,7 +16,7 @@ tenant_1 = User.create! ({
   last_name:"Woods",
   email: "timmy@gmail.com",
   password: 123456,
-  remote_photo_url: "",
+  remote_avatar_url: "",
   user_type: "tenant"
 })
 
@@ -25,7 +25,7 @@ landlord_1 = User.create! ({
   last_name: "Jones",
   email: "bobby@gmail.com",
   password: 123456,
-  remote_photo_url: "",
+  remote_avatar_url: "",
   user_type: "landlord"
 })
 
@@ -34,7 +34,7 @@ contractor_1 = User.create! ({
   last_name: "Electric",
   email: "ellie@gmail.com",
   password: 123456,
-  remote_photo_url: "",
+  remote_avatar_url: "",
   user_type: "contractor",
   contractor_type: "electrician"
 })
@@ -44,7 +44,7 @@ contractor_2 = User.create! ({
   last_name: "Anderson",
   email: "sparky@gmail.com",
   password: 123456,
-  remote_photo_url: "",
+  remote_avatar_url: "",
   user_type: "contractor",
   contractor_type: "electrician"
 })
@@ -54,7 +54,7 @@ contractor_3 = User.create! ({
   last_name: "San Pedro",
   email: "miguel@gmail.com",
   password: 123456,
-  remote_photo_url: "",
+  remote_avatar_url: "",
   user_type: "contractor",
   contractor_type: "electrician"
 })
@@ -95,7 +95,7 @@ job_tv = Job.create! ({
 quote_tv_1 = Quote.create! ({
   contractor: contractor_1,
   job: job_tv,
-  remote_photo_url: "",
+  remote_quote_url_url: "",
   price: 100,
   submitted: true
 })
@@ -103,7 +103,7 @@ quote_tv_1 = Quote.create! ({
 quote_tv_2 = Quote.create! ({
   contractor: contractor_2,
   job: job_tv,
-  remote_photo_url: "",
+  remote_quote_url_url: "",
   price: 150,
   submitted: true
 })
@@ -111,7 +111,7 @@ quote_tv_2 = Quote.create! ({
 quote_tv_3 = Quote.create! ({
   contractor: contractor_3,
   job: job_tv,
-  remote_photo_url: "",
+  remote_quote_url_url: "",
   price: 200,
   submitted: true
 })
@@ -138,7 +138,7 @@ job_sockets = Job.create! ({
 quote_sockets_1 = Quote.create! ({
   contractor: contractor_1,
   job: job_sockets,
-  remote_photo_url: "",
+  remote_quote_url_url: "",
   price: 100,
   submitted: true,
   accepted: true
@@ -147,7 +147,7 @@ quote_sockets_1 = Quote.create! ({
 quote_sockets_2 = Quote.create! ({
   contractor: contractor_2,
   job: job_sockets,
-  remote_photo_url: "",
+  remote_quote_url_url: "",
   price: 150,
   submitted: true,
   accepted: false
@@ -156,7 +156,7 @@ quote_sockets_2 = Quote.create! ({
 quote_sockets_3 = Quote.create! ({
   contractor: contractor_3,
   job: job_sockets,
-  remote_photo_url: "",
+  remote_quote_url_url: "",
   price: 200,
   submitted: true,
   accepted: false
@@ -189,13 +189,14 @@ job_hoover = Job.create! ({
   current_stage: 8,
   final_price: 150,
   resolved: true,
+  remote_invoice_url_url: "",
   rating: 4
 })
 
 quote_hoover_1 = Quote.create! ({
   contractor: contractor_1,
   job: job_hoover,
-  remote_photo_url: "",
+  remote_quote_url_url: "",
   price: 100,
   submitted: true,
   accepted: false
@@ -204,7 +205,7 @@ quote_hoover_1 = Quote.create! ({
 quote_hoover_2 = Quote.create! ({
   contractor: contractor_2,
   job: job_hoover,
-  remote_photo_url: "",
+  remote_quote_url_url: "",
   price: 150,
   submitted: true,
   accepted: true
@@ -213,7 +214,7 @@ quote_hoover_2 = Quote.create! ({
 quote_hoover_3 = Quote.create! ({
   contractor: contractor_3,
   job: job_hoover,
-  remote_photo_url: "",
+  remote_quote_url_url: "",
   price: 200,
   submitted: true,
   accepted: false
