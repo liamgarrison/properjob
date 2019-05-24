@@ -1,7 +1,6 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show]
   before_action :set_current_stage_attributes, only: [:show]
-  before_action :set_current_stage_attributes, only: [:show]
   before_action :waiting_for_me?, only: [:show]
 
   def index
