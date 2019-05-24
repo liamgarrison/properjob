@@ -1,0 +1,7 @@
+<%= simple_form_for [@job, @quote] do |f| %>
+  <%= f.input :price %>
+  <%= f.input :quote_url, as: :file, label: "Photo of quote" %>
+  <%= f.button :submit %>
+<% end %>
+
+

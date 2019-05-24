@@ -1,5 +1,5 @@
 class QuotesController < ApplicationController
-  before_action :set_job, only: [:create]
+  before_action :set_job, only: [:create, :update]
 
   def index
     @quotes = Quote.all
@@ -16,10 +16,21 @@ class QuotesController < ApplicationController
     redirect_to job_path(@job)
   end
 
+  def update
+    @quote = Quote.find(params[:id])
+    @quote.update(quote_params)
+    @job.increment!(:current_stage)
+    redirect_to job_path(@job)
+  end
+
   private
 
   def contractor_params
     params.permit(contractors: [])
+  end
+
+  def quote_params
+    params.require(:quote).permit(:price, :quote_url)
   end
 
   def set_job
