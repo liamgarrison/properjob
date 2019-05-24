@@ -8,4 +8,12 @@ class JobPolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def create?
+    true
+  end
+
+  def new?
+    create?
+  end
 end
