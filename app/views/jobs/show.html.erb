@@ -1,4 +1,9 @@
-<h1>Jobs#show</h1>
-<%= @job.description %>
-<p>Waiting for <%= @waiting_for %></p>
+<div class="container">
+  <h1>Jobs Show</h1>
+  <%= @job.description %>
+</div>
+
+<div class="container">
+  <%= link_to "Home", root_path, class: "btn btn-primary" %>
+</div>
 
