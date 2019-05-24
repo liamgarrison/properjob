@@ -69,7 +69,7 @@ property_1 = Property.create! ({
 
 job_lights = Job.create! ({
   property: property_1,
-  category: "electrics",
+  category: "electrician",
   description: "There was a big bang when I turned my bedroom light on and now none of the lights upstairs will turn on.",
   current_stage: 1
 })
@@ -87,7 +87,7 @@ end
 
 job_tv = Job.create! ({
   property: property_1,
-  category: "electrics",
+  category: "electrician",
   description: "My TV won't turn on",
   current_stage: 3
 })
@@ -128,7 +128,7 @@ end
 
 job_sockets = Job.create! ({
   property: property_1,
-  category: "electrics",
+  category: "electrician",
   description: "My sockets are full of mice",
   contractor: contractor_1,
   current_stage: 5,
@@ -183,7 +183,7 @@ end
 
 job_hoover = Job.create! ({
   property: property_1,
-  category: "electrics",
+  category: "electrician",
   description: "I don't know how to turn my hoover off, it's really loud",
   contractor: contractor_2,
   current_stage: 8,
