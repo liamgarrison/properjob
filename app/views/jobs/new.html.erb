@@ -4,6 +4,9 @@
   <%= simple_form_for (@job) do |f| %>
     <%= f.input :category %>
     <%= f.input :description %>
-    <%= f.submit "Submit Job", class: "btn btn-primary" %>
+
+    <div class="container">
+      <%= f.submit "Submit Job", class: "btn btn-primary w-100 sticky-btn" %>
+    </div>
   <% end %>
 </div>

@@ -1,11 +1,3 @@
-<h1>Jobs#show</h1>
-<%= @job.description %>
-
-<%= simple_form_for(@job) do |f| %>
-  <%= f.input :invoice_url, as: :file, label: "Photo of invoice" %>
-  <%= f.button :submit %>
-<% end %>
-
 <div class="container">
   <h1>Jobs Show</h1>
   <%= @job.description %>
@@ -17,4 +9,11 @@
   <% end %>
   <%= link_to "Home", root_path, class: "btn btn-primary" %>
 </div>
+
+
+
+<%= simple_form_for(@job) do |f| %>
+  <%= f.input :invoice_url, as: :file, label: "Photo of invoice" %>
+  <%= f.button :submit %>
+<% end %>
 
