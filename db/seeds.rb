@@ -7,7 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 ContractorAvailability.destroy_all
 Quote.destroy_all
-Tenancy.destroy_all
 Job.destroy_all
 Property.destroy_all
 User.destroy_all
@@ -169,6 +168,7 @@ quote_sockets_3 = Quote.create! ({
     job: job_sockets,
     date_available: Date.today + (1..100).to_a.sample
   })
+end
 
 sockets_job_stage = 0
 
