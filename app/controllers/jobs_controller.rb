@@ -35,7 +35,11 @@ class JobsController < ApplicationController
 
   def waiting_for_me?
     # Find out if the current user is the one we are waiting on.
-    # (If so, display the call to action button)
-    return current_user.user_type == waiting_for
+    if current_user == @job.contractor ||
+       current_user == @job.property.tenant ||
+       current_user == @job.property.landlord &&
+       current_user.user_type == waiting_for
+      return true
+    end
   end
 end
