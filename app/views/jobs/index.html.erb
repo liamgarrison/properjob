@@ -13,7 +13,7 @@
             <div class="card-body mb-3">
               <ul class="job-index-cards">
                 <li>
-                   <%= job.category %>
+                   <%= link_to job.category, job_path(job) %>
                    <%= job.description %>
                 </li>
               </ul>
