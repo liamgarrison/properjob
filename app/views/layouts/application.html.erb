@@ -10,9 +10,11 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
-    <%= yield %>
+    <div class="application-wrapper">
+      <%= render 'shared/navbar' %>
+      <%= render 'shared/flashes' %>
+      <%= yield %>
+    </div>
     <!-- Stripe.js -->
     <script src="https://js.stripe.com/v3/"
     data-stripe-key="<%= Rails.configuration.stripe[:publishable_key] %>"></script>
