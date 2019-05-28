@@ -1,10 +1,4 @@
-<div class="container">
-  <div class="user-show-card">
-      <div class="card my-3 shadow-sm rounded">
-        <h2 class="m-3">Quote Accepted</h2>
-        <div class="card-body">
-          <p class="card-text">You've been assigned this job, please provide your available dates and times. The tenant will then select their preferred option.</p>
-        </div>
-      </div>
-  </div>
-</div>
+<%= render 'jobs/user_show_cards/show_card', stage_number: 4 do %>
+  <p>Your quote has been accepted!</p>
+  <p>Please select the dates you are available to complete the job</p>
+<% end %>
