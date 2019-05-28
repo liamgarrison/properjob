@@ -1,4 +1,4 @@
-<div class="user-show-card">
-  <h2>Job Underway</h2>
-  <p><%= @job.contractor %> will be performing the job on <%= @job.date %>.</p>
-</div>
+<%= render 'jobs/user_show_cards/show_card', stage_number: 6 do %>
+  <p>The job is happening on <%= @job.date %></p>
+<% end %>
+

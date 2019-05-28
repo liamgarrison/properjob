@@ -11,4 +11,14 @@ class Job < ApplicationRecord
   def index
     @user= User.find(params[:id])
   end
+
+  def stage_changed_at(stage)
+    job_stages.find_by_stage(stage).changed_at.strftime("%e %b %Y %H:%M")
+  end
+
+  def available_dates
+    contractor_availabilities.map do |contractor_availability|
+      contractor_availability.date_available.strftime("%e %b %Y")
+    end
+  end
 end

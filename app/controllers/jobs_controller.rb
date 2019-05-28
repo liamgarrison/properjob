@@ -56,6 +56,7 @@ class JobsController < ApplicationController
       @job.update(invoice_params)
       @job.update(current_stage: 7)
       JobStage.create(job: @job, stage: @job.current_stage, changed_at: DateTime.now)
+      redirect_to job_path(@job)
     when 7
       @job.update(job_params)
       @job.update(current_stage: 8)
@@ -124,54 +125,63 @@ class JobsController < ApplicationController
   def set_current_stage_attributes
     # Find out what stage of the job we are at
     # For that stage, which user type are we waiting for
-    stage_attributes = {
+    @stage_attributes = {
       1 => {
         stage_name: "Landlord selecting contractors",
         waiting_for: "landlord",
-        call_to_action: "Select Contractors"
+        call_to_action: "Select Contractors",
+        just_completed: "Job submitted"
       },
       2 => {
         stage_name: "Contractors adding quotes",
         waiting_for: "contractor",
-        call_to_action: "Add a Quote"
+        call_to_action: "Add a Quote",
+        just_completed: "Contractors selected by landlord"
       },
       3 => {
         stage_name: "Landlord reviewing quote",
         waiting_for: "landlord",
-        call_to_action: "Review Quotes"
+        call_to_action: "Review Quotes",
+        just_completed: "Contractors provided quotes"
       },
       4 => {
-        stage_name: "Contractor adding available dates/times",
+        stage_name: "Contractor adding available dates",
         waiting_for: "contractor",
-        call_to_action: "Add Available Times"
+        call_to_action: "Add Available Times",
+        just_completed: "Landlord selected a contractor"
       },
       5 => {
-        stage_name: "Tenant selecting a date/time",
+        stage_name: "Tenant selecting a date",
         waiting_for: "tenant",
-        call_to_action: "Pick a Time"
+        call_to_action: "Pick a Date",
+        just_completed: "Contractor provided dates"
       },
       6 => {
         stage_name: "Undergoing work",
         waiting_for: "contractor",
-        call_to_action: "Finalise Job"
+        call_to_action: "Finalise Job",
+        just_completed: "Tenant selected a suitable date"
       },
       7 => {
         stage_name: "Tenant providing feedback",
         waiting_for: "tenant",
-        call_to_action: "Submit Feedback"
+        call_to_action: "Submit Feedback",
+        just_completed: "Work completed"
       },
       8 => {
         stage_name: "Landlord completing final review",
         waiting_for: "landlord",
-        call_to_action: "Approve and Pay"
+        call_to_action: "Approve and Pay",
+        just_completed: "Tenant provided feedback"
       },
       9 => {
-        stage_name: "Job completed",
+        stage_name: nil,
         waiting_for: nil,
-        call_to_action: nil
+        call_to_action: nil,
+        just_completed: "Job completed"
       }
     }
-    @current_stage_attributes = stage_attributes[@job.current_stage]
+    @current_stage_attributes = @stage_attributes[@job.current_stage]
   end
 
   def belong_to_job?
@@ -186,6 +196,5 @@ class JobsController < ApplicationController
       @waiting_for_me = false
     end
   end
-
 
 end
