@@ -12,14 +12,17 @@ class QuotesController < ApplicationController
     contractor_ids.each do |id|
       Quote.create(contractor_id: id, job_id: params[:job_id], submitted: false)
     end
-    @job.increment!(:current_stage)
+    @job.update(current_stage: 2)
     redirect_to job_path(@job)
   end
 
   def update
     @quote = Quote.find(params[:id])
     @quote.update(quote_params)
-    @job.increment!(:current_stage)
+    @quote.update(submitted: true)
+    if @job.quotes.all?{ |quote| quote.submitted }
+      @job.update(current_stage: 3)
+    end
     redirect_to job_path(@job)
   end
 
