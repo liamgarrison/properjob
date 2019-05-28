@@ -1,6 +1,7 @@
 <div class="container mt-3">
   <h3><%= @job.description %></h3>
-  <p>Needs an <%= @job.category %></p>
+  <p>Needs: <%= @job.category %></p>
+  <p><%= @current_stage_attributes[:stage_name] %></p>
   <div class="cards mt-3">
     <% @job.current_stage.times do |index| %>
       <%= render("jobs/user_show_cards/#{current_user.user_type}_show_cards/#{current_user.user_type}_card_#{@job.current_stage - index}") %>
