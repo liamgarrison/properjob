@@ -38,6 +38,12 @@ class JobsController < ApplicationController
       @job.update(contractor: @quote_accepted.contractor, final_price: @quote_accepted.price)
       @job.update(current_stage: 4)
       redirect_to job_path(@job)
+    when 4
+      date_params[:dates].each do |date|
+        ContractorAvailability.create(date_available: date, job: @job, contractor: @job.contractor)
+      end
+      @job.update(current_stage: 5)
+      redirect_to job_path(@job)
     end
   end
 
@@ -52,6 +58,8 @@ class JobsController < ApplicationController
     when 3
       @quotes = Quote.where(job: @job)
       render "jobs/action_forms/stage_three"
+    when 4
+      render "jobs/action_forms/stage_four"
     end
   end
 
@@ -60,6 +68,14 @@ class JobsController < ApplicationController
 
   def set_job
     @job = Job.find(params[:id])
+  end
+
+  def date_params
+    date_params = params.permit(dates: [])
+    date_params[:dates].map do |date|
+      Date.parse(date)
+    end
+    date_params
   end
 
   def quote_params
