@@ -1,7 +1,7 @@
-<div class="user-show-card">
-  <h2>Select contractors</h2>
-  <p>Select contractors that you'd like to collect quotes from.</p>
-  <p><%= @job.category %></p>
-  <p><%= @job.description %></p>
-  <p>also image thumbnails (maybe clickable to make fullscreen?)</p>
-</div>
+<%= render 'jobs/user_show_cards/show_card', stage_number: 1 do %>
+  <p>Description: <%= @job.description %></p>
+  <p>Category: <%= @job.category %></p>
+  <p>Photo 1</p>
+  <p>Photo 2</p>
+<% end %>
+

@@ -7,12 +7,12 @@ class QuotesController < ApplicationController
   end
 
   def create
-    @contractor_params = contractor_params
-    contractor_ids = @contractor_params["contractors"].map(&:to_i)
+    contractor_ids = params[:contractor_selected].split(",").reject(&:blank?)
     contractor_ids.each do |id|
       Quote.create(contractor_id: id, job_id: params[:job_id], submitted: false)
     end
     @job.update(current_stage: 2)
+    JobStage.create(job: @job, stage: @job.current_stage, changed_at: DateTime.now)
     redirect_to job_path(@job)
   end
 
@@ -22,15 +22,12 @@ class QuotesController < ApplicationController
     @quote.update(submitted: true)
     if @job.quotes.all?{ |quote| quote.submitted }
       @job.update(current_stage: 3)
+      JobStage.create(job: @job, stage: @job.current_stage, changed_at: DateTime.now)
     end
     redirect_to job_path(@job)
   end
 
   private
-
-  def contractor_params
-    params.permit(contractors: [])
-  end
 
   def quote_params
     params.require(:quote).permit(:price, :quote_url)
