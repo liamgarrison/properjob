@@ -38,6 +38,8 @@ class JobsController < ApplicationController
       @job.update(contractor: @quote_accepted.contractor, final_price: @quote_accepted.price)
       @job.update(current_stage: 4)
       redirect_to job_path(@job)
+    when 8
+
     end
   end
 
@@ -52,6 +54,8 @@ class JobsController < ApplicationController
     when 3
       @quotes = Quote.where(job: @job)
       render "jobs/action_forms/stage_three"
+    when 8
+      render "jobs/action_forms/stage_eight"
     end
   end
 
