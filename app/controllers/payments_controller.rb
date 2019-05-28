@@ -15,6 +15,7 @@ class PaymentsController < ApplicationController
     )
 
     @job.update(current_stage: 9)
+    JobStage.create(job: @job, stage: @job.current_stage, changed_at: DateTime.now)
     redirect_to job_path(@job)
 
     rescue Stripe::CardError => e
