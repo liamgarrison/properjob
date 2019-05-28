@@ -44,6 +44,10 @@ class JobsController < ApplicationController
       end
       @job.update(current_stage: 5)
       redirect_to job_path(@job)
+    when 5
+      @job.update(date: tenant_date_params[:date])
+      @job.update(current_stage: 6)
+      redirect_to job_path(@job)
     end
   end
 
@@ -60,6 +64,8 @@ class JobsController < ApplicationController
       render "jobs/action_forms/stage_three"
     when 4
       render "jobs/action_forms/stage_four"
+    when 5
+      render "jobs/action_forms/stage_five"
     end
   end
 
@@ -76,6 +82,10 @@ class JobsController < ApplicationController
       Date.parse(date)
     end
     date_params
+  end
+
+  def tenant_date_params
+    tenant_date_params = params.permit(:date)
   end
 
   def quote_params
