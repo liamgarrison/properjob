@@ -1,4 +1,3 @@
-<div class="user-show-card">
-  <h2>Thanks for your feedback</h2>
-  <p>Waiting for your landlord to review the job</p>
-</div>
+<%= render 'jobs/user_show_cards/show_card', stage_number: 8 do %>
+  <p>You rated <%= @job.contractor.first_name %> <%= @job.rating %> stars!</p>
+<% end %>

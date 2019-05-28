@@ -1,4 +1,4 @@
-<div class="user-show-card">
-  <h2>Contractor supplying available times</h2>
-  <p>You will hear from the contractor shortly to agree a best date and time for your job</p>
-</div>
+<%= render 'jobs/user_show_cards/show_card', stage_number: 4 do %>
+<p><%= @job.contractor.first_name %> will be doing your job</p>
+<p>Here's his email: <%= @job.contractor.email %></p>
+<% end %>
