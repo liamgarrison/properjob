@@ -1,33 +1,64 @@
-
 <div class="col-sm w-100 job-index-banner">
-  <h2 class="text-center mb-3 pt-3">Welcome back</h2>
-  <p>Name....here</p>
+  <h2 class="mb-3 pt-3">Welcome back <%= current_user.first_name.capitalize %></h2>
 </div>
 
-<div class="container w-100">
-  <div class="row">
-    <div class="col-sm-12">
-      <% @jobs.each do |job| %>
-        <div class="card mb-3 rounded" style="width: 22rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body mb-3">
-              <ul class="job-index-cards">
-                <li>
-                   <%= link_to job.category, job_path(job) %>
-                   <%= job.description %>
-                </li>
-              </ul>
-            </div>
+<div class="container">
+  <h3 class="mt-3 text-center">Your previous requests</h3>
+</div>
+
+<div class="container">
+  <div class="user-show-card">
+      <div class="card my-3 shadow-sm rounded">
+        <h2 class="m-3 text-center">Your feedback</h2>
+        <div class="card-body">
+          <p class="card-text text-center">Was your issue resolved?</p>
+
+          <div class="container d-flex align-items-center">
+            <button class="btn btn-outline-primary w-50 m-1">Yes</button>
+            <button class="btn btn-outline-info w-50 m-1">No</button>
           </div>
-        <% end %>
-    </div>
+
+        </div>
+      </div>
   </div>
 </div>
+
+<div class="container">
+  <% @jobs.each do |job| %>
+    <div class="card my-3 shadow-sm rounded">
+      <div class="card-body">
+        <h4 class="card-title"><strong>Category:</strong> <%= job.category %></h4>
+        <p class="card-text"><strong>Description:</strong> <%= job.description %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="w-100 mt-3 sticky-btn p-3 bg-light border-top">
   <%= link_to "Submit new job", new_job_path, class: "btn btn-primary w-100 px-6" %>
 </div>
-
-
-
 
