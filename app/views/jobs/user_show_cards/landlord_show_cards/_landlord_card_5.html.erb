@@ -1,4 +1,8 @@
-<div class="user-show-card">
-  <h2>Tenant Selecting Date</h2>
-  <p>Waiting for your tenant to confirm their preferred date.</p>
-</div>
+<%= render 'jobs/user_show_cards/show_card', stage_number: 5 do %>
+  <% @job.available_dates.each do |date| %>
+    <p>
+      <%= date %>
+    </p>
+  <% end %>
+<% end %>
+

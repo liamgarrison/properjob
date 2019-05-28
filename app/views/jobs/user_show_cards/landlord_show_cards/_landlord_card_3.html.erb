@@ -1,6 +1,6 @@
-<div class="user-show-card">
-  <h2>Review Quotes</h2>
-  <p>You've received quotes from contractors. Please review these and select your preferred option.</p>
-  <p>The selected contractor will then organise a time to do the job directly with the tenant.</p>
-</div>
+<%= render 'jobs/user_show_cards/show_card', stage_number: 3 do %>
+  <% @job.quotes.each do |quote| %>
+    <p><%= quote.contractor.first_name %> (£<%= quote.price %>)</p>
+  <% end %>
+<% end %>
 
