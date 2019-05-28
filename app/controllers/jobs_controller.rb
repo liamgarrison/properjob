@@ -20,7 +20,7 @@ class JobsController < ApplicationController
     @job = Job.create(job_params)
     @job.property = Property.first
     @job.current_stage = 1
-    JobStage.create(job: @job, stage: @job.current_stage, changed_at: DateTime.now)
+    # JobStage.create(job: @job, stage: @job.current_stage, changed_at: DateTime.now)
     if @job.save
       redirect_to job_path(@job)
     else
