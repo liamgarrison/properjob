@@ -1,7 +1,7 @@
 .sticky-btn {
-  position:fixed;
+  position: sticky;
   bottom: 0;
-  width: 100%;
+  width: 375px;
   padding: 16px;
   border-top: 1px solid $light-gray;
   background-color: $white;

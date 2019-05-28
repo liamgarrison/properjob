@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 ContractorAvailability.destroy_all
 Quote.destroy_all
 JobStage.destroy_all
@@ -75,23 +68,15 @@ job_lights = Job.create! ({
   current_stage: 1
 })
 
-lights_job_stage = 0
-
-1.times do
-  JobStage.create! ({
-    job: job_lights,
-    stage: lights_job_stage += 1
-  })
-end
-
 # Job at stage 3 - Landlord Reviewing Quotes
 
 job_tv = Job.create! ({
   property: property_1,
   category: "electrician",
   description: "My TV won't turn on",
-  current_stage: 3
+  current_stage: 1
 })
+
 
 quote_tv_1 = Quote.create! ({
   contractor: contractor_1,
@@ -117,14 +102,9 @@ quote_tv_3 = Quote.create! ({
   submitted: true
 })
 
-tv_job_stage = 0
+job_tv.update(current_stage: 2)
+job_tv.update(current_stage: 3)
 
-3.times do
-  JobStage.create! ({
-    job: job_tv,
-    stage: tv_job_stage += 1
-  })
-end
 # Job at stage 5 - Tenant selecting date and times
 
 job_sockets = Job.create! ({
@@ -132,7 +112,7 @@ job_sockets = Job.create! ({
   category: "electrician",
   description: "My sockets are full of mice",
   contractor: contractor_1,
-  current_stage: 5,
+  current_stage: 1,
   final_price: 100
 })
 
@@ -171,14 +151,10 @@ quote_sockets_3 = Quote.create! ({
   })
 end
 
-sockets_job_stage = 0
-
-5.times do
-  JobStage.create! ({
-    job: job_sockets,
-    stage: sockets_job_stage += 1
-  })
-end
+job_sockets.update(current_stage: 2)
+job_sockets.update(current_stage: 3)
+job_sockets.update(current_stage: 4)
+job_sockets.update(current_stage: 5)
 
 # Job at stage 8 - Final Review
 
@@ -187,12 +163,13 @@ job_hoover = Job.create! ({
   category: "electrician",
   description: "I don't know how to turn my hoover off, it's really loud",
   contractor: contractor_2,
-  current_stage: 8,
+  current_stage: 1,
   final_price: 150,
   resolved: true,
   remote_invoice_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709664/ohkjr1mehg1bisbuuq8e.pdf",
   rating: 4
 })
+
 
 quote_hoover_1 = Quote.create! ({
   contractor: contractor_1,
@@ -229,11 +206,11 @@ quote_hoover_3 = Quote.create! ({
   })
 end
 
-hoover_job_stage = 0
+job_hoover.update(current_stage: 2)
+job_hoover.update(current_stage: 3)
+job_hoover.update(current_stage: 4)
+job_hoover.update(current_stage: 5)
+job_hoover.update(current_stage: 6)
+job_hoover.update(current_stage: 7)
+job_hoover.update(current_stage: 8)
 
-8.times do
-  JobStage.create! ({
-    job: job_hoover,
-    stage: hoover_job_stage += 1
-  })
-end

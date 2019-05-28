@@ -12,7 +12,6 @@ class QuotesController < ApplicationController
       Quote.create(contractor_id: id, job_id: params[:job_id], submitted: false)
     end
     @job.update(current_stage: 2)
-    JobStage.create(job: @job, stage: @job.current_stage, changed_at: DateTime.now)
     redirect_to job_path(@job)
   end
 
@@ -22,7 +21,6 @@ class QuotesController < ApplicationController
     @quote.update(submitted: true)
     if @job.quotes.all?{ |quote| quote.submitted }
       @job.update(current_stage: 3)
-      JobStage.create(job: @job, stage: @job.current_stage, changed_at: DateTime.now)
     end
     redirect_to job_path(@job)
   end

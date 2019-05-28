@@ -20,7 +20,6 @@ class JobsController < ApplicationController
     @job = Job.create(job_params)
     @job.property = Property.first
     @job.current_stage = 1
-    JobStage.create(job: @job, stage: @job.current_stage, changed_at: DateTime.now)
     if @job.save
       redirect_to job_path(@job)
     else
@@ -38,29 +37,24 @@ class JobsController < ApplicationController
       @quotes_rejected.each {|quote| quote.update(accepted: false)}
       @job.update(contractor: @quote_accepted.contractor, final_price: @quote_accepted.price)
       @job.update(current_stage: 4)
-      JobStage.create(job: @job, stage: @job.current_stage, changed_at: DateTime.now)
       redirect_to job_path(@job)
     when 4
       date_params[:dates].each do |date|
         ContractorAvailability.create(date_available: date, job: @job, contractor: @job.contractor)
       end
       @job.update(current_stage: 5)
-      JobStage.create(job: @job, stage: @job.current_stage, changed_at: DateTime.now)
       redirect_to job_path(@job)
     when 5
       @job.update(date: tenant_date_params[:date])
       @job.update(current_stage: 6)
-      JobStage.create(job: @job, stage: @job.current_stage, changed_at: DateTime.now)
       redirect_to job_path(@job)
     when 6
       @job.update(invoice_params)
       @job.update(current_stage: 7)
-      JobStage.create(job: @job, stage: @job.current_stage, changed_at: DateTime.now)
       redirect_to job_path(@job)
     when 7
       @job.update(job_params)
       @job.update(current_stage: 8)
-      JobStage.create(job: @job, stage: @job.current_stage, changed_at: DateTime.now)
       redirect_to job_path(@job)
     end
   end
