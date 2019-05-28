@@ -1,12 +1,28 @@
-<form action="<%= job_payments_path(@job) %>" method="post">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <label for="agree_to_job">I agree that the job is completed</label>
-  <input id="agree_to_job" type="checkbox" name="agree_to_job" value="true">
+<!-- <form action="<%= job_payments_path(@job) %>" method="post">
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-key="<%#= Rails.configuration.stripe[:publishable_key] %>"
     data-name="Payment for job #<%= @job.id %>"
     data-email="<%= current_user.email %>"
     data-description="Payment for job #<%= @job.id %>"
-    data-amount="<%= @job.final_price * 100 %>"
+    data-amount="<%#= @job.final_price * 100 %>"
     data-currency="GBP"></script>
+</form> -->
+
+<form action="/charge" method="post" id="payment-form">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <label for="agree_to_job">I agree that the job is completed</label>
+  <input id="agree_to_job" type="checkbox" name="agree_to_job" value="true">
+  <div class="form-row">
+    <label for="card-element">
+      Credit or debit card
+    </label>
+    <div id="card-element">
+      <!-- A Stripe Element will be inserted here. -->
+    </div>
+
+    <!-- Used to display Element errors. -->
+    <div id="card-errors" role="alert"></div>
+  </div>
+
+  <button>Submit Payment</button>
 </form>
