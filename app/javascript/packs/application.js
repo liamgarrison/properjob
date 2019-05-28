@@ -1,4 +1,9 @@
 import "bootstrap";
+import { initStripe } from "./plugins/initStripe"
+
+// Initialize plugins
+
+initStripe();
 
 const contractorSelected = document.querySelector("#contractor_selected")
 

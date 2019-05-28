@@ -1,12 +1,16 @@
-<form action="<%= job_payments_path(@job) %>" method="post">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <label for="agree_to_job">I agree that the job is completed</label>
-  <input id="agree_to_job" type="checkbox" name="agree_to_job" value="true">
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-    data-name="Payment for job #<%= @job.id %>"
-    data-email="<%= current_user.email %>"
-    data-description="Payment for job #<%= @job.id %>"
-    data-amount="<%= @job.final_price * 100 %>"
-    data-currency="GBP"></script>
-</form>
+<div class="container">
+  <form action="<%= job_payments_path(@job) %>" method="post" id="payment-form">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <div class="form-check my-3">
+      <input class="form-check-input" id="agree_to_job" type="checkbox" name="agree_to_job" value="true">
+      <label class="form-check-label" for="agree_to_job">I agree that the job is completed</label>
+
+    </div>
+    <div id="card-element">
+      <!-- A Stripe Element will be inserted here. -->
+    </div>
+    <!-- Used to display Element errors. -->
+    <div id="card-errors" role="alert"></div>
+    <input class="mt-3 btn btn-primary w-100" type="submit" value="Pay £<%= @job.final_price %>.00 now">
+  </form>
+</div>
