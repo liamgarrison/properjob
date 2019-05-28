@@ -3,21 +3,19 @@
 <form action="<%= job_quotes_path(@job) %>" method="post">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <%= hidden_field_tag :contractor_selected, value="," %>
-<div class="container">
-  <% @contractors.each do |contractor| %>
-    <div class="card my-3 shadow-sm rounded contractor-card" data-id="<%=contractor.id%>">
-      <div class="card-body">
-        <h4 class="card-title"><strong>Category:</strong> <%= contractor.first_name %></h4>
-        <p class="card-text"><strong>Specialism :</strong> <%= contractor.contractor_type %></p>
+  <div class="container">
+    <% @contractors.each do |contractor| %>
+      <div class="card my-3 shadow-sm rounded contractor-card" data-id="<%=contractor.id%>">
+        <div class="card-body">
+          <h4 class="card-title"><strong>Category:</strong> <%= contractor.first_name %></h4>
+          <p class="card-text"><strong>Specialism :</strong> <%= contractor.contractor_type %></p>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+  <div class="w-100 sticky-btn">
+   <input type="submit" value="Submit" class="btn btn-primary w-100">
+  </div>
 </form>
-
-<div class="w-100 sticky-btn">
- <input type="submit" value="Submit" class="btn btn-primary w-100">
-</div>
-
 
 
