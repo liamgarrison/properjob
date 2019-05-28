@@ -1,6 +1,13 @@
-<div class="user-show-card">
-  <h2>Job arranged</h2>
-  <p>Job confirmed for <%= @job.date %>.</p>
-  <p>Location: <%= @job.address %></p>
+<div class="container">
+  <div class="user-show-card">
+    <% @jobs.each do |job| %>
+      <div class="card my-3 shadow-sm rounded">
+        <h2 class="m-3">Job arranged</h2>
+        <div class="card-body">
+          <p class="card-text">Job confirmed for <%= @job.date %>.</p>
+          <p class="card-text">Location: <%= @job.address %>.</p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-
