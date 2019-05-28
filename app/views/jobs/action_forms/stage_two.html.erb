@@ -1,7 +1,14 @@
-<%= simple_form_for [@job, @quote] do |f| %>
-  <%= f.input :price %>
-  <%= f.input :quote_url, as: :file, label: "Photo of quote" %>
-  <%= f.button :submit %>
-<% end %>
+<div class="container">
+  <h1 class ="my-3">Enter Quote</h1>
+  <div class="form-group">
+    <%= simple_form_for [@job, @quote] do |f| %>
+      <%= f.input :price, class: "form-control" %>
+    <div>
+      <%= f.input :quote_url , as: :file, label: "Upload quote details", class: "form-control" %>
+    </div>
+      <%= f.button :submit, class: "btn btn-primary"%>
+  </div>
+    <% end %>
+</div>
 
 
