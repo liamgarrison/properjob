@@ -1,4 +1,4 @@
 <%= render 'jobs/user_show_cards/show_card', stage_number: 6 do %>
-<p><%= @job.contractor.first_name %> is currently completing your job</p>
+<p><%= @job.contractor.first_name %> is currently completing your job on <%= @job.date %></p>
 <p>Here's his email: <%= @job.contractor.email %></p>
 <% end %>
