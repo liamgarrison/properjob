@@ -7,8 +7,7 @@ class QuotesController < ApplicationController
   end
 
   def create
-    @contractor_params = contractor_params
-    contractor_ids = @contractor_params["contractors"].map(&:to_i)
+    contractor_ids = params[:contractor_selected].split(",").reject(&:blank?)
     contractor_ids.each do |id|
       Quote.create(contractor_id: id, job_id: params[:job_id], submitted: false)
     end
@@ -27,10 +26,6 @@ class QuotesController < ApplicationController
   end
 
   private
-
-  def contractor_params
-    params.permit(contractors: [])
-  end
 
   def quote_params
     params.require(:quote).permit(:price, :quote_url)
