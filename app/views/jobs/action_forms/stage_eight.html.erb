@@ -1,0 +1,12 @@
+<form action="<%= job_payments_path(@job) %>" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <label for="agree_to_job">I agree that the job is completed</label>
+  <input id="agree_to_job" type="checkbox" name="agree_to_job" value="true">
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-name="Payment for job #<%= @job.id %>"
+    data-email="<%= current_user.email %>"
+    data-description="Payment for job #<%= @job.id %>"
+    data-amount="<%= @job.final_price * 100 %>"
+    data-currency="GBP"></script>
+</form>
