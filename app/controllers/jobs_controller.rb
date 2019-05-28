@@ -66,6 +66,8 @@ class JobsController < ApplicationController
       render "jobs/action_forms/stage_four"
     when 5
       render "jobs/action_forms/stage_five"
+    when 8
+      render "jobs/action_forms/stage_eight"
     end
   end
 
