@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 ContractorAvailability.destroy_all
 Quote.destroy_all
+JobStage.destroy_all
 Job.destroy_all
 Property.destroy_all
 User.destroy_all

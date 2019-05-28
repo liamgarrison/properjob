@@ -1,16 +1,15 @@
 <div class="container">
-  <h1 class="text-center">Jobs Show</h1>
-  <%= @job.description %>
-  <p>I am a <%= current_user.user_type %></p>
-  <p>This job is waiting for: <%= @current_stage_attributes[:waiting_for] %></p>
-  <p><%= @current_stage_attributes[:stage_name] %></p>
-  <% if @waiting_for_me %>
+  <h2><%= @job.description %></h2>
+  <h3>Needs an <%= @job.category %></h3>
+  <div class="cards">
+    <% @job.current_stage.times do |index| %>
+      <%= render("jobs/user_show_cards/#{current_user.user_type}_show_cards/#{current_user.user_type}_card_#{@job.current_stage - index}") %>
+    <% end %>
+  </div>
+</div>
+
+<% if @waiting_for_me %>
+  <div class="sticky-btn">
     <%= link_to @current_stage_attributes[:call_to_action], edit_job_path(@job), class: "btn btn-primary" %>
-  <% end %>
-  <%= link_to "Home", root_path, class: "btn btn-primary" %>
-</div>
-<div class="cards">
-  <% @job.current_stage.times do |index| %>
-    <%= render("jobs/user_show_cards/#{current_user.user_type}_show_cards/#{current_user.user_type}_card_#{@job.current_stage - index}") %>
-  <% end %>
-</div>
+  </div>
+<% end %>
