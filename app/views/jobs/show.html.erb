@@ -1,7 +1,7 @@
-<div class="container">
-  <h2><%= @job.description %></h2>
-  <h3>Needs an <%= @job.category %></h3>
-  <div class="cards">
+<div class="container mt-3">
+  <h3><%= @job.description %></h3>
+  <p>Needs an <%= @job.category %></p>
+  <div class="cards mt-3">
     <% @job.current_stage.times do |index| %>
       <%= render("jobs/user_show_cards/#{current_user.user_type}_show_cards/#{current_user.user_type}_card_#{@job.current_stage - index}") %>
     <% end %>
