@@ -48,6 +48,9 @@ class JobsController < ApplicationController
       @job.update(date: tenant_date_params[:date])
       @job.update(current_stage: 6)
       redirect_to job_path(@job)
+    when 6
+      @job.update(invoice_params)
+      @job.update(current_stage: 7)
     when 7
       @job.update(job_params)
       @job.update(current_stage: 8)
@@ -70,6 +73,8 @@ class JobsController < ApplicationController
       render "jobs/action_forms/stage_four"
     when 5
       render "jobs/action_forms/stage_five"
+    when 6
+      render "jobs/action_forms/stage_six"
     when 7
       render "jobs/action_forms/stage_seven"
     when 8
@@ -104,6 +109,10 @@ class JobsController < ApplicationController
 
   def job_params
     params.require(:job).permit(:category, :description, :resolved, :rating)
+  end
+
+  def invoice_params
+    params.require(:job).permit(:invoice_url)
   end
 
   def set_current_stage_attributes
