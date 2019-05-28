@@ -9,3 +9,8 @@
   <% end %>
   <%= link_to "Home", root_path, class: "btn btn-primary" %>
 </div>
+<div class="cards">
+  <% @job.current_stage.times do |index| %>
+    <%= render("jobs/user_show_cards/#{current_user.user_type}_show_cards/#{current_user.user_type}_card_#{@job.current_stage - index}") %>
+  <% end %>
+</div>
