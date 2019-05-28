@@ -1,0 +1,8 @@
+<form action="<%= job_path(@job) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <% @job.quotes.each_with_index do |quote, index|  %>
+    <input type="radio" name="quote_id" value="<%=quote.id%>"> <%= quote.contractor.first_name %> £<%= quote.price %>
+  <% end %>
+  <input type="submit" value="submit">
+</form>

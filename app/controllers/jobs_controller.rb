@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: [:show, :edit]
+  before_action :set_job, only: [:show, :edit, :update]
   before_action :set_current_stage_attributes, only: [:show, :edit]
   before_action :waiting_for_me?, only: [:show]
 
@@ -27,6 +27,37 @@ class JobsController < ApplicationController
     end
   end
 
+  def update
+    case @job.current_stage
+    when 3
+      @quote_accepted = Quote.find(quote_params[:quote_id])
+      @quote_accepted.accepted = true
+      @quote_accepted.save
+      @quotes_rejected = @job.quotes.reject { |quote| quote.accepted }
+      @quotes_rejected.each {|quote| quote.update(accepted: false)}
+      @job.update(contractor: @quote_accepted.contractor, final_price: @quote_accepted.price)
+      @job.update(current_stage: 4)
+      redirect_to job_path(@job)
+    when 4
+      date_params[:dates].each do |date|
+        ContractorAvailability.create(date_available: date, job: @job, contractor: @job.contractor)
+      end
+      @job.update(current_stage: 5)
+      redirect_to job_path(@job)
+    when 5
+      @job.update(date: tenant_date_params[:date])
+      @job.update(current_stage: 6)
+      redirect_to job_path(@job)
+    when 6
+      @job.update(invoice_params)
+      @job.update(current_stage: 7)
+    when 7
+      @job.update(job_params)
+      @job.update(current_stage: 8)
+      redirect_to job_path(@job)
+    end
+  end
+
   def edit
     case @job.current_stage
     when 1
@@ -35,6 +66,19 @@ class JobsController < ApplicationController
     when 2
       @quote = Quote.where(contractor: current_user, job: @job).first
       render "jobs/action_forms/stage_two"
+    when 3
+      @quotes = Quote.where(job: @job)
+      render "jobs/action_forms/stage_three"
+    when 4
+      render "jobs/action_forms/stage_four"
+    when 5
+      render "jobs/action_forms/stage_five"
+    when 6
+      render "jobs/action_forms/stage_six"
+    when 7
+      render "jobs/action_forms/stage_seven"
+    when 8
+      render "jobs/action_forms/stage_eight"
     end
   end
 
@@ -45,8 +89,30 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
   end
 
+  def date_params
+    date_params = params.permit(dates: [])
+    date_params[:dates].map do |date|
+      Date.parse(date)
+    end
+    date_params
+  end
+
+  def tenant_date_params
+    tenant_date_params = params.permit(:date)
+  end
+
+  def quote_params
+    quote_params = params.permit(:quote_id)
+    quote_params[:quote_id] = quote_params[:quote_id].to_i
+    quote_params
+  end
+
   def job_params
-    params.require(:job).permit(:category, :description)
+    params.require(:job).permit(:category, :description, :resolved, :rating)
+  end
+
+  def invoice_params
+    params.require(:job).permit(:invoice_url)
   end
 
   def set_current_stage_attributes

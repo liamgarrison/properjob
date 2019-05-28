@@ -1,0 +1,9 @@
+<%= form_for(@job) do |f| %>
+  <%= f.radio_button :resolved, true %>
+  <%= f.label :resolved, 'My problem has been resolved', :value => true %>
+  <%= f.radio_button :resolved, false %>
+  <%= f.label :resolved, 'My problem has not been resolved', :value => false %>
+  <%= f.label :rating, 'How would you rate the job'%>
+  <%= f.select :rating, [1, 2, 3, 4, 5] %>
+  <%= f.submit %>
+<% end %>
