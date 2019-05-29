@@ -13,14 +13,18 @@ class JobsController < ApplicationController
 
   def new
     @job = Job.new
+    @job.photo_videos.build
     # authorize @job
   end
 
   def create
-    @job = Job.create(job_params)
+    @job = Job.new(job_params)
     @job.property = Property.first
     @job.current_stage = 1
     if @job.save
+      params[:job][:photo_videos][:photo_video].each do |photo_video|
+        @job.photo_videos.create(photo_video: photo_video, stage: @job.current_stage)
+      end
       redirect_to job_path(@job)
     else
       render :new
@@ -109,7 +113,7 @@ class JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:category, :description, :resolved, :rating)
+    params.require(:job).permit(:category, :description, :resolved, :rating, :photo_videos)
   end
 
   def invoice_params

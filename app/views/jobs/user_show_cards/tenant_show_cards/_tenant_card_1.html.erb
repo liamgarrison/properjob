@@ -2,7 +2,9 @@
   <p>Description: <%= @job.description %></p>
   <p>Category: <%= @job.category %></p>
   <% @job.photo_videos.each do |photo_video| %>
-    <%= cl_image_tag photo_video.photo_video, class: "w-100 mb-3", crop: :fill %>
+    <% if photo_video.stage == @job.current_stage %>
+      <%= cl_image_tag photo_video.photo_video, class: "w-100 mb-3", crop: :fill %>
+    <% end %>
   <% end %>
 <% end %>
 

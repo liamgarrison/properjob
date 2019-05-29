@@ -1,4 +1,5 @@
 ContractorAvailability.destroy_all
+PhotoVideo.destroy_all
 Quote.destroy_all
 JobStage.destroy_all
 Job.destroy_all
@@ -68,6 +69,12 @@ job_lights = Job.create! ({
   current_stage: 1
 })
 
+PhotoVideo.create(
+  job: job_lights,
+  stage: 1,
+  remote_photo_video_url: 'https://images.pexels.com/photos/1123262/pexels-photo-1123262.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+)
+
 # Job at stage 3 - Landlord Reviewing Quotes
 
 job_tv = Job.create! ({
@@ -76,6 +83,12 @@ job_tv = Job.create! ({
   description: "My TV won't turn on",
   current_stage: 1
 })
+
+PhotoVideo.create(
+  job: job_tv,
+  stage: 1,
+  remote_photo_video_url: 'https://images.pexels.com/photos/2251206/pexels-photo-2251206.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+)
 
 
 quote_tv_1 = Quote.create! ({
@@ -115,6 +128,12 @@ job_sockets = Job.create! ({
   current_stage: 1,
   final_price: 100
 })
+
+PhotoVideo.create(
+  job: job_sockets,
+  stage: 1,
+  remote_photo_video_url: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+)
 
 quote_sockets_1 = Quote.create! ({
   contractor: contractor_1,
@@ -170,6 +189,12 @@ job_hoover = Job.create! ({
   rating: 4,
   date: Date.today + 5
 })
+
+PhotoVideo.create(
+  job: job_hoover,
+  stage: 1,
+  remote_photo_video_url: 'https://images.pexels.com/photos/38325/vacuum-cleaner-carpet-cleaner-housework-housekeeping-38325.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+)
 
 
 quote_hoover_1 = Quote.create! ({
