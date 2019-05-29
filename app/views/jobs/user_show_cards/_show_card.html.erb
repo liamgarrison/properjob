@@ -1,6 +1,6 @@
 <div class="user-show-card">
   <h3><%= @stage_attributes[stage_number][:just_completed] %></h3>
   <%= yield %>
-  <p class="text-right"><%= @job.stage_changed_at(stage_number) %></p>
+  <p class="text-right mt-3 mb-0"><%= @job.stage_changed_at(stage_number) %></p>
 </div>
 

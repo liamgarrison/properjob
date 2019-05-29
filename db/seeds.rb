@@ -81,7 +81,7 @@ job_tv = Job.create! ({
 quote_tv_1 = Quote.create! ({
   contractor: contractor_1,
   job: job_tv,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 100,
   submitted: true
 })
@@ -89,7 +89,7 @@ quote_tv_1 = Quote.create! ({
 quote_tv_2 = Quote.create! ({
   contractor: contractor_2,
   job: job_tv,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 150,
   submitted: true
 })
@@ -97,7 +97,7 @@ quote_tv_2 = Quote.create! ({
 quote_tv_3 = Quote.create! ({
   contractor: contractor_3,
   job: job_tv,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 200,
   submitted: true
 })
@@ -119,7 +119,7 @@ job_sockets = Job.create! ({
 quote_sockets_1 = Quote.create! ({
   contractor: contractor_1,
   job: job_sockets,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 100,
   submitted: true,
   accepted: true
@@ -128,7 +128,7 @@ quote_sockets_1 = Quote.create! ({
 quote_sockets_2 = Quote.create! ({
   contractor: contractor_2,
   job: job_sockets,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 150,
   submitted: true,
   accepted: false
@@ -137,7 +137,7 @@ quote_sockets_2 = Quote.create! ({
 quote_sockets_3 = Quote.create! ({
   contractor: contractor_3,
   job: job_sockets,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 200,
   submitted: true,
   accepted: false
@@ -166,7 +166,7 @@ job_hoover = Job.create! ({
   current_stage: 1,
   final_price: 150,
   resolved: true,
-  remote_invoice_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709664/ohkjr1mehg1bisbuuq8e.pdf",
+  remote_invoice_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709664/ohkjr1mehg1bisbuuq8e.pdf",
   rating: 4,
   date: Date.today + 5
 })
@@ -175,7 +175,7 @@ job_hoover = Job.create! ({
 quote_hoover_1 = Quote.create! ({
   contractor: contractor_1,
   job: job_hoover,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 100,
   submitted: true,
   accepted: false
@@ -184,7 +184,7 @@ quote_hoover_1 = Quote.create! ({
 quote_hoover_2 = Quote.create! ({
   contractor: contractor_2,
   job: job_hoover,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 150,
   submitted: true,
   accepted: true
@@ -193,7 +193,7 @@ quote_hoover_2 = Quote.create! ({
 quote_hoover_3 = Quote.create! ({
   contractor: contractor_3,
   job: job_hoover,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 200,
   submitted: true,
   accepted: false
