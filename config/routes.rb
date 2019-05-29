@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/rate' => 'rater#create', :as => 'rate'
   root to: 'jobs#index'
   resources :jobs, only: [:show, :new, :create, :edit, :update] do
     resources :quotes, only: [:create, :update]
