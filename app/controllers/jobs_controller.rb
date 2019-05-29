@@ -30,6 +30,7 @@ class JobsController < ApplicationController
   def update
     case @job.current_stage
     when 3
+      raise
       @quote_accepted = Quote.find(quote_params[:quote_id])
       @quote_accepted.accepted = true
       @quote_accepted.save
