@@ -167,7 +167,8 @@ job_hoover = Job.create! ({
   final_price: 150,
   resolved: true,
   remote_invoice_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709664/ohkjr1mehg1bisbuuq8e.pdf",
-  rating: 4
+  rating: 4,
+  date: Date.today + 5
 })
 
 
