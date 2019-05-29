@@ -1,1 +1,18 @@
 <%= render 'shared/navbar' %>
+
+<div class="home-container" style="background-image: url(<%= cl_image_path("p6xddtjlvaa1973v8nxm") %>)">
+  <div class="heading-container">
+    <h1 class="text-light">Proper Job</h1>
+    <h2 class="text-light">The fastest way to get stuff fixed in your home</h2>
+  </div>
+
+  <div class="chair-img">
+    <%= cl_image_tag("jhslh89z8vvsmc0jc9pb",
+        width: 290, height: 400, crop: :fit) %>
+  </div>
+
+  <div class="home-page-btn">
+    <%= link_to "Log In", new_user_session_path, class: "btn btn-light mb-3 text-primary" %>
+    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-light text-light" %>
+  </div>
+</div>
