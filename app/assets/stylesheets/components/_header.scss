@@ -9,4 +9,13 @@
     right:16px;
     cursor: pointer;
   }
+  #navbarDropdown {
+    display: none;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: $primary;
+    color: $white;
+    z-index: 9999;
+  }
 }
