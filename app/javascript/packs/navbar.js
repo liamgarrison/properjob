@@ -11,8 +11,10 @@ const initNavbar = () => {
     navbarDropdown.style.display = "none"
   }
 
-  navbarToggler.addEventListener("click", showDropdown);
-  closeButton.addEventListener("click", hideDropdown);
+  if (navbarToggler && closeButton) {
+    navbarToggler.addEventListener("click", showDropdown);
+    closeButton.addEventListener("click", hideDropdown);
+  }
 }
 
 export { initNavbar }
