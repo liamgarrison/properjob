@@ -54,7 +54,6 @@ const timeTiles = document.querySelectorAll('.time-card');
 const timeSelected = document.querySelector("#time_selectors");
 timeTiles.forEach(tile => {
   tile.addEventListener('click', (e) => {
-    console.log('I was clicked')
     if (tile.classList.contains('contractor-active')) {
       tile.classList.remove('contractor-active')
       timeSelected.value = ''
@@ -64,6 +63,23 @@ timeTiles.forEach(tile => {
       })
       tile.classList.add('contractor-active')
       timeSelected.value = tile.dataset.date
+    }
+  })
+})
+
+const confirmationTiles = document.querySelectorAll('.confirmation-card');
+const confirmationSelected = document.querySelector("#confirmation_selectors");
+confirmationTiles.forEach(tile => {
+  tile.addEventListener('click', (e) => {
+    if (tile.classList.contains('contractor-active')) {
+      tile.classList.remove('contractor-active')
+      confirmationSelected.value = ''
+    } else {
+      confirmationTiles.forEach(t => {
+        t.classList.remove('contractor-active')
+      })
+      tile.classList.add('contractor-active')
+      confirmationSelected.value = tile.dataset.id
     }
   })
 })

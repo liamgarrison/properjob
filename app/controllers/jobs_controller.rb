@@ -57,6 +57,7 @@ class JobsController < ApplicationController
       @job.update(job_params)
       @job.update(current_stage: 8)
       redirect_to job_path(@job)
+      raise
     end
   end
 
@@ -83,7 +84,6 @@ class JobsController < ApplicationController
       render "jobs/action_forms/stage_eight"
     end
   end
-
 
   private
 
