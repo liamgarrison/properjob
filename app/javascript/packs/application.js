@@ -67,24 +67,6 @@ timeTiles.forEach(tile => {
   })
 })
 
-const confirmationTiles = document.querySelectorAll('.confirmation-card');
-const confirmationSelected = document.querySelector("#confirmation_selectors");
-confirmationTiles.forEach(tile => {
-  tile.addEventListener('click', (e) => {
-    if (tile.classList.contains('contractor-active')) {
-      tile.classList.remove('contractor-active')
-      confirmationSelected.value = ''
-    } else {
-      confirmationTiles.forEach(t => {
-        t.classList.remove('contractor-active')
-      })
-      tile.classList.add('contractor-active')
-      confirmationSelected.value = tile.dataset.id
-    }
-  })
-})
-
-
 
 
 
