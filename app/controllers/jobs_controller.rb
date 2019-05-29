@@ -53,7 +53,7 @@ class JobsController < ApplicationController
       @job.update(current_stage: 7)
       redirect_to job_path(@job)
     when 7
-      @job.update(job_params)
+      @job.update(resolved: params[:resolved] == 'true', rating: params[:rating])
       @job.update(current_stage: 8)
       redirect_to job_path(@job)
     end

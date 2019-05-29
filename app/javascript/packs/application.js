@@ -1,4 +1,7 @@
 import "bootstrap";
+import $ from 'jquery'
+import 'star-rating-svg/dist/jquery.star-rating-svg'
+import 'star-rating-svg/src/css/star-rating-svg.css'
 import { initStripe } from "./plugins/initStripe"
 
 // Initialize plugins
@@ -50,7 +53,34 @@ tiles.forEach(tile => {
   })
 })
 
+// Job Resolved
 
+const options = document.querySelectorAll('.job-card');
+const jobResolved = document.querySelector("#resolved");
+options.forEach(option => {
+  option.addEventListener('click', (e) => {
+    if (option.classList.contains('contractor-active')) {
+      option.classList.remove('contractor-active');
+      jobResolved.value = ''
+    } else {
+      options.forEach(t => {
+        t.classList.remove('contractor-active');
+      })
+      option.classList.add('contractor-active');
+      jobResolved.value = JSON.parse(option.dataset.id);
+    }
+  })
+})
+
+const jobRating = document.querySelector("#rating")
+$('.rating').starRating({
+  totalStars: 5,
+  starSize: 40,
+  disableAfterRate: false,
+  callback: (rating, el) => {
+    jobRating.value = rating
+  }
+})
 
 
 
