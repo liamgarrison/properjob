@@ -30,8 +30,7 @@ class JobsController < ApplicationController
   def update
     case @job.current_stage
     when 3
-      raise
-      @quote_accepted = Quote.find(quote_params[:quote_id])
+      @quote_accepted = Quote.find(quote_params[:quote_selected])
       @quote_accepted.accepted = true
       @quote_accepted.save
       @quotes_rejected = @job.quotes.reject { |quote| quote.accepted }
@@ -104,8 +103,8 @@ class JobsController < ApplicationController
   end
 
   def quote_params
-    quote_params = params.permit(:quote_id)
-    quote_params[:quote_id] = quote_params[:quote_id].to_i
+    quote_params = params.permit(:quote_selected)
+    quote_params[:quote_selected] = quote_params[:quote_selected].to_i
     quote_params
   end
 
