@@ -1,8 +1,24 @@
+<h1 class="mx-2 my-3">Select Quote:</h1>
+
 <form action="<%= job_path(@job) %>" method="post">
-  <input type="hidden" name="_method" value="patch">
+ <input type="hidden" name="_method" value="patch">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <% @job.quotes.each_with_index do |quote, index|  %>
-    <input type="radio" name="quote_id" value="<%=quote.id%>"> <%= quote.contractor.first_name %> £<%= quote.price %>
-  <% end %>
-  <input type="submit" value="submit">
+  <%= hidden_field_tag :quote_selected, value="" %>
+  <div class="container">
+    <% @job.quotes.each_with_index do |quote, index|  %>
+      <div class="card my-3 shadow-sm rounded quote-card" data-id="<%=quote.id%>">
+        <div class="card-body">
+          <h4 class="card-title"><strong>Name:</strong> <%= quote.contractor.first_name %></h4>
+          <p class="card-text"><strong>Specialism:</strong> <%= quote.contractor.contractor_type %></p>
+          <p class="card-text"><strong>Quote:</strong> £<%= quote.price %></p>
+          <p>URL GOES HERE</p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="w-100 sticky-btn">
+   <input type="submit" value="Submit" class="btn btn-primary w-100">
+  </div>
 </form>
+
+
