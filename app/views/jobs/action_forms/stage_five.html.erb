@@ -1,9 +1,20 @@
-<form action="<%= job_path(@job) %>" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <% @job.contractor_availabilities.each do |date| %>
-    <label for="<%= date.date_available %>"><%= date.date_available %></label>
-    <input type="radio" name="date" id="<%= date.date_available %>" value="<%= date.date_available %>">
-  <% end %>
-  <input type="submit" value="submit">
-</form>
+<div class="container">
+  <h1>Select Preferred Date:</h1>
+
+  <form action="<%= job_path(@job) %>" method="post">
+   <input type="hidden" name="_method" value="patch">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :time_selectors, value="" %>
+      <% @job.contractor_availabilities.each do |date|  %>
+        <div class="card my-3 shadow-sm rounded time-card" data-date="<%= date.date_available %>">
+          <div class="card-body" >
+            <p><%= date.date_available %></p>
+          </div>
+        </div>
+      <% end %>
+    <div class="w-100 sticky-btn">
+     <input type="submit" value="Submit" class="btn btn-primary w-100">
+    </div>
+  </form>
+</div>
+

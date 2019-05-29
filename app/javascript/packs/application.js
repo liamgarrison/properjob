@@ -50,6 +50,24 @@ tiles.forEach(tile => {
   })
 })
 
+const timeTiles = document.querySelectorAll('.time-card');
+const timeSelected = document.querySelector("#time_selectors");
+timeTiles.forEach(tile => {
+  tile.addEventListener('click', (e) => {
+    console.log('I was clicked')
+    if (tile.classList.contains('contractor-active')) {
+      tile.classList.remove('contractor-active')
+      timeSelected.value = ''
+    } else {
+      timeTiles.forEach(t => {
+        t.classList.remove('contractor-active')
+      })
+      tile.classList.add('contractor-active')
+      timeSelected.value = tile.dataset.date
+    }
+  })
+})
+
 
 
 
