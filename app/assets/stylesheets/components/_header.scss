@@ -1,0 +1,12 @@
+.header-job-index {
+  position: relative;
+  width: 100%;
+  color: $white;
+  background-color: $primary;
+  img {
+    position: absolute;
+    top: 16px;
+    right:16px;
+    cursor: pointer;
+  }
+}

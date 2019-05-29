@@ -1,9 +1,13 @@
-<div class="col-sm w-100 job-index-banner">
-  <h2 class="mb-3 pt-3">Welcome back <%= current_user.first_name.capitalize %></h2>
-</div>
+<div class="header-job-index">
+  <% if user_signed_in? %>
+    <%= cl_image_tag current_user.avatar, class: "avatar", id: "navbarToggler"%>
+  <% else %>
+    Log In/Sign Up
+  <% end %>
+  <div class="container">
+  <h2 class="mb-3 pt-3">Welcome back <%= current_user.first_name %></h2>
 
-<div class="container">
-  <h3 class="mt-3 text-center">Your previous requests</h3>
+  </div>
 </div>
 
 <div class="container">
