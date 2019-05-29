@@ -28,6 +28,7 @@ class JobsController < ApplicationController
   end
 
   def update
+      # raise
     case @job.current_stage
     when 3
       @quote_accepted = Quote.find(quote_params[:quote_selected])
@@ -45,7 +46,7 @@ class JobsController < ApplicationController
       @job.update(current_stage: 5)
       redirect_to job_path(@job)
     when 5
-      @job.update(date: tenant_date_params[:date])
+      @job.update(date: Date.parse(params[:time_selectors]))
       @job.update(current_stage: 6)
       redirect_to job_path(@job)
     when 6
