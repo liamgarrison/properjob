@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_141847) do
+ActiveRecord::Schema.define(version: 2019_05_29_141527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2019_05_28_141847) do
     t.integer "final_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "invoice_url"
+    t.string "invoice"
     t.boolean "resolved"
     t.integer "rating"
     t.index ["contractor_id"], name: "index_jobs_on_contractor_id"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2019_05_28_141847) do
   create_table "photo_videos", force: :cascade do |t|
     t.integer "stage"
     t.bigint "job_id"
-    t.string "photo_url"
+    t.string "photo_video"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["job_id"], name: "index_photo_videos_on_job_id"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2019_05_28_141847) do
     t.boolean "accepted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "quote_url"
+    t.string "quote"
     t.index ["contractor_id"], name: "index_quotes_on_contractor_id"
     t.index ["job_id"], name: "index_quotes_on_job_id"
   end

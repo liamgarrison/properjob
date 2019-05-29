@@ -1,10 +1,16 @@
-
-<div class="container">
+<div class="container pt-5 pb-4">
   <h1 class="">Submit a new job</h1>
   <%= simple_form_for (@job) do |f| %>
     <%= f.input :category %>
     <%= f.input :description %>
-
-      <%= f.submit "Submit Job", class: "btn btn-primary w-100" %>
+    <%= f.simple_fields_for :photo_videos do |pf| %>
+      <%= pf.input :photo_video,
+                  as: :file,
+                  :input_html => { :multiple => true },
+                  name:"photo_videos[photo_video][]"
+      %>
+      <%= pf.input :photo_video_cache, as: :hidden %>
+    <% end %>
+    <%= f.submit "Submit Job", class: "btn btn-primary w-100" %>
   <% end %>
 </div>

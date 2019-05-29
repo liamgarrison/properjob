@@ -1,4 +1,5 @@
 ContractorAvailability.destroy_all
+PhotoVideo.destroy_all
 Quote.destroy_all
 JobStage.destroy_all
 Job.destroy_all
@@ -68,6 +69,12 @@ job_lights = Job.create! ({
   current_stage: 1
 })
 
+PhotoVideo.create(
+  job: job_lights,
+  stage: 1,
+  remote_photo_video_url: 'https://images.pexels.com/photos/1123262/pexels-photo-1123262.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+)
+
 # Job at stage 3 - Landlord Reviewing Quotes
 
 job_tv = Job.create! ({
@@ -77,11 +84,17 @@ job_tv = Job.create! ({
   current_stage: 1
 })
 
+PhotoVideo.create(
+  job: job_tv,
+  stage: 1,
+  remote_photo_video_url: 'https://images.pexels.com/photos/2251206/pexels-photo-2251206.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+)
+
 
 quote_tv_1 = Quote.create! ({
   contractor: contractor_1,
   job: job_tv,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 100,
   submitted: true
 })
@@ -89,7 +102,7 @@ quote_tv_1 = Quote.create! ({
 quote_tv_2 = Quote.create! ({
   contractor: contractor_2,
   job: job_tv,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 150,
   submitted: true
 })
@@ -97,7 +110,7 @@ quote_tv_2 = Quote.create! ({
 quote_tv_3 = Quote.create! ({
   contractor: contractor_3,
   job: job_tv,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 200,
   submitted: true
 })
@@ -116,10 +129,16 @@ job_sockets = Job.create! ({
   final_price: 100
 })
 
+PhotoVideo.create(
+  job: job_sockets,
+  stage: 1,
+  remote_photo_video_url: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+)
+
 quote_sockets_1 = Quote.create! ({
   contractor: contractor_1,
   job: job_sockets,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 100,
   submitted: true,
   accepted: true
@@ -128,7 +147,7 @@ quote_sockets_1 = Quote.create! ({
 quote_sockets_2 = Quote.create! ({
   contractor: contractor_2,
   job: job_sockets,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 150,
   submitted: true,
   accepted: false
@@ -137,7 +156,7 @@ quote_sockets_2 = Quote.create! ({
 quote_sockets_3 = Quote.create! ({
   contractor: contractor_3,
   job: job_sockets,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 200,
   submitted: true,
   accepted: false
@@ -166,16 +185,22 @@ job_hoover = Job.create! ({
   current_stage: 1,
   final_price: 150,
   resolved: true,
-  remote_invoice_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709664/ohkjr1mehg1bisbuuq8e.pdf",
+  remote_invoice_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709664/ohkjr1mehg1bisbuuq8e.pdf",
   rating: 4,
   date: Date.today + 5
 })
+
+PhotoVideo.create(
+  job: job_hoover,
+  stage: 1,
+  remote_photo_video_url: 'https://images.pexels.com/photos/38325/vacuum-cleaner-carpet-cleaner-housework-housekeeping-38325.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+)
 
 
 quote_hoover_1 = Quote.create! ({
   contractor: contractor_1,
   job: job_hoover,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 100,
   submitted: true,
   accepted: false
@@ -184,7 +209,7 @@ quote_hoover_1 = Quote.create! ({
 quote_hoover_2 = Quote.create! ({
   contractor: contractor_2,
   job: job_hoover,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 150,
   submitted: true,
   accepted: true
@@ -193,7 +218,7 @@ quote_hoover_2 = Quote.create! ({
 quote_hoover_3 = Quote.create! ({
   contractor: contractor_3,
   job: job_hoover,
-  remote_quote_url_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 200,
   submitted: true,
   accepted: false
