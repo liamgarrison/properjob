@@ -1,15 +1,11 @@
-<div class="header-job-index">
-  <% if user_signed_in? %>
-    <%= cl_image_tag current_user.avatar, class: "avatar", id: "navbarToggler"%>
-  <% end %>
-  <div id="navbarDropdown">Hello</div>
-  <div class="container">
-  <h2 class="mb-3 pt-3">Welcome back <%= current_user.first_name %></h2>
-
+<%= render('shared/navbar') %>
+<div class="bg-primary text-white d-flex align-items-center justify-content-start shadow">
+  <div class="container pt-5 pb-4">
+    <h2 class="m-0">Hi <%= current_user.first_name %></h2>
+    <p>Here are your previously submitted jobs:</p>
   </div>
 </div>
-
-<div class="container">
+<div class="container pt-3 pb-5">
   <% @jobs.each do |job| %>
     <%= link_to job_path(job), class: "text-decoration-none" do %>
       <div class="card my-3 shadow-sm rounded">
