@@ -96,12 +96,11 @@ categoryTiles.forEach(tile => {
 
 // Job Resolved
 
-const options = document.querySelectorAll('.time-card');
+const options = document.querySelectorAll('.resolved-card');
 const jobResolved = document.querySelector("#resolved");
 options.forEach(option => {
   option.addEventListener('click', (e) => {
     jobResolved.value = option.dataset.id
-    console.log(jobResolved)
     if (option.classList.contains('contractor-active')) {
       option.classList.remove('contractor-active');
     } else {

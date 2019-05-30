@@ -54,3 +54,13 @@
 .category-card.contractor-active {
   border: 2px $primary solid;
 }
+
+.resolved-card.contractor-active {
+border-left: 6px $primary solid;
+ box-sizing: border-box;
+}
+
+.resolved-card {
+ cursor: pointer;
+border-left: 6px rgba(0, 0, 0, 0) solid;
+}
