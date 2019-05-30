@@ -37,3 +37,13 @@
 .feedback-box {
   margin: 20px auto;
 }
+
+.category-card {
+  border: 2px transparent solid;
+  cursor:pointer;
+
+}
+
+.category-card.contractor-active {
+  border: 2px $primary solid;
+}
