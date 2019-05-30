@@ -18,7 +18,7 @@ class Job < ApplicationRecord
   end
 
   def submitted_at
-    created_at.strftime("%e %b %Y %H:%M")
+    created_at.strftime("%e %b %Y")
   end
 
   def available_dates
