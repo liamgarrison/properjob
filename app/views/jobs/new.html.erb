@@ -1,5 +1,5 @@
-<div class="container py-3">
-  <h1>Submit a new job</h1>
+<div class="container py-5">
+  <h1 class="mb-4">Submit a new job</h1>
   <form class="simple_form new_job" id="new_job" novalidate="novalidate" enctype="multipart/form-data" action="/jobs" accept-charset="UTF-8" method="post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <%= hidden_field_tag :category_selected, value="" %>
