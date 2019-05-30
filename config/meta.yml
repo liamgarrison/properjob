@@ -1,0 +1,5 @@
+meta_product_name: "Proper Job"
+meta_title: "Proper Job - The fastest way to get stuff fixed in your home"
+meta_description: "Proper Job is the only online platform that allows tenants to report and schedule repairs in their home by uploading photos and videos. "
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards
