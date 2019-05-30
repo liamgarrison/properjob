@@ -96,19 +96,19 @@ categoryTiles.forEach(tile => {
 
 // Job Resolved
 
-const options = document.querySelectorAll('.job-card');
+const options = document.querySelectorAll('.time-card');
 const jobResolved = document.querySelector("#resolved");
 options.forEach(option => {
   option.addEventListener('click', (e) => {
+    jobResolved.value = option.dataset.id
+    console.log(jobResolved)
     if (option.classList.contains('contractor-active')) {
       option.classList.remove('contractor-active');
-      jobResolved.value = ''
     } else {
       options.forEach(t => {
         t.classList.remove('contractor-active');
       })
       option.classList.add('contractor-active');
-      jobResolved.value = JSON.parse(option.dataset.id);
     }
   })
 })
