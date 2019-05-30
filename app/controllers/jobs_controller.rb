@@ -1,13 +1,14 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update]
-  before_action :waiting_for_me?, only: [:show]
 
   def index
     @jobs = Job.all
+    @jobs = @jobs.sort_by(&:created_at).reverse
+    @jobs = @jobs.select { |job| belong_to_job?(job) }
   end
 
   def show
-    @waiting_for_me = waiting_for_me?
+    @waiting_for_me = waiting_for_me?(@job)
   end
 
   def new
@@ -120,19 +121,16 @@ class JobsController < ApplicationController
     params.require(:job).permit(:invoice_url)
   end
 
-
-
-  def belong_to_job?
-    @job.contractors.include?(current_user) || current_user == @job.contractor || current_user == @job.property.tenant || current_user == @job.property.landlord
+  def belong_to_job?(job)
+    job.contractors.include?(current_user) || current_user == job.contractor || current_user == job.property.tenant || current_user == job.property.landlord
   end
 
-  def waiting_for_me?
+  def waiting_for_me?(job)
     # Find out if the current user is the one we are waiting on.
-    if belong_to_job? && @job.stage_attributes[:waiting_for] == current_user.user_type
+    if belong_to_job?(job) && @job.stage_attributes[:waiting_for] == current_user.user_type
       @waiting_for_me = true
     else
       @waiting_for_me = false
     end
   end
-
 end
