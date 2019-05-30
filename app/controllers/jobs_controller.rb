@@ -18,7 +18,7 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = Job.new(job_params)
+    @job = Job.new(category: params[:category_selected], description: params[:description])
     @job.property = Property.first
     @job.current_stage = 1
     if @job.save
