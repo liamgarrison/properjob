@@ -17,6 +17,10 @@ class Job < ApplicationRecord
     job_stages.find_by_stage(stage).changed_at.strftime("%e %b %Y %H:%M")
   end
 
+  def submitted_at
+    created_at.strftime("%e %b %Y %H:%M")
+  end
+
   def available_dates
     contractor_availabilities.map do |contractor_availability|
       contractor_availability.date_available.strftime("%e %b %Y")

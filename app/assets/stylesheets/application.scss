@@ -14,8 +14,8 @@
 
 .application-wrapper {
   width: 375px;
-  position: relative;
+  min-height: 667px;
   margin: 0 auto;
+  position: relative;
   background-color: $white;
-  min-height: 100vh;
 }
