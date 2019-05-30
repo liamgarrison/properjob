@@ -1,0 +1,31 @@
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.category-card {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+
+.category-card {
+  .card-body {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+}
+
+
+.category-card {
+  .card-title {
+  font-size: 50px;
+  color: #5F9DF0
+  }
+}
+
+
+

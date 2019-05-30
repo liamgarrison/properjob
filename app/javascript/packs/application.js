@@ -74,6 +74,26 @@ timeTiles.forEach(tile => {
   })
 })
 
+// Contractor Category Selection
+
+const categoryTiles = document.querySelectorAll('.category-card');
+const categorySelected = document.querySelector("#category_selected");
+categoryTiles.forEach(tile => {
+  tile.addEventListener('click', (e) => {
+    if (tile.classList.contains('contractor-active')) {
+      tile.classList.remove('contractor-active')
+      categorySelected.value = ''
+    } else {
+      categoryTiles.forEach(t => {
+        t.classList.remove('contractor-active')
+      })
+      tile.classList.add('contractor-active')
+      categorySelected.value = tile.dataset.id
+    }
+  })
+})
+
+
 // Job Resolved
 
 const options = document.querySelectorAll('.job-card');
