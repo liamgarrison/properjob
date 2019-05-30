@@ -3,7 +3,7 @@
   <p>Category: <%= @job.category %></p>
   <% @job.photo_videos.each do |photo_video| %>
     <% if photo_video.stage == @job.current_stage %>
-      <%= cl_image_tag photo_video.photo_video, class: "w-100 mb-3", crop: :fill %>
+      <%= cl_image_tag photo_video.photo_video, class: " mb-3 w-100", width: 500, crop: :fit %>
     <% end %>
   <% end %>
 <% end %>
