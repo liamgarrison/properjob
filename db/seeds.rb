@@ -65,7 +65,7 @@ property_1 = Property.create! ({
 job_lights = Job.create! ({
   property: property_1,
   category: "electrician",
-  description: "There was a big bang when I turned my bedroom light on and now none of the lights upstairs will turn on.",
+  description: "There was a big bang when I turned my bedroom light on.",
   current_stage: 1
 })
 
@@ -86,7 +86,7 @@ job_tv = Job.create! ({
 
 PhotoVideo.create(
   job: job_tv,
-  stage: 1,
+  stage: 3,
   remote_photo_video_url: 'https://images.pexels.com/photos/2251206/pexels-photo-2251206.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
 )
 
@@ -131,7 +131,7 @@ job_sockets = Job.create! ({
 
 PhotoVideo.create(
   job: job_sockets,
-  stage: 1,
+  stage: 5,
   remote_photo_video_url: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
 )
 
@@ -192,7 +192,7 @@ job_hoover = Job.create! ({
 
 PhotoVideo.create(
   job: job_hoover,
-  stage: 1,
+  stage: 8,
   remote_photo_video_url: 'https://images.pexels.com/photos/38325/vacuum-cleaner-carpet-cleaner-housework-housekeeping-38325.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
 )
 
