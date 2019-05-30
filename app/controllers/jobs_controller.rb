@@ -13,14 +13,18 @@ class JobsController < ApplicationController
 
   def new
     @job = Job.new
+    @job.photo_videos.build
     # authorize @job
   end
 
   def create
-    @job = Job.create(job_params)
+    @job = Job.new(job_params)
     @job.property = Property.first
     @job.current_stage = 1
     if @job.save
+      params[:job][:photo_videos][:photo_video].each do |photo_video|
+        @job.photo_videos.create(photo_video: photo_video, stage: @job.current_stage)
+      end
       redirect_to job_path(@job)
     else
       render :new
@@ -28,6 +32,7 @@ class JobsController < ApplicationController
   end
 
   def update
+      # raise
     case @job.current_stage
     when 3
       @quote_accepted = Quote.find(quote_params[:quote_selected])
@@ -45,7 +50,7 @@ class JobsController < ApplicationController
       @job.update(current_stage: 5)
       redirect_to job_path(@job)
     when 5
-      @job.update(date: tenant_date_params[:date])
+      @job.update(date: Date.parse(params[:time_selectors]))
       @job.update(current_stage: 6)
       redirect_to job_path(@job)
     when 6
@@ -53,9 +58,10 @@ class JobsController < ApplicationController
       @job.update(current_stage: 7)
       redirect_to job_path(@job)
     when 7
-      @job.update(job_params)
+      @job.update(resolved: params[:resolved] == 'true', rating: params[:rating])
       @job.update(current_stage: 8)
       redirect_to job_path(@job)
+      raise
     end
   end
 
@@ -83,7 +89,6 @@ class JobsController < ApplicationController
     end
   end
 
-
   private
 
   def set_job
@@ -109,7 +114,7 @@ class JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:category, :description, :resolved, :rating)
+    params.require(:job).permit(:category, :description, :resolved, :rating, :photo_videos)
   end
 
   def invoice_params

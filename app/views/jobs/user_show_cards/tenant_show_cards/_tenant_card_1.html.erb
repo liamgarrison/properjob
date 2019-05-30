@@ -1,7 +1,10 @@
 <%= render 'jobs/user_show_cards/show_card', stage_number: 1 do %>
   <p>Description: <%= @job.description %></p>
   <p>Category: <%= @job.category %></p>
-  <p>Photo 1</p>
-  <p>Photo 2</p>
+  <% @job.photo_videos.each do |photo_video| %>
+    <% if photo_video.stage == @job.current_stage %>
+      <%= cl_image_tag photo_video.photo_video, class: "w-100 mb-3", crop: :fill %>
+    <% end %>
+  <% end %>
 <% end %>
 

@@ -4,7 +4,7 @@
     <%= simple_form_for [@job, @quote] do |f| %>
       <%= f.input :price, class: "form-control" %>
     <div>
-      <%= f.input :quote_url , as: :file, label: "Upload quote details", class: "form-control" %>
+      <%= f.input :quote , as: :file, label: "Upload quote details", class: "form-control" %>
     </div>
       <%= f.button :submit, class: "btn btn-primary"%>
   </div>
