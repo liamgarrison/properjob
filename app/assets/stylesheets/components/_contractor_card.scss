@@ -1,10 +1,17 @@
 .time-card.contractor-active {
-  border-left: 6px #5f9df0 solid;
+  border-left: 6px $primary solid;
   box-sizing: border-box;
 }
 
 .contractor-card {
-  border-left: 6px #5f9df0 solid;
+  border-left: 6px transparent solid;
+  cursor: pointer;
+  width: 100%;
+
+}
+
+.contractor-card.contractor-active {
+  border-left: 6px $primary solid;
   cursor: pointer;
   width: 100%;
 

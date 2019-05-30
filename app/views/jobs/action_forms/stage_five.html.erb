@@ -1,5 +1,5 @@
-<div class="container">
-  <h1>Select Preferred Date:</h1>
+<div class="container py-5">
+  <h1 class="mb-4">Select Preferred Date:</h1>
 
   <form action="<%= job_path(@job) %>" method="post">
    <input type="hidden" name="_method" value="patch">
@@ -8,11 +8,11 @@
       <% @job.contractor_availabilities.each do |date|  %>
         <div class="card my-3 shadow-sm rounded time-card" data-date="<%= date.date_available %>">
           <div class="card-body" >
-            <p><%= date.date_available %></p>
+            <p class='m-0'><%= date.date_available.strftime("%e %b %Y") %></p>
           </div>
         </div>
       <% end %>
-     <input type="submit" value="Submit date" class="btn btn-primary w-100">
+     <input type="submit" value="Submit" class="btn btn-primary w-100">
   </form>
 </div>
 

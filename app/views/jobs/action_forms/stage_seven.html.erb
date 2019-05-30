@@ -1,41 +1,38 @@
-<div class="container">
-  <h1 class="my-3 pt-3">Feedback</h1>
-
+<div class="container py-5">
+  <h1 class="mb-4">Add Feedback</h1>
   <form action="<%= job_path(@job) %>" method="post">
     <input type="hidden" name="_method" value="patch">
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <%= hidden_field_tag :resolved, value="" %>
-      <%= hidden_field_tag :rating, value="0" %>
-    <h3>Has the issue been resolved?</h3>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :resolved, value="" %>
+    <%= hidden_field_tag :rating, value="0" %>
+    <h5>Has the issue been resolved?</h5>
 
-  <div class="feedback-options">
-      <div class="row d-flex-inline-flex justify-content-between pr-2 px-3">
-      <div class="card my-3 shadow-sm rounded time-card col-sm justify-content-center" data-id="<%=true%>">
+    <div class="d-flex justify-content-between mb-3">
+    <div class="card m-3 shadow-sm rounded time-card col-sm justify-content-center" data-id="<%=true%>">
+      <div class="feedback-box">
+        <h1 class="text-success m-0">
+          <i class="fas fa-check"></i>
+        </h1>
+      </div>
+    </div>
+      <div class="card m-3 shadow-sm rounded time-card col-sm justify-content-center" data-id="<%=false%>">
         <div class="feedback-box">
-          <span style="font-size: 2.5em; color: #149911;">
-            <i class="fas fa-check"></i>
-          </span>
+          <h1 class="text-danger m-0">
+            <i class="fas fa-times"></i>
+          </h1>
         </div>
       </div>
-        <div class="card my-3 shadow-sm rounded time-card col-sm justify-content-center" data-id="<%=false%>">
-          <div class="feedback-box">
-            <span style="font-size: 2.5em; color: #FC1E1E;">
-              <i class="fas fa-times"></i>
-            </span>
-          </div>
-        </div>
-      </div>
-  </div>
+    </div>
 
-      <div class="my-3">
-        <h3>How would you rate <%= @job.contractor.first_name %>'s work?</h3>
-      </div>
+    <div class="mb-3">
+      <h5>How would you rate <%= @job.contractor.first_name %>'s work?</h5>
+    </div>
 
-      <div class="rating my-6"></div>
-      </div>
-     <input type="submit" value="Submit" class="btn btn-primary">
+    <div class="rating"></div>
+    <input type="submit" value="Submit" class="btn btn-primary w-100">
 
   </form>
 </div>
+
 
 

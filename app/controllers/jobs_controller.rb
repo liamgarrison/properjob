@@ -32,7 +32,6 @@ class JobsController < ApplicationController
   end
 
   def update
-      # raise
     case @job.current_stage
     when 3
       @quote_accepted = Quote.find(quote_params[:quote_selected])
@@ -62,7 +61,6 @@ class JobsController < ApplicationController
       @job.update(current_stage: 8)
       redirect_to job_path(@job)
     end
-    raise
   end
 
   def edit

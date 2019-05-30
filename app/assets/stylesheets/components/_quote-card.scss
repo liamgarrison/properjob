@@ -1,3 +1,9 @@
 .quote-card {
   cursor: pointer;
+  border-left: 6px transparent solid;
+}
+
+.quote-card.contractor-active {
+  cursor: pointer;
+  border-left: 6px $primary solid;
 }

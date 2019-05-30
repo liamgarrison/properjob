@@ -64,7 +64,7 @@ class Job < ApplicationRecord
         stage_name: "Undergoing work",
         waiting_for: "contractor",
         call_to_action: "Finalise Job",
-        just_completed: "Tenant selected a suitable date"
+        just_completed: "Job date confirmed"
       },
       7 => {
         stage_name: "Tenant providing feedback",
@@ -79,7 +79,7 @@ class Job < ApplicationRecord
         just_completed: "Tenant provided feedback"
       },
       9 => {
-        stage_name: nil,
+        stage_name: "Job completed",
         waiting_for: nil,
         call_to_action: nil,
         just_completed: "Job completed"

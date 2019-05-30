@@ -1,16 +1,16 @@
-<div class="container my-3">
-  <h1 class="mx-2 my-3 pt-3">Select Quote:</h1>
+<div class="container py-5">
+  <h1 class="mb-4">Select A Quote:</h1>
   <form action="<%= job_path(@job) %>" method="post">
    <input type="hidden" name="_method" value="patch">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <%= hidden_field_tag :quote_selected, value="" %>
       <% @job.quotes.each_with_index do |quote, index|  %>
-        <div class="card my-3 shadow-sm rounded quote-card" data-id="<%=quote.id%>">
+        <div class="my-3 shadow-sm rounded quote-card" data-id="<%=quote.id%>">
           <div class="card-body">
-            <h4 class="card-title"><strong>Name:</strong> <%= quote.contractor.first_name %></h4>
-            <p class="card-text"><strong>Specialism:</strong> <%= quote.contractor.contractor_type %></p>
-            <p class="card-text"><strong>Quote:</strong> £<%= quote.price %></p>
-            <p>URL GOES HERE</p>
+            <h4 class="card-title"><%= quote.contractor.first_name %></h4>
+            <p class="card-text"><strong><%= quote.contractor.contractor_type.capitalize %></p>
+            <p class="card-text">£<%= quote.price %></p>
+            <!-- <p>URL GOES HERE</p> -->
           </div>
         </div>
       <% end %>
