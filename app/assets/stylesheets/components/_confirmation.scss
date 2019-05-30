@@ -5,3 +5,11 @@
 .confirmation-text {
   color: white;
 }
+
+.confirmation-card.contractor-active {
+  border-left: 6px #5f9df0 solid;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+
