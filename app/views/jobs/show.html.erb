@@ -9,7 +9,7 @@
         <%= progress_percent %>%
       </div>
     </div>
-    <span class="job-show-stage"><%= @current_stage_attributes[:stage_name] %></span>
+    <span class="job-show-stage"><%= @job.stage_attributes[:stage_name] %></span>
   </div>
 </div>
 
@@ -23,6 +23,6 @@
 
 <% if @waiting_for_me %>
   <div class="sticky-btn">
-    <%= link_to @current_stage_attributes[:call_to_action], edit_job_path(@job), class: "btn btn-primary" %>
+    <%= link_to @job.stage_attributes[:call_to_action], edit_job_path(@job), class: "btn btn-primary" %>
   </div>
 <% end %>

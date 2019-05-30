@@ -18,6 +18,7 @@
       <div class="index-card">
         <h2><%= job.description %></h2>
         <p ><%= job.category %></p>
+        <p ><%= job.stage_attributes[:stage_name] %></p>
         <p class="text-right mt-3 mb-0">Submitted at <%= job.created_at %></p>
 
       </div>
