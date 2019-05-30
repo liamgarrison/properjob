@@ -61,8 +61,8 @@ class JobsController < ApplicationController
       @job.update(resolved: params[:resolved] == 'true', rating: params[:rating])
       @job.update(current_stage: 8)
       redirect_to job_path(@job)
-      raise
     end
+    raise
   end
 
   def edit
