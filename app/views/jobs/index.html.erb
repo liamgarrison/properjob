@@ -1,17 +1,18 @@
 <%= render('shared/navbar') %>
-  <div class="bg-primary text-white d-flex align-items-center justify-content-start">
-    <div class="container pt-5 pb-2">
-      <h2 class="">Hi <%= current_user.first_name %>.</h2>
-      <% case current_user.user_type %>
-      <% when 'tenant' %>
-        <p>Here are your previously submitted jobs</p>
-      <% when 'landlord' %>
-        <p>Here are all jobs submitted at <%= current_user.owned_properties.first.address %>:</p>
-      <% when 'contractor' %>
-        <p>Here are the jobs you've been involved in:</p>
-      <% end %>
-    </div>
+
+<div class="bg-primary text-white d-flex align-items-center justify-content-start">
+  <div class="container pt-5 pb-2">
+    <h2 class="">Hi <%= current_user.first_name %>.</h2>
+    <% case current_user.user_type %>
+    <% when 'tenant' %>
+      <p>Here are your previously submitted jobs</p>
+    <% when 'landlord' %>
+      <p>Here are all jobs submitted at <%= current_user.owned_properties.first.address %>:</p>
+    <% when 'contractor' %>
+      <p>Here are the jobs you've been involved in:</p>
+    <% end %>
   </div>
+</div>
 
 <div class="container pt-4 pb-5">
   <% if @jobs.empty? %>
@@ -21,10 +22,10 @@
     <% @jobs.each do |job| %>
       <%= link_to job_path(job), class: 'text-dark text-decoration-none' do %>
         <div class="index-card">
-          <h2><%= job.description %></h2>
-          <p ><%= job.category %></p>
-          <p ><%= job.stage_attributes[:stage_name] %></p>
-          <p class="text-right mt-3 mb-0">Submitted on <%= job.submitted_at %></p>
+          <h4 class="pb-2"><%= job.description %></h4>
+          <p><i class="fas fa-tools"></i> <%= job.category %></p>
+          <p><%= job.stage_attributes[:stage_name] %></p>
+          <p class="text-right mt-3 mb-0 timestamp">Submitted on <%= job.submitted_at %></p>
         </div>
       <% end %>
     <% end %>
