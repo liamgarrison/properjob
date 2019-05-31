@@ -1,3 +1,6 @@
+<%= render('shared/wrapper', title: "What's the problem, #{current_user.first_name}?", illustration_url:  cl_image_tag('report_problem_utwngt'))%>
+
+
 <div class="container py-5">
   <h1 class="mb-4">Submit a new job</h1>
   <form class="simple_form new_job" id="new_job" novalidate="novalidate" enctype="multipart/form-data" action="/jobs" accept-charset="UTF-8" method="post">
