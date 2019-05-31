@@ -1,3 +1,5 @@
+<%= render('shared/wrapper', title: "Hey #{current_user.first_name}, how did #{@job.contractor.first_name} do?", illustration_url:  cl_image_tag('rate_contractor_tkk8ur'))%>
+
 <div class="container py-5">
   <h1 class="mb-4">Add Feedback</h1>
   <form action="<%= job_path(@job) %>" method="post">
