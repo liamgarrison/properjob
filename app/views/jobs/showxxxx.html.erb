@@ -1,0 +1,33 @@
+<%= render('shared/navbar') %>
+<div class="bg-primary text-white d-flex align-items-center justify-content-start">
+  <div class="container pt-4 pb-4">
+    <p class="back-button mb-2">
+      <%= link_to jobs_path do %>
+        <i class="fas fa-arrow-circle-left"></i>
+      <% end %>
+    </p>
+    <h2 class="">Job #<%= @job.id %></h2>
+    <p><%= @job.description %></p>
+
+    <span class="job-show-stage"><i class="fas fa-clock mr-2"></i><%= @job.stage_attributes[:stage_name] %></span>
+  </div>
+</div>
+  <div class="progress mb-3 bg-white" style="height: 4px;">
+    <% progress_percent = (@job.current_stage / 9.0 * 100 / 5.0).ceil * 5 %>
+    <div class=" progress-bar bg-dark" style="width:<%= progress_percent %>%"aria-valuenow="<%= progress_percent %>" aria-valuemin="0" aria-valuemax="100">
+    </div>
+  </div>
+
+<div class="container pt-3 pb-5">
+  <div class="cards mt-3">
+    <% @job.current_stage.times do |index| %>
+      <%= render("jobs/user_show_cards/#{current_user.user_type}_show_cards/#{current_user.user_type}_card_#{@job.current_stage - index}") %>
+    <% end %>
+  </div>
+</div>
+
+<% if @waiting_for_me %>
+  <div class="sticky-btn">
+    <%= link_to @job.stage_attributes[:call_to_action], edit_job_path(@job), class: "btn btn-primary" %>
+  </div>
+<% end %>
