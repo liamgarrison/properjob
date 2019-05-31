@@ -1,0 +1,102 @@
+.show-hero-image {
+  width: 100%;
+  height: 250px;
+  background-size: cover;
+}
+
+.button-status-wrapper {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.show-back-button {
+  a {
+    color: $gray;
+  }
+  background-color: $white;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 24px;
+  margin: 0
+}
+
+.show-status-badge {
+  background-color: $hot-pink;
+  font-size: 12px;
+  padding: 8px 16px;
+  color: white;
+  border-radius: $border-radius;
+  font-weight: bold;
+  margin: 0;
+}
+
+.show-background {
+  background-color: $primary;
+}
+
+.show-content {
+  border-radius: $border-radius-lg;
+  background-color: $white;
+  padding: 24px;
+  margin: -60px 16px 48px 16px;
+}
+
+.show-content-title {
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+.show-content-meta {
+  color: $mid-gray;
+  font-size: 12px;
+  margin-bottom: 36px;
+}
+
+
+.show-stage-top {
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+}
+
+.show-stage-top-date {
+  font-size: 10px;
+  width: 40px;
+  text-align: right;
+  margin-bottom: 0
+}
+
+.show-stage-top-check {
+  color: $hot-pink;
+  font-size: 20px;
+  flex-grow: 0;
+  text-align: center;
+  padding:  0 8px;
+  margin-bottom: 0
+}
+
+.show-stage-top-title {
+  flex-grow: 1;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.show-stage-top-title {
+  flex-grow: 1;
+  font-size: 14px;
+}
+
+.show-stage-content {
+  margin-left: 58px;
+  border-left: 2px solid $hot-pink;
+  padding: 16px;
+}
+
+.show-grayed {
+  opacity: 0.5;
+}
