@@ -20,28 +20,54 @@
         <h3>Looks like you haven't submitted any jobs yet!</h3>
         <p>Click below to add a new one...</p>
       <% else %>
+
       <div class="d-flex justify-content-around text-center border-bottom-3 mb-3">
-        <h6><i class="far fa-clock px-2"></i>In progress</h6>
-        <h6><i class="far fa-check-circle px-2"></i>Completed</hg>
+        <div class="process-tab tab-selectors" data-id="1">
+          <i class="far fa-clock px-2"></i><h6 class="load-progress">In Progress</h6>
+        </div>
+
+        <div class="completed-tab tab-selectors mb-3" data-id="2">
+          <i class="far fa-check-circle px-2"></i><h6 class="load-completed">Completed</h6>
+        </div>
+
+        <div class="line-tab"></div>
       </div>
-        <% @jobs.each do |job| %>
-          <%= link_to job_path(job), class: 'text-dark text-decoration-none' do %>
-            <div class="index-card">
-              <h4 class="mb-4">Job #<%= job.id %></h4>
-              <p class=""><%= job.description %></p>
-              <p><i class="fas fa-tools text-danger mr-2"></i> <%= job.category.capitalize %></p>
-              <span class="job-show-stage"><i class="fas fa-clock mr-2"></i><%= job.stage_attributes[:stage_name] %></span>
-              <p class="text-right mt-4 mb-0 timestamp">Submitted on <%= job.submitted_at %></p>
-            </div>
-          <% end %>
+
+        <div class="tab-info show-tab" data-tab-id="1">
+          <% @incompleted_jobs.each do |job| %>
+            <%= link_to job_path(job), class: 'text-dark text-decoration-none' do %>
+              <div class="index-card">
+                <h4 class="mb-4">Job #<%= job.id %></h4>
+                <p class=""><%= job.description %></p>
+                <p><i class="fas fa-tools text-danger mr-2"></i> <%= job.category.capitalize %></p>
+                <span class="job-show-stage"><i class="fas fa-clock mr-2"></i><%= job.stage_attributes[:stage_name] %></span>
+                <p class="text-right mt-4 mb-0 timestamp">Submitted on <%= job.submitted_at %></p>
+              </div>
+              <% end %>
+              <% end %>
+            <% end %>
+        </div>
+
+        <div class="tab-info" data-tab-id="2">
+          <% @completed_jobs.each do |job| %>
+            <%= link_to job_path(job), class: 'text-dark text-decoration-none' do %>
+              <div class="index-card">
+                <h4 class="mb-4">Job #<%= job.id %></h4>
+                <p class=""><%= job.description %></p>
+                <p><i class="fas fa-tools text-danger mr-2"></i> <%= job.category.capitalize %></p>
+                <span class="job-show-stage"><i class="fas fa-clock mr-2"></i><%= job.stage_attributes[:stage_name] %></span>
+                <p class="text-right mt-4 mb-0 timestamp">Submitted on <%= job.submitted_at %></p>
+              </div>
+              <% end %>
+              <% end %>
+        </div>
+
+        <% if current_user.user_type == 'tenant' %>
+          <div class="sticky-btn">
+            <%= link_to "Submit new job", new_job_path, class: "btn btn-primary" %>
+          </div>
         <% end %>
-      <% end %>
-  </div>
 </div>
 
-<% if current_user.user_type == 'tenant' %>
-  <div class="sticky-btn">
-    <%= link_to "Submit new job", new_job_path, class: "btn btn-primary" %>
-  </div>
-<% end %>
 
+<%= javascript_pack_tag "tabs" %>

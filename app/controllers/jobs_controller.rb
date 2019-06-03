@@ -4,7 +4,9 @@ class JobsController < ApplicationController
   def index
     @jobs = Job.all
     @jobs = @jobs.sort_by(&:created_at).reverse
-    @jobs = @jobs.select { |job| belong_to_job?(job) }
+    # @jobs = @jobs.select { |job| belong_to_job?(job) }
+    @incompleted_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage < 9 }
+    @completed_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage == 9 }
   end
 
   def show
