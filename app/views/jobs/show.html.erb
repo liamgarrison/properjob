@@ -45,8 +45,10 @@
             <% show_title_style = 'font-weight-bold text-gray' %>
           <% elsif index + 1 > @job.current_stage %>
             <% show_title_style = 'show-grayed' %>
+          <% else %>
+            <% show_title_style = 'show-grayed show-clickable' %>
           <% end %>
-          <p class="show-stage-top-title  <%= show_title_style %>">
+          <p data-show-toggler="<%= index + 1 %>" class="show-stage-top-title  <%= show_title_style %>">
             <% if index + 1 < @job.current_stage %>
               <%= Job.stage_attributes[index + 1][:stage_name_past] %>
             <% elsif index + 1 == @job.current_stage %>
@@ -55,7 +57,7 @@
               <%= Job.stage_attributes[index + 1][:stage_name_future] %>
             <% end %>
             <% if index + 1 < @job.current_stage %>
-              <i data-show-toggler="<%= index + 1 %>" class="fas fa-chevron-down ml-1"></i>
+              <i  class="fas fa-chevron-down ml-1"></i>
             <% end %>
           </p>
         </div>
