@@ -25,11 +25,12 @@
 }
 
 .action-required-alert {
-  width: 97px;
+  width: 90px;
   background-color: $hot-pink;
   float: right;
   border-radius: $border-radius;
   margin: 16px;
+  padding: 8px 0px;
     p {
       font-size: 10px;
       margin-bottom: 0px;
