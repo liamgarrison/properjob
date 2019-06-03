@@ -4,11 +4,15 @@ import 'star-rating-svg/dist/jquery.star-rating-svg'
 import 'star-rating-svg/src/css/star-rating-svg.css'
 import { initStripe } from "./plugins/initStripe"
 import { initNavbar } from './navbar'
+import { showContentToggle } from './show_content_toggle'
 
 // Initialize plugins
 
 initStripe();
 initNavbar();
+
+// Initialize other JS functions
+showContentToggle();
 
 // Contractor Selection
 

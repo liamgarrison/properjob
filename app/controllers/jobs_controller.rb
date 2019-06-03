@@ -4,7 +4,9 @@ class JobsController < ApplicationController
   def index
     @jobs = Job.all
     @jobs = @jobs.sort_by(&:created_at).reverse
-    @jobs = @jobs.select { |job| belong_to_job?(job) }
+    # @jobs = @jobs.select { |job| belong_to_job?(job) }
+    @incompleted_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage < 9 }
+    @completed_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage == 9 }
   end
 
   def show
@@ -22,10 +24,12 @@ class JobsController < ApplicationController
     @job.property = Property.first
     @job.current_stage = 1
     if @job.save
-      params[:job][:photo_videos][:photo_video].each do |photo_video|
-        @job.photo_videos.create(photo_video: photo_video, stage: @job.current_stage)
+      if params[:job][:photo_videos][:photo_video]
+        params[:job][:photo_videos][:photo_video].each do |photo_video|
+          @job.photo_videos.create(photo_video: photo_video, stage: @job.current_stage)
+        end
+        redirect_to job_path(@job)
       end
-      redirect_to job_path(@job)
     else
       render :new
     end
