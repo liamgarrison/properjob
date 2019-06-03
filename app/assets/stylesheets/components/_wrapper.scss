@@ -1,5 +1,5 @@
 #wrapper {
-  height: 200px;
+  height: 230px;
   background-color: $danger;
   width: 100%;
   border-bottom-left-radius: $border-radius-lg;
@@ -22,10 +22,10 @@
 
 #wrapper {
   .cloudinary-illustration img {
-    width: 150px;
-    height: 150px;
+    width: 125px;
+    height: 125px;
     position: absolute;
-    top: -21px;
-    right: 10px;
+    top: 0px;
+    right: 20px;
   }
 }
