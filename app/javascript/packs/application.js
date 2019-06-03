@@ -117,6 +117,10 @@ $('.rating').starRating({
   totalStars: 5,
   starSize: 40,
   disableAfterRate: false,
+  useFullStars: true,
+  hoverColor: '#FFC65A',
+  activeColor: '#FFC65A',
+  useGradient: false,
   callback: (rating, el) => {
     jobRating.value = rating
   }
