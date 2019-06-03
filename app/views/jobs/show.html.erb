@@ -16,15 +16,24 @@
     <p class="show-content-meta">
       <i class="fas fa-tools mr-1"></i> <%= @job.category.capitalize %> <span class="mx-1">•</span>Submitted <%= time_ago_in_words(@job.created_at) %> ago.
     </p>
+
     <% 9.times do |index| %>
       <div class="show-stage-wrapper <%= index + 1 == @job.current_stage ? "font-weight-bold" : "show-grayed" %>">
         <div class="show-stage-top">
-            <p class="show-stage-top-date">
-          <% if index  < @job.current_stage %>
+          <p class="show-stage-top-date">
+            <% if index  < @job.current_stage %>
               <%= time_ago_in_words(@job.stage_changed_at(index + 1)) %> ago
             <% end %>
-            </p>
-          <p class="show-stage-top-check"><i class="far fa-check-circle"></i></p>
+          </p>
+          <p class="show-stage-top-check">
+            <% if index + 1 < @job.current_stage %>
+              <i class="far fa-check-circle"></i>
+            <% elsif index + 1 == @job.current_stage %>
+              <i class="far fa-dot-circle"></i>
+            <% else %>
+              <i class="far fa-circle"></i>
+            <% end %>
+          </p>
           <p class="show-stage-top-title">
             <% if index + 1 < @job.current_stage %>
               <%= Job.stage_attributes[index + 1][:stage_name_past] %>
@@ -33,14 +42,20 @@
             <% else %>
               <%= Job.stage_attributes[index + 1][:stage_name_future] %>
             <% end %>
-            <i class="fas fa-chevron-down ml-1"></i>
+            <% if index + 1 < @job.current_stage %>
+              <i class="fas fa-chevron-down ml-1 job-show-toggler"></i>
+            <% end %>
           </p>
         </div>
-        <div class="show-stage-content">
-          <p>Content goes here</p>
+        <% if index + 1 == 9 %>
+          <% show_border = 'show-border-none' %>
+        <% elsif index + 1 >= @job.current_stage %>
+          <% show_border = 'show-border-dashed' %>
+        <% end %>
+        <div class="show-stage-content <%= show_border %>">
+          <!-- <p>Content goes here</p> -->
         </div>
       </div>
     <% end %>
   </div>
 </div>
-

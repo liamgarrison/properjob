@@ -11,20 +11,6 @@
   align-items: center;
 }
 
-// .show-back-button {
-//   a {
-//     color: $gray;
-//   }
-//   background-color: $white;
-//   border-radius: 50%;
-//   height: 40px;
-//   width: 40px;
-//   text-align: center;
-//   line-height: 40px;
-//   font-size: 24px;
-//   margin: 0
-// }
-
 .show-status-badge {
   background-color: $hot-pink;
   font-size: 12px;
@@ -94,7 +80,13 @@
 .show-stage-content {
   margin-left: 58px;
   border-left: 2px solid $hot-pink;
-  padding: 16px;
+  padding: 12px;
+  &.show-border-dashed {
+    border-left-style: dashed;
+  }
+  &.show-border-none {
+    border-left-color: $white;
+  }
 }
 
 .show-grayed {
