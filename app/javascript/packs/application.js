@@ -3,6 +3,7 @@ import $ from 'jquery'
 import 'star-rating-svg/dist/jquery.star-rating-svg'
 import 'star-rating-svg/src/css/star-rating-svg.css'
 import { initStripe } from "./plugins/initStripe"
+import { initLightpick } from "./plugins/init_lightpick"
 import { initNavbar } from './navbar'
 import { showContentToggle } from './show_content_toggle'
 
@@ -10,6 +11,7 @@ import { showContentToggle } from './show_content_toggle'
 
 initStripe();
 initNavbar();
+initLightpick();
 
 // Initialize other JS functions
 showContentToggle();
@@ -61,22 +63,24 @@ tiles.forEach(tile => {
 
 // Tenant Time Selection
 
-const timeTiles = document.querySelectorAll('.time-card');
-const timeSelected = document.querySelector("#time_selectors");
-timeTiles.forEach(tile => {
-  tile.addEventListener('click', (e) => {
-    if (tile.classList.contains('contractor-active')) {
-      tile.classList.remove('contractor-active')
-      timeSelected.value = ''
-    } else {
-      timeTiles.forEach(t => {
-        t.classList.remove('contractor-active')
-      })
-      tile.classList.add('contractor-active')
-      timeSelected.value = tile.dataset.date
-    }
-  })
-})
+// NOW USING LIGHTPICK
+
+// const timeTiles = document.querySelectorAll('.time-card');
+// const timeSelected = document.querySelector("#time_selectors");
+// timeTiles.forEach(tile => {
+//   tile.addEventListener('click', (e) => {
+//     if (tile.classList.contains('contractor-active')) {
+//       tile.classList.remove('contractor-active')
+//       timeSelected.value = ''
+//     } else {
+//       timeTiles.forEach(t => {
+//         t.classList.remove('contractor-active')
+//       })
+//       tile.classList.add('contractor-active')
+//       timeSelected.value = tile.dataset.date
+//     }
+//   })
+// })
 
 // Contractor Category Selection
 

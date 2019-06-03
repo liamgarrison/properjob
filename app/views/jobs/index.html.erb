@@ -25,6 +25,7 @@
         <i class="far fa-clock px-2"></i><h6 class="load-progress">In Progress</h6>
         </div>
 
+
         <div class="completed-tab tab-selectors active-tab pb-2" data-id="2">
         <i class="far fa-check-circle px-2"></i><h6 class="load-completed">Completed</h6>
         </div>
@@ -43,6 +44,7 @@
                   </div>
                 <% end %>
               </div>
+
               <%= render('shared/progress_bar', job:job) %>
               <div class="index-card-text">
                 <h6 class="mb-2"><%= job.description %></h6>

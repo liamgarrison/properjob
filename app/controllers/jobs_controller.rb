@@ -81,6 +81,7 @@ class JobsController < ApplicationController
     when 4
       render "jobs/action_forms/stage_four"
     when 5
+      @contractor_dates = @job.contractor_availabilities.map { |date| date.date_available.to_s }
       render "jobs/action_forms/stage_five"
     when 6
       render "jobs/action_forms/stage_six"
