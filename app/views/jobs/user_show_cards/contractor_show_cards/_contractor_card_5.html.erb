@@ -1,3 +1,3 @@
-<%= render 'jobs/user_show_cards/show_card', stage_number: 5 do %>
-
-<% end %>
+<p><%= @job.property.tenant.first_name %> has agreed on <%= @job.date.strftime("%e %b %Y") %></p>
+  <p>Address: <%= @job.property.address %></p>
+  <p>Once job is complete, please finalise with images of the finished job and your invoice.</p>
