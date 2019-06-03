@@ -24,13 +24,18 @@
     </p>
 
     <% 9.times do |index| %>
-      <div class="show-stage-wrapper <%= index + 1 == @job.current_stage ? "font-weight-bold" : "show-grayed" %>">
-        <div class="show-stage-top">
+    <% if index + 1 == @job.current_stage %>
+      <% show_top_style = 'font-weight-bold text-gray' %>
+    <% elsif index + 1 > @job.current_stage %>
+      <% show_top_style = 'show-grayed' %>
+    <% end %>
+      <div class="show-stage-wrapper">
+        <div class="show-stage-top <%= show_top_style %>">
           <p class="show-stage-top-date">
-            <% if index + 1 == @job.current_stage %>
-              Now
-            <% elsif index + 1  < @job.current_stage %>
+            <% if index + 1  < @job.current_stage || @job.current_stage == 9 %>
               <%= time_ago_in_words(@job.stage_changed_at(index + 1)) %> ago
+            <% elsif index + 1 == @job.current_stage %>
+              Now
             <% end %>
           </p>
           <p class="show-stage-top-check">
@@ -58,7 +63,7 @@
         <% if index + 1 == 9 %>
           <% show_border = 'show-border-none' %>
         <% elsif index + 1 >= @job.current_stage %>
-          <% show_border = 'show-border-dashed' %>
+          <% show_border = 'show-border-dashed show-grayed' %>
         <% end %>
         <div class="show-stage-content-outer <%= show_border %>">
           <div data-show-content="<%= index + 1 %>" class="show-stage-content-inner">
