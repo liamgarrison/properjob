@@ -2,13 +2,15 @@
 
 
 <div class="container py-5">
-  <h1 class="mb-4">Submit a new job</h1>
   <form class="simple_form new_job" id="new_job" novalidate="novalidate" enctype="multipart/form-data" action="/jobs" accept-charset="UTF-8" method="post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <%= hidden_field_tag :category_selected, value="" %>
-        <label>Select a contractor category:</label>
+        <div class="form-group">
+          <textarea class="form-control job_description" rows="3" name="description" placeholder="Briefly describe the issue you're having"></textarea>
+        </div>
+
+        <label class="pt-3"><strong>What type of problem is it?</strong></label>
         <div class="form-group options">
-          <div class="row justify-content-around">
             <div class="card text-center my-3 shadow-sm rounded category-card" data-id="electrical">
                 <h4 class="card-title"><i class="fas fa-bolt"></i></h4>
                 <p class="text-secondary">Electrical</p>
@@ -17,31 +19,43 @@
                     <h4 class="card-title"><i class="fas fa-tint"></i></h4>
                   <p class="text-secondary">Plumbing</p>
               </div>
-            </div>
-          <div class="row justify-content-around">
-            <div class="card text-center my-3 shadow-sm rounded category-card" data-id="building">
+            <div class="card text-center my-3 shadow-sm rounded category-card" data-id="handyman">
                 <h4 class="card-title"><i class="fas fa-wrench"></i></h4>
-                <p class="text-secondary">Building</p>
+                <p class="text-secondary">Handyman</p>
+            </div>
+            <div class="card text-center my-3 shadow-sm rounded category-card" data-id="windows">
+                <h4 class="card-title"><i class="fas fa-wifi"></i></h4>
+                 <p class="text-secondary">Internet</p>
+            </div>
+            <div class="card text-center my-3 shadow-sm rounded category-card" data-id="damp">
+                <h4 class="card-title"><i class="fas fa-water"></i></h4>
+                 <p class="text-secondary">Damp</p>
+            </div>
+            <div class="card text-center my-3 shadow-sm rounded category-card" data-id="pests">
+                <h4 class="card-title"><i class="fas fa-pastafarianism"></i></h4>
+                 <p class="text-secondary">Pests</p>
+            </div>
+            <div class="card text-center my-3 shadow-sm rounded category-card" data-id="appliances">
+                <h4 class="card-title"><i class="fas fa-tv"></i></h4>
+                 <p class="text-secondary">Appliances</p>
+            </div>
+            <div class="card text-center my-3 shadow-sm rounded category-card" data-id="locksmith">
+                <h4 class="card-title"><i class="fas fa-key"></i></h4>
+                 <p class="text-secondary">Locksmith</p>
             </div>
             <div class="card text-center my-3 shadow-sm rounded category-card" data-id="other">
                 <h4 class="card-title"><i class="fas fa-home"></i></h4>
                  <p class="text-secondary">Other</p>
             </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Please decribe your issue:</label>
-          <textarea class="form-control job_description" rows="3" name="description"></textarea>
         </div>
 
         <div class="form-group file required job_photo_videos_photo_video">
-          <label for="job_photo_videos_photo_video" class="file required">Photo Video
+          <label class="pt-3 pb-1" for="job_photo_videos_photo_video" class="file required"><strong>Please upload a photo or video of the issue</strong>
             <abbr title="required">*</abbr>
           </label>
           <input class="form-control-file file required" multiple="multiple" type="file" name="job[photo_videos][photo_video][]" id="job_photo_videos_photo_video">
         </div>
-        <div class="form-group hidden job_photo_videos_photo_video_cache">
+        <div class="form-group hidden job_photo_videos_photo_video_cache pt-1">
           <input type="hidden" class="form-control hidden" name="job[photo_videos][photo_video_cache]" id="job_photo_videos_photo_video_cache">
         </div>
 
