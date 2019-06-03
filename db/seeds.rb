@@ -126,7 +126,6 @@ job_sockets = Job.create! ({
   description: "My sockets are full of mice",
   contractor: contractor_1,
   current_stage: 1,
-  final_price: 100
 })
 
 PhotoVideo.create(

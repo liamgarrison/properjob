@@ -43,7 +43,7 @@ class JobsController < ApplicationController
       @quote_accepted.save
       @quotes_rejected = @job.quotes.reject { |quote| quote.accepted }
       @quotes_rejected.each {|quote| quote.update(accepted: false)}
-      @job.update(contractor: @quote_accepted.contractor, final_price: @quote_accepted.price)
+      @job.update(contractor: @quote_accepted.contractor)
       @job.update(current_stage: 4)
       redirect_to job_path(@job)
     when 4
@@ -57,7 +57,7 @@ class JobsController < ApplicationController
       @job.update(current_stage: 6)
       redirect_to job_path(@job)
     when 6
-      @job.update(invoice_params)
+      @job.update(job_params)
       @job.update(current_stage: 7)
       redirect_to job_path(@job)
     when 7
@@ -117,11 +117,7 @@ class JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:category, :description, :resolved, :rating, :photo_videos)
-  end
-
-  def invoice_params
-    params.require(:job).permit(:invoice_url)
+    params.require(:job).permit(:category, :description, :resolved, :rating, :photo_videos, :final_price, :invoice)
   end
 
   def belong_to_job?(job)
