@@ -52,10 +52,11 @@
 }
 
 .show-stage-top-date {
-  font-size: 10px;
+  font-size: 9px;
   width: 40px;
   text-align: right;
-  margin-bottom: 0
+  margin-bottom: 0;
+  color: $mid-gray;
 }
 
 .show-stage-top-check {

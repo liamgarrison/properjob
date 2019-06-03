@@ -20,17 +20,13 @@
       <%= truncate @job.description, length: 75, separator: ' ' %>
     </p>
     <p class="show-content-meta">
-      <i class="fas fa-tools mr-1"></i> <%= @job.category.capitalize %> <span class="mx-1">•</span>Submitted <%= time_ago_in_words(@job.created_at) %> ago.
+      <i class="fas fa-tools mr-1"></i> <%= @job.category.capitalize %> <span class="mx-1">•</span>Submitted <%= time_ago_in_words(@job.created_at, include_seconds: true) %> ago.
     </p>
 
     <% 9.times do |index| %>
-    <% if index + 1 == @job.current_stage %>
-      <% show_top_style = 'font-weight-bold text-gray' %>
-    <% elsif index + 1 > @job.current_stage %>
-      <% show_top_style = 'show-grayed' %>
-    <% end %>
+
       <div class="show-stage-wrapper">
-        <div class="show-stage-top <%= show_top_style %>">
+        <div class="show-stage-top">
           <p class="show-stage-top-date">
             <% if index + 1  < @job.current_stage || @job.current_stage == 9 %>
               <%= time_ago_in_words(@job.stage_changed_at(index + 1)) %> ago
@@ -47,7 +43,12 @@
               <i class="far fa-circle"></i>
             <% end %>
           </p>
-          <p class="show-stage-top-title">
+          <% if index + 1 == @job.current_stage %>
+            <% show_title_style = 'font-weight-bold text-gray' %>
+          <% elsif index + 1 > @job.current_stage %>
+            <% show_title_style = 'show-grayed' %>
+          <% end %>
+          <p class="show-stage-top-title  <%= show_title_style %>">
             <% if index + 1 < @job.current_stage %>
               <%= Job.stage_attributes[index + 1][:stage_name_past] %>
             <% elsif index + 1 == @job.current_stage %>
