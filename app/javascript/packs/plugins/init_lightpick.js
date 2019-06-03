@@ -5,12 +5,11 @@ const initLightpick = () => {
   const parentEl = document.querySelector('.popover-datepicker');
   const contractorDates = JSON.parse(parentEl.dataset.contractorDates).map((date) => new Date(date))
 
-  const daysToShow = 90
+  const daysToShow = 91
   const disableDates = []
 
   let placeholderDate = new Date()
   for (let i = 1; i <= daysToShow; i++) {
-    placeholderDate.setDate(placeholderDate.getDate() + 1)
     let isDisabled = true;
     contractorDates.forEach((contractorDate) => {
       console.log(contractorDate, placeholderDate)
@@ -22,6 +21,8 @@ const initLightpick = () => {
     if (isDisabled) {
       disableDates.push(new Date(placeholderDate))
     }
+    // Increment the date
+    placeholderDate.setDate(placeholderDate.getDate() + 1)
   }
 
   if (parentEl && timeSelectors) {
