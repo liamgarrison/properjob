@@ -1,8 +1,8 @@
-<div class="w-100">
+<div class="w-100 progress_bar px-1 py-2">
     <% job.current_stage.times do %>
-      <%= image_tag("hotpinkdash", width: 29) %>
+      <%= image_tag("pinkdash", width: 37) %>
     <% end %>
     <% (9 - job.current_stage).times do %>
-      <%= image_tag("lightgraydash", width: 29) %>
+      <%= image_tag("graydash", width: 37) %>
     <% end %>
 </div>
