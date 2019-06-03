@@ -27,6 +27,7 @@
         <% @jobs.each do |job| %>
           <%= link_to job_path(job), class: 'text-dark text-decoration-none' do %>
             <div class="index-card">
+              <%= render('shared/progress_bar', job:job) %>
               <h4 class="mb-4">Job #<%= job.id %></h4>
               <p class=""><%= job.description %></p>
               <p><i class="fas fa-tools text-danger mr-2"></i> <%= job.category.capitalize %></p>
