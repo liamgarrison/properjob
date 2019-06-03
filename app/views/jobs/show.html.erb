@@ -1,37 +1,79 @@
 <div class="show-background">
   <div class="show-hero-image" style="background-image: url('<%= cl_image_path @job.photo_videos.first.photo_video %>'">
     <div class="button-status-wrapper">
-      <p class="show-back-button">
+      <p class="back-button">
         <%= link_to jobs_path do %>
-          <i class="fas fa-arrow-left"></i>
+          <i class="fas fa-chevron-circle-left"></i>
         <% end %>
       </p>
-      <p class="show-status-badge">Waiting for <%= @job.stage_attributes[:waiting_for] %></p>
+      <% if @waiting_for_me %>
+        <p class="show-status-badge">Action Required</p>
+      <% elsif @job.current_stage == 9 %>
+        <p class="show-status-badge bg-success">Job Completed</p>
+      <% else %>
+        <p class="show-status-badge bg-primary">Waiting for <%= @job.stage_attributes[:waiting_for] %></p>
+      <% end %>
     </div>
   </div>
   <div class="show-content">
     <p class="show-content-title">
-      <%= truncate @job.description, length: 25, separator: ' ' %>
+      <%= truncate @job.description, length: 75, separator: ' ' %>
     </p>
     <p class="show-content-meta">
-      <i class="fas fa-tools mr-1"></i> <%= @job.category.capitalize %> <span class="mx-1">•</span>Submitted <%= time_ago_in_words(@job.created_at) %> ago.
+      <i class="fas fa-tools mr-1"></i> <%= @job.category.capitalize %> <span class="mx-1">•</span>Submitted <%= time_ago_in_words(@job.created_at, include_seconds: true) %> ago.
     </p>
+
     <% 9.times do |index| %>
-      <div class="show-stage-wrapper <%= index + 1 == @job.current_stage ? "font-weight-bold" : "show-grayed" %>">
+
+      <div class="show-stage-wrapper">
         <div class="show-stage-top">
-            <p class="show-stage-top-date">
-          <% if index  < @job.current_stage %>
+          <p class="show-stage-top-date">
+            <% if index + 1  < @job.current_stage || @job.current_stage == 9 %>
               <%= time_ago_in_words(@job.stage_changed_at(index + 1)) %> ago
+            <% elsif index + 1 == @job.current_stage %>
+              Now
             <% end %>
-            </p>
-          <p class="show-stage-top-check"><i class="far fa-check-circle"></i></p>
-          <p class="show-stage-top-title"><%= Job.stage_attributes[index + 1][:stage_name] %><i class="fas fa-chevron-down ml-1"></i></p>
+          </p>
+          <p class="show-stage-top-check">
+            <% if index + 1 < @job.current_stage %>
+              <i class="far fa-check-circle"></i>
+            <% elsif index + 1 == @job.current_stage %>
+              <i class="far fa-dot-circle"></i>
+            <% else %>
+              <i class="far fa-circle"></i>
+            <% end %>
+          </p>
+          <% if index + 1 == @job.current_stage %>
+            <% show_title_style = 'font-weight-bold text-gray' %>
+          <% elsif index + 1 > @job.current_stage %>
+            <% show_title_style = 'show-grayed' %>
+          <% end %>
+          <p class="show-stage-top-title  <%= show_title_style %>">
+            <% if index + 1 < @job.current_stage %>
+              <%= Job.stage_attributes[index + 1][:stage_name_past] %>
+            <% elsif index + 1 == @job.current_stage %>
+              <%= Job.stage_attributes[index + 1][:stage_name_present] %>
+            <% else %>
+              <%= Job.stage_attributes[index + 1][:stage_name_future] %>
+            <% end %>
+            <% if index + 1 < @job.current_stage %>
+              <i data-show-toggler="<%= index + 1 %>" class="fas fa-chevron-down ml-1"></i>
+            <% end %>
+          </p>
         </div>
-        <div class="show-stage-content">
-          <p>Content goes here</p>
+        <% if index + 1 == 9 %>
+          <% show_border = 'show-border-none' %>
+        <% elsif index + 1 >= @job.current_stage %>
+          <% show_border = 'show-border-dashed show-grayed' %>
+        <% end %>
+        <div class="show-stage-content-outer <%= show_border %>">
+          <div data-show-content="<%= index + 1 %>" class="show-stage-content-inner">
+            <% if index + 1 < @job.current_stage  %>
+              <%= render("jobs/user_show_cards/#{current_user.user_type}_show_cards/#{current_user.user_type}_card_#{index + 1}") %>
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>
   </div>
 </div>
-

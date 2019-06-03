@@ -1,4 +1,2 @@
-<%= render 'jobs/user_show_cards/show_card', stage_number: 7 do %>
-  <p>Final price: £<%= @job.final_price %></p>
-<% end %>
-
+<p>Tenant rating: <%= @job.rating %> stars</p>
+  <p>Work was <%= @job.resolved ? "" : "not" %> completed successfully</p>
