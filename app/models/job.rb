@@ -8,6 +8,8 @@ class Job < ApplicationRecord
   has_many :contractors, through: :quotes, foreign_key: :contractor_id, class_name: "User"
   mount_uploader :invoice, PhotoUploader
   after_save :create_job_stage, if: :saved_change_to_current_stage?
+  validates :description, presence: true
+  validates :category, presence: true
 
   def index
     @user = User.find(params[:id])
