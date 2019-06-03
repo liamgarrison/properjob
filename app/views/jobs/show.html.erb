@@ -6,12 +6,16 @@
           <i class="fas fa-chevron-circle-left"></i>
         <% end %>
       </p>
-      <p class="show-status-badge">Waiting for <%= @job.stage_attributes[:waiting_for] %></p>
+      <% if @waiting_for_me %>
+        <p class="show-status-badge">Action Required</p>
+      <% else %>
+        <p class="show-status-badge bg-primary">Waiting for <%= @job.stage_attributes[:waiting_for] %></p>
+      <% end %>
     </div>
   </div>
   <div class="show-content">
     <p class="show-content-title">
-      <%= truncate @job.description, length: 25, separator: ' ' %>
+      <%= truncate @job.description, length: 75, separator: ' ' %>
     </p>
     <p class="show-content-meta">
       <i class="fas fa-tools mr-1"></i> <%= @job.category.capitalize %> <span class="mx-1">•</span>Submitted <%= time_ago_in_words(@job.created_at) %> ago.
@@ -21,7 +25,9 @@
       <div class="show-stage-wrapper <%= index + 1 == @job.current_stage ? "font-weight-bold" : "show-grayed" %>">
         <div class="show-stage-top">
           <p class="show-stage-top-date">
-            <% if index  < @job.current_stage %>
+            <% if index + 1 == @job.current_stage %>
+              Now
+            <% elsif index + 1  < @job.current_stage %>
               <%= time_ago_in_words(@job.stage_changed_at(index + 1)) %> ago
             <% end %>
           </p>

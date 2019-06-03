@@ -23,24 +23,25 @@
 
 .show-background {
   background-color: $primary;
+  padding-bottom: 32px;
 }
 
 .show-content {
   border-radius: $border-radius-lg;
   background-color: $white;
-  padding: 24px;
-  margin: -60px 16px 48px 16px;
+  padding: 32px 24px 12px 24px;
+  margin: -60px 16px 0 16px;
 }
 
 .show-content-title {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 22px;
   margin-bottom: 8px;
 }
 .show-content-meta {
   color: $mid-gray;
   font-size: 12px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 }
 
 
