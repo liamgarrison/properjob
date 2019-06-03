@@ -1,7 +1,7 @@
 <div class="show-background">
   <div class="show-hero-image" style="background-image: url('<%= cl_image_path @job.photo_videos.first.photo_video %>'">
     <div class="button-status-wrapper">
-      <%= link_to jobs_path, class: "back-button" do %>
+      <%= link_to jobs_path, class: "back-button ml-3" do %>
             <i class="fa fa-chevron-left"></i>
           <% end %>
       <% if @waiting_for_me %>
