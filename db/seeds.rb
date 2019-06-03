@@ -226,7 +226,7 @@ job_fuses_3 = Quote.create! ({
   ContractorAvailability.create! ({
     contractor: contractor_1,
     job: job_fuses,
-    date_available: Date.today + (1..100).to_a.sample
+    date_available: Date.today + (1..7).to_a.sample
   })
 end
 
