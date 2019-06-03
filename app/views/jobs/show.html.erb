@@ -8,6 +8,8 @@
       </p>
       <% if @waiting_for_me %>
         <p class="show-status-badge">Action Required</p>
+      <% elsif @job.current_stage == 9 %>
+        <p class="show-status-badge bg-success">Job Completed</p>
       <% else %>
         <p class="show-status-badge bg-primary">Waiting for <%= @job.stage_attributes[:waiting_for] %></p>
       <% end %>
@@ -49,7 +51,7 @@
               <%= Job.stage_attributes[index + 1][:stage_name_future] %>
             <% end %>
             <% if index + 1 < @job.current_stage %>
-              <i class="fas fa-chevron-down ml-1 job-show-toggler"></i>
+              <i data-show-toggler="<%= index + 1 %>" class="fas fa-chevron-down ml-1"></i>
             <% end %>
           </p>
         </div>
@@ -58,8 +60,10 @@
         <% elsif index + 1 >= @job.current_stage %>
           <% show_border = 'show-border-dashed' %>
         <% end %>
-        <div class="show-stage-content <%= show_border %>">
-          <!-- <p>Content goes here</p> -->
+        <div class="show-stage-content-outer <%= show_border %>">
+          <div data-show-content="<%= index + 1 %>" class="show-stage-content-inner">
+            Content goes here
+          </div>
         </div>
       </div>
     <% end %>

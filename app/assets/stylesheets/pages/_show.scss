@@ -71,14 +71,10 @@
   flex-grow: 1;
   font-size: 14px;
   margin-bottom: 0;
+  cursor: pointer;
 }
 
-.show-stage-top-title {
-  flex-grow: 1;
-  font-size: 14px;
-}
-
-.show-stage-content {
+.show-stage-content-outer {
   margin-left: 58px;
   border-left: 2px solid $hot-pink;
   padding: 12px;
@@ -87,6 +83,16 @@
   }
   &.show-border-none {
     border-left-color: $white;
+  }
+}
+
+.show-stage-content-inner {
+  max-height: 0;
+  height:auto;
+  overflow: hidden;
+  &.show-visible {
+    transition: max-height 1s ease;
+    max-height: 500px;
   }
 }
 
