@@ -1,7 +1,7 @@
 <div id="wrapper">
-  <div class="container">
-    <%= link_to jobs_path do %>
-      <p> <i class="fas fa-chevron-circle-left mt-4 ml-3"></i> </p>
+  <div class="container pt-4">
+    <%= link_to jobs_path, class: "back-button" do %>
+      <i class="fa fa-chevron-left"></i>
     <% end %>
     <div class="cloudinary-illustration"> <%= illustration_url %></div>
     <h2 class= "ml-3 pt-5"><%= title %></h2>
