@@ -22,11 +22,11 @@
       <% else %>
 
       <div class="d-flex justify-content-around text-center border-bottom-3 mb-3">
-        <div class="process-tab tab-selectors" data-id="1">
+        <div class="incomplete-tab tab-selectors active-tab pb-2" data-id="1">
           <i class="far fa-clock px-2"></i><h6 class="load-progress">In Progress</h6>
         </div>
 
-        <div class="completed-tab tab-selectors mb-3" data-id="2">
+        <div class="completed-tab tab-selectors active-tab pb-2" data-id="2">
           <i class="far fa-check-circle px-2"></i><h6 class="load-completed">Completed</h6>
         </div>
 
@@ -57,17 +57,17 @@
                 <p><i class="fas fa-tools text-danger mr-2"></i> <%= job.category.capitalize %></p>
                 <span class="job-show-stage"><i class="fas fa-clock mr-2"></i><%= job.stage_attributes[:stage_name] %></span>
                 <p class="text-right mt-4 mb-0 timestamp">Submitted on <%= job.submitted_at %></p>
-              </div>
               <% end %>
-              <% end %>
-        </div>
-
-        <% if current_user.user_type == 'tenant' %>
-          <div class="sticky-btn">
-            <%= link_to "Submit new job", new_job_path, class: "btn btn-primary" %>
           </div>
         <% end %>
 </div>
+
+          <% if current_user.user_type == 'tenant' %>
+              <%= link_to "Submit new job", new_job_path, class: "btn btn-primary w-100" %>
+            <% end %>
+          </div>
+
+        </div>
 
 
 <%= javascript_pack_tag "tabs" %>

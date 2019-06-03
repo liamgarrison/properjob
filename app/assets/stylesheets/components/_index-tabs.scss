@@ -1,22 +1,15 @@
-#process-tab {
-  border-bottom: 4px solid $blue;
+.incomplete-tab, .completed-tab {
+  // border-bottom: 4px solid $blue;
   z-index: 40;
+  width: 50%;
 }
-
-
-#completed-tab {
-
-}
-
 
 .line-tab {
   border-top: 4px solid $light-gray;
   position: absolute;
-  top: 263px;
+  top: 241px;
   width: 100%;
 }
-
-
 
 
 .show-tab {
@@ -26,4 +19,8 @@
 
 .tab-info {
   display: none;
+}
+
+.active-tab {
+  border-bottom: 4px solid $blue;
 }
