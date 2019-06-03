@@ -1,9 +1,9 @@
 <div class="show-background">
   <div class="show-hero-image" style="background-image: url('<%= cl_image_path @job.photo_videos.first.photo_video %>'">
     <div class="button-status-wrapper">
-      <p class="show-back-button">
+      <p class="back-button">
         <%= link_to jobs_path do %>
-          <i class="fas fa-arrow-left"></i>
+          <i class="fas fa-chevron-circle-left"></i>
         <% end %>
       </p>
       <p class="show-status-badge">Waiting for <%= @job.stage_attributes[:waiting_for] %></p>
