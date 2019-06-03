@@ -1,0 +1,8 @@
+<div class="w-100">
+    <% job.current_stage.times do %>
+      <%= image_tag("hotpinkdash", width: 29) %>
+    <% end %>
+    <% (9 - job.current_stage).times do %>
+      <%= image_tag("lightgraydash", width: 29) %>
+    <% end %>
+</div>
