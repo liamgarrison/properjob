@@ -21,7 +21,22 @@
 }
 
 .progress_bar {
-  font-size: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 8px;
+  .progress-solid, .progress-empty {
+    height: 3px;
+    flex-grow: 1;
+    margin: 0 2px;
+    border-radius: 4px;
+  }
+  .progress-solid {
+    background-color: $hot-pink;
+  }
+  .progress-empty {
+    background-color: $light-gray;
+  }
 }
 
 .action-required-alert {
