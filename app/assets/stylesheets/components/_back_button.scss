@@ -1,7 +1,13 @@
 .back-button {
-  font-size: 28px;
+  font-size: 18px;
+  display: inline-block;
+  line-height: 32px;
+  background-color: $white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding-right: 1px;
+  text-align: center;
+  box-shadow: $box-shadow;
   margin: 0;
-  a {
-  color: $white;
-  }
 }
