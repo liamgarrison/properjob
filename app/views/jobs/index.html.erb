@@ -2,7 +2,7 @@
 
 <div class="bg-primary text-white d-flex align-items-center justify-content-start">
   <div class="container pt-5 pb-5">
-    <h2 class="pt-3">Hi <%= current_user.first_name %>.</h2>
+    <h2 class="pt-3">Hi, <%= current_user.first_name %></h2>
     <% case current_user.user_type %>
     <% when 'tenant' %>
       <p><%= current_user.rented_properties.first.address %></p>
@@ -37,6 +37,11 @@
           <%= link_to job_path(job), class: 'text-dark text-decoration-none' do %>
             <div class="index-card">
               <div class="index-card-image" style="background-image: url('<%= cl_image_path job.photo_videos.first.photo_video %>'">
+                <% if job.stage_attributes[:waiting_for] == current_user.user_type %>
+                  <div class="action-required-alert text-center">
+                    <p class="text-white">Action Required</p>
+                  </div>
+                <% end %>
               </div>
               <%= render('shared/progress_bar', job:job) %>
               <div class="index-card-text">
@@ -69,12 +74,12 @@
       </div>
     <% end %>
   </div>
-
+</div>
+<div class="sticky-btn">
   <% if current_user.user_type == 'tenant' %>
     <%= link_to "Submit new job", new_job_path, class: "btn btn-primary w-100" %>
   <% end %>
 
 </div>
-
 
 <%= javascript_pack_tag "tabs" %>
