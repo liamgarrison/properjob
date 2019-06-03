@@ -12,7 +12,7 @@
   <p class="final-job-details"><i class="fas fa-user-plus mr-1"></i> <%= (@job.category).capitalize %> requested</p>
 
   <p><strong>Quote Selected</strong></p>
-  <p class="final-job-details"><i class="fas fa-pound-sign mr-1"></i> <%= @job.final_price %></p>
+  <p class="final-job-details"><i class="fas fa-pound-sign mr-1"></i> <%= @job.quotes.find_by_accepted(true).price %></p>
   <p class="final-job-details"><i class="fas fa-user mr-1"></i> <%= @job.contractor.first_name %> <%= @job.contractor.last_name %></p>
 
   <p><strong>Final Job Details</strong></p>
