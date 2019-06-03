@@ -1,3 +1,1 @@
-<%= render 'jobs/user_show_cards/show_card', stage_number: 7 do %>
-  <p>Yay! <%= @job.contractor.first_name %> has finished your job!</p>
-<% end %>
+  <p>You rated <%= @job.contractor.first_name %> <%= @job.rating %> stars!</p>
