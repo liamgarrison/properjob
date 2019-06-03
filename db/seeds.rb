@@ -126,7 +126,6 @@ job_sockets = Job.create! ({
   description: "My sockets are full of mice",
   contractor: contractor_1,
   current_stage: 1,
-  final_price: 100
 })
 
 PhotoVideo.create(
@@ -162,11 +161,11 @@ quote_sockets_3 = Quote.create! ({
   accepted: false
 })
 
-3.times do
+3.times do |index|
   ContractorAvailability.create! ({
     contractor: contractor_1,
     job: job_sockets,
-    date_available: Date.today + (1..100).to_a.sample
+    date_available: [Date.today+ 2, Date.today + 4, Date.today + 8][index]
   })
 end
 
@@ -222,11 +221,11 @@ job_fuses_3 = Quote.create! ({
   accepted: false
 })
 
-3.times do
+3.times do |index|
   ContractorAvailability.create! ({
     contractor: contractor_1,
     job: job_fuses,
-    date_available: Date.today + (1..100).to_a.sample
+    date_available: [Date.today+ 2, Date.today + 4, Date.today + 8][index]
   })
 end
 
@@ -286,11 +285,11 @@ quote_hoover_3 = Quote.create! ({
   accepted: false
 })
 
-3.times do
+3.times do |index|
   ContractorAvailability.create! ({
     contractor: contractor_2,
     job: job_hoover,
-    date_available: Date.today + (1..100).to_a.sample
+    date_available: [Date.today+ 2, Date.today + 4, Date.today + 8][index]
   })
 end
 

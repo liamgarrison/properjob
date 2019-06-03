@@ -17,9 +17,22 @@
   width: 100%;
   height: 125px;
   background-size: cover;
-  border-radius: $border-radius $border-radius 0 0
+  border-radius: $border-radius $border-radius 0 0;
 }
 
 .progress_bar {
   font-size: 0px;
+}
+
+.action-required-alert {
+  width: 90px;
+  background-color: $hot-pink;
+  float: right;
+  border-radius: $border-radius;
+  margin: 16px;
+  padding: 8px 0px;
+    p {
+      font-size: 10px;
+      margin-bottom: 0px;
+    }
 }
