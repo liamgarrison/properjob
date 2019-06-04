@@ -77,7 +77,7 @@
     <% end %>
   </div>
 </div>
-<% if @waiting_for_me && @job.contractors_already_submitted_quote.exclude?(current_user) %>
+<% if @waiting_for_me %>
   <div class="sticky-btn">
     <%= link_to @job.stage_attributes[:call_to_action], edit_job_path(@job), class: "btn btn-danger" %>
   </div>
