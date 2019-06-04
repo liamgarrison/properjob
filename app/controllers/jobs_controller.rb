@@ -13,6 +13,7 @@ class JobsController < ApplicationController
     end
     @user_jobs = @jobs_waiting_for_user + @jobs_not_for_user
     @completed_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage == 9 }
+    @jobs_in_progress = @incompleted_jobs
   end
 
   def show
