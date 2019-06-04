@@ -1,6 +1,6 @@
 <%= render 'shared/navbar' %>
 
-<div class="home-container" style="background-image: url(<%= cl_image_path("landing-background_1_zjqpmj") %>)">
+<div class="home-container vh-100" style="background-image: url(<%= cl_image_path("landing-background_2_m2seqf") %>)">
 
   <div class="container">
 
@@ -12,12 +12,17 @@
       </span>
     </div>
   </div>
-  <div class="home-page-btn">
-    <% if user_signed_in? %>
-      <%= link_to "View Your Jobs", jobs_path, class: "btn btn-light mb-3 text-primary" %>
-    <% else %>
-      <%= link_to "Log In", new_user_session_path, class: "btn btn-light mb-3 text-primary" %>
-      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-light text-light" %>
-    <% end %>
+
+  <div class="button-and-image">
+    <%= cl_image_tag("jhslh89z8vvsmc0jc9pb", height: 250, class: "chair-img") %>
+    <div class="home-page-btn">
+      <% if user_signed_in? %>
+        <%= link_to "View Your Jobs", jobs_path, class: "btn btn-light mb-3 text-primary" %>
+      <% else %>
+        <%= link_to "Log In", new_user_session_path, class: "btn btn-light mb-3 text-primary" %>
+        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-light text-light" %>
+      <% end %>
+    </div>
   </div>
+
 </div>
