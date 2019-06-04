@@ -1,5 +1,4 @@
-  <p><%= @job.contractor.first_name %> will be doing your job</p>
-  <p>Here's his email: <%= @job.contractor.email %></p>
-
-
-
+<div class="d-flex align-items-center mb-3">
+  <%= cl_image_tag @job.contractor.avatar, class: 'avatar' %>
+  <p class="ml-3 mb-0"><%= @job.accepted_quote.contractor.first_name %> will be doing your job!</p>
+</div>
