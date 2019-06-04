@@ -11,6 +11,11 @@
   width: 100%;
 }
 
+.index-tab {
+  border-bottom: 4px solid $light-gray;
+  cursor: pointer;
+}
+
 
 .show-tab {
   display: block !important;
@@ -21,6 +26,11 @@
   display: none;
 }
 
-.active-tab {
-  border-bottom: 4px solid $blue;
+.index-tabs {
+  width: 100%;
 }
+
+.index-tab.active-tab {
+  border-bottom-color: $blue;
+}
+

@@ -14,23 +14,25 @@
   </div>
 </div>
 
-<div class="tenant-container">
+<div class="tenant-wrapper">
   <div class="container pt-4 pb-5">
     <% if @jobs.empty? %>
       <h3>Looks like you haven't submitted any jobs yet!</h3>
       <p>Click below to add a new one...</p>
     <% else %>
-      <div class="d-flex justify-content-around text-center border-bottom-3 mb-3">
-        <div class="incomplete-tab tab-selectors active-tab pb-2" data-id="1">
-        <i class="far fa-clock px-2"></i><h6 class="load-progress">In Progress</h6>
+      <div class="mb-3">
+        <div class=" d-flex justify-content-around text-center tabs-wrapper mb-4">
+
+
+          <div class="index-tab tab-selectors active-tab pb-2" data-id="1">
+            <h6 class="load-progress"><i class="far fa-clock px-2"></i> In Progress</h6>
+          </div>
+
+          <div class="index-tab tab-selectors pb-2" data-id="2">
+            <h6 class="load-completed"><i class="far fa-check-circle px-2"></i> Completed</h6>
+          </div>
+
         </div>
-
-
-        <div class="completed-tab tab-selectors active-tab pb-2" data-id="2">
-        <i class="far fa-check-circle px-2"></i><h6 class="load-completed">Completed</h6>
-        </div>
-
-        <div class="line-tab"></div>
       </div>
 
       <div class="tab-info show-tab" data-tab-id="1">
