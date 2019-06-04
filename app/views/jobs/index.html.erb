@@ -50,7 +50,7 @@
               <%= render('shared/progress_bar', job:job) %>
               <div class="index-card-text">
                 <h6 class="mb-2"><%= job.description %></h6>
-                <p class="mb-0"><%= job.stage_attributes[:stage_name_present] %></p>
+                <p class="job-description mb-0"><%= job.stage_attributes[:stage_name_present] %></p>
                 <p class="text-right mt-0 mb-0 timestamp">
                   Submitted <%= time_ago_in_words(job.submitted_at) %> ago</p>
               </div>
@@ -68,7 +68,7 @@
               <%= render('shared/progress_bar', job:job) %>
               <div class="index-card-text">
                 <h6 class="mb-2"><%= job.description %></h6>
-                <p class="mb-0"><%= job.stage_attributes[:stage_name_present] %></p>
+                <p class="job-description mb-0"><%= job.stage_attributes[:stage_name_present] %></p>
                 <p class="text-right mt-0 mb-0 timestamp">
                   Submitted <%= time_ago_in_words(job.submitted_at) %> ago</p>
               </div>
