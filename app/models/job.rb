@@ -117,6 +117,10 @@ class Job < ApplicationRecord
     quotes.find_by_accepted(true)
   end
 
+  def contractors_already_submitted_quote
+    quotes.select { |quote| quote.submitted }.map(&:contractor)
+  end
+
   private
 
   def create_job_stage
