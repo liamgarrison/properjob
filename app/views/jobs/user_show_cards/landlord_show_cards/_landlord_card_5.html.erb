@@ -1,8 +1,2 @@
-<%= render 'jobs/user_show_cards/show_card', stage_number: 5 do %>
-  <% @job.available_dates.each do |date| %>
-    <p>
-      <%= date %>
-    </p>
-  <% end %>
-<% end %>
+<p><i class="fas fa-calendar-alt mr-1"></i> <%= @job.date %></p>
 

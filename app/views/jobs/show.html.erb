@@ -1,33 +1,84 @@
-<%= render('shared/navbar') %>
-<div class="bg-primary text-white d-flex align-items-center justify-content-start">
-  <div class="container pt-4 pb-4">
-    <p class="back-button mb-2">
-      <%= link_to jobs_path do %>
-        <i class="fas fa-arrow-circle-left"></i>
+<div class="show-background">
+  <div class="show-hero-image" style="background-image: url('<%= cl_image_path @job.photo_videos.first.photo_video %>'">
+    <div class="button-status-wrapper">
+      <%= link_to jobs_path, class: "back-button ml-3" do %>
+            <i class="fa fa-chevron-left"></i>
+          <% end %>
+      <% if @waiting_for_me %>
+        <p class="show-status-badge">Action Required</p>
+      <% elsif @job.current_stage == 9 %>
+        <p class="show-status-badge bg-success">Job Completed</p>
+      <% else %>
+        <p class="show-status-badge bg-primary">Waiting for <%= @job.stage_attributes[:waiting_for] %></p>
       <% end %>
-    </p>
-    <h2 class="">Job #<%= @job.id %></h2>
-    <p><%= @job.description %></p>
-
-    <span class="job-show-stage"><i class="fas fa-clock mr-2"></i><%= @job.stage_attributes[:stage_name] %></span>
-  </div>
-</div>
-  <div class="progress mb-3 bg-white" style="height: 4px;">
-    <% progress_percent = (@job.current_stage / 9.0 * 100 / 5.0).ceil * 5 %>
-    <div class=" progress-bar bg-dark" style="width:<%= progress_percent %>%"aria-valuenow="<%= progress_percent %>" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
+  <div class="show-content">
+    <p class="show-content-title">
+      <%= truncate @job.description, length: 75, separator: ' ' %>
+    </p>
+    <p class="show-content-meta">
+      <i class="fas fa-tools mr-1"></i> <%= @job.category.capitalize %> <span class="mx-1">•</span>Submitted <%= time_ago_in_words(@job.created_at, include_seconds: true) %> ago.
+    </p>
 
-<div class="container pt-3 pb-5">
-  <div class="cards mt-3">
-    <% @job.current_stage.times do |index| %>
-      <%= render("jobs/user_show_cards/#{current_user.user_type}_show_cards/#{current_user.user_type}_card_#{@job.current_stage - index}") %>
+    <% 9.times do |index| %>
+
+      <div class="show-stage-wrapper">
+        <div class="show-stage-top">
+          <p class="show-stage-top-date">
+            <% if index + 1  < @job.current_stage || @job.current_stage == 9 %>
+              <%= time_ago_in_words(@job.stage_changed_at(index + 1)) %> ago
+            <% elsif index + 1 == @job.current_stage %>
+              Now
+            <% end %>
+          </p>
+          <p class="show-stage-top-check">
+            <% if index + 1 < @job.current_stage %>
+              <i class="far fa-check-circle"></i>
+            <% elsif index + 1 == @job.current_stage %>
+              <i class="far fa-dot-circle"></i>
+            <% else %>
+              <i class="far fa-circle"></i>
+            <% end %>
+          </p>
+          <% if index + 1 == @job.current_stage %>
+            <% show_title_style = 'font-weight-bold text-gray' %>
+          <% elsif index + 1 > @job.current_stage %>
+            <% show_title_style = 'show-grayed' %>
+          <% else %>
+            <% show_title_style = 'show-grayed show-clickable' %>
+          <% end %>
+          <p data-show-toggler="<%= index + 1 %>" class="show-stage-top-title  <%= show_title_style %>">
+            <% if index + 1 < @job.current_stage %>
+              <%= Job.stage_attributes[index + 1][:stage_name_past] %>
+            <% elsif index + 1 == @job.current_stage %>
+              <%= Job.stage_attributes[index + 1][:stage_name_present] %>
+            <% else %>
+              <%= Job.stage_attributes[index + 1][:stage_name_future] %>
+            <% end %>
+            <% if index + 1 < @job.current_stage %>
+              <i  class="fas fa-chevron-down ml-1"></i>
+            <% end %>
+          </p>
+        </div>
+        <% if index + 1 == 9 %>
+          <% show_border = 'show-border-none' %>
+        <% elsif index + 1 >= @job.current_stage %>
+          <% show_border = 'show-border-dashed show-grayed' %>
+        <% end %>
+        <div class="show-stage-content-outer <%= show_border %>">
+          <div data-show-content="<%= index + 1 %>" class="show-stage-content-inner">
+            <% if index + 1 < @job.current_stage  %>
+              <%= render("jobs/user_show_cards/#{current_user.user_type}_show_cards/#{current_user.user_type}_card_#{index + 1}") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
-
 <% if @waiting_for_me %>
   <div class="sticky-btn">
-    <%= link_to @job.stage_attributes[:call_to_action], edit_job_path(@job), class: "btn btn-primary" %>
+    <%= link_to @job.stage_attributes[:call_to_action], edit_job_path(@job), class: "btn btn-danger" %>
   </div>
 <% end %>

@@ -1,31 +1,39 @@
-<div class="container">
-<h1 class="my-3 pt-3">Feedback</h1>
-<form action="<%= job_path(@job) %>" method="post">
- <input type="hidden" name="_method" value="patch">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <%= hidden_field_tag :resolved, value="" %>
-  <%= hidden_field_tag :rating, value="0" %>
-  <h3>Has the issue been resolved?</h3>
-    <div class="row d-flex justify-content-between pr-2 px-3">
-      <div class="card my-3 shadow-sm rounded job-card col-sm justify-content-center" data-id="<%=true%>">
-        <div class="card-body">
-          <p>Issue resolved</p>
-        </div>
+<%= render('shared/wrapper', title: "Hey #{current_user.first_name}, how did #{@job.contractor.first_name} do?", illustration_url:  cl_image_tag('rate_contractor_tkk8ur'))%>
+
+<div class="container py-5">
+  <form action="<%= job_path(@job) %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :resolved, value="" %>
+    <%= hidden_field_tag :rating, value="0" %>
+    <h5 class="pl-3">Has the issue been resolved?</h5>
+
+    <div class="d-flex justify-content-between mb-5">
+    <div class="card m-3 shadow-sm rounded resolved-card col-sm justify-content-center" data-id="<%=true%>">
+      <div class="feedback-box">
+        <h1 class="text-success m-0">
+          <i class="fas fa-check"></i>
+        </h1>
       </div>
-      <div class="card my-3 shadow-sm rounded job-card col-sm" data-id="<%=false%>">
-        <div class="card-body">
-          <p>Issue not resolved</p>
+    </div>
+      <div class="card m-3 shadow-sm rounded resolved-card col-sm justify-content-center" data-id="<%=false%>">
+        <div class="feedback-box">
+          <h1 class="text-danger m-0">
+            <i class="fas fa-times"></i>
+          </h1>
         </div>
       </div>
     </div>
-  <div class="m-3">
-    <h3>How would you rate <%= @job.contractor.first_name %>'s work?</h3>
-  </div>
-  <div class="rating"></div>
+
+    <div class="mb-3 pl-3">
+      <h5>How would you rate their work?</h5>
+    </div>
+
+    <div class="rating mb-5"></div>
+    <input type="submit" value="Submit" class="btn btn-primary w-100">
+
+  </form>
 </div>
-  <div class="sticky-btn">
-   <input type="submit" value="Submit" class="btn btn-primary">
-  </div>
-</form>
+
 
 

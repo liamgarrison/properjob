@@ -1,10 +1,1 @@
-<%= render 'jobs/user_show_cards/show_card', stage_number: 1 do %>
-  <p>Description: <%= @job.description %></p>
-  <p>Category: <%= @job.category %></p>
-  <% @job.photo_videos.each do |photo_video| %>
-    <% if photo_video.stage == @job.current_stage %>
-      <%= cl_image_tag photo_video.photo_video, class: " mb-3 w-100", width: 500, crop: :fit %>
-    <% end %>
-  <% end %>
-<% end %>
-
+<p>Your landlord has selected <%= @job.quotes.count %> contractors to quote on the job.</p>

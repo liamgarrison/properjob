@@ -4,7 +4,15 @@ class JobsController < ApplicationController
   def index
     @jobs = Job.all
     @jobs = @jobs.sort_by(&:created_at).reverse
-    @jobs = @jobs.select { |job| belong_to_job?(job) }
+    # @jobs = @jobs.select { |job| belong_to_job?(job) }
+    @incompleted_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage < 9 }
+    @jobs_waiting_for_user = []
+    @jobs_not_for_user = []
+    @incompleted_jobs.each do |job|
+      waiting_for_me?(job) ? @jobs_waiting_for_user << job : @jobs_not_for_user << job
+    end
+    @user_jobs = @jobs_waiting_for_user + @jobs_not_for_user
+    @completed_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage == 9 }
   end
 
   def show
@@ -18,21 +26,22 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = Job.new(job_params)
+    @job = Job.new(category: params[:category_selected], description: params[:description])
     @job.property = Property.first
     @job.current_stage = 1
     if @job.save
-      params[:job][:photo_videos][:photo_video].each do |photo_video|
-        @job.photo_videos.create(photo_video: photo_video, stage: @job.current_stage)
+      if params[:job][:photo_videos][:photo_video]
+        params[:job][:photo_videos][:photo_video].each do |photo_video|
+          @job.photo_videos.create(photo_video: photo_video, stage: @job.current_stage)
+        end
+        redirect_to job_path(@job)
       end
-      redirect_to job_path(@job)
     else
       render :new
     end
   end
 
   def update
-      # raise
     case @job.current_stage
     when 3
       @quote_accepted = Quote.find(quote_params[:quote_selected])
@@ -40,7 +49,7 @@ class JobsController < ApplicationController
       @quote_accepted.save
       @quotes_rejected = @job.quotes.reject { |quote| quote.accepted }
       @quotes_rejected.each {|quote| quote.update(accepted: false)}
-      @job.update(contractor: @quote_accepted.contractor, final_price: @quote_accepted.price)
+      @job.update(contractor: @quote_accepted.contractor)
       @job.update(current_stage: 4)
       redirect_to job_path(@job)
     when 4
@@ -54,14 +63,13 @@ class JobsController < ApplicationController
       @job.update(current_stage: 6)
       redirect_to job_path(@job)
     when 6
-      @job.update(invoice_params)
+      @job.update(job_params)
       @job.update(current_stage: 7)
       redirect_to job_path(@job)
     when 7
       @job.update(resolved: params[:resolved] == 'true', rating: params[:rating])
       @job.update(current_stage: 8)
       redirect_to job_path(@job)
-      raise
     end
   end
 
@@ -79,6 +87,7 @@ class JobsController < ApplicationController
     when 4
       render "jobs/action_forms/stage_four"
     when 5
+      @contractor_dates = @job.contractor_availabilities.map { |date| date.date_available.to_s }
       render "jobs/action_forms/stage_five"
     when 6
       render "jobs/action_forms/stage_six"
@@ -114,11 +123,7 @@ class JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:category, :description, :resolved, :rating, :photo_videos)
-  end
-
-  def invoice_params
-    params.require(:job).permit(:invoice_url)
+    params.require(:job).permit(:category, :description, :resolved, :rating, :photo_videos, :final_price, :invoice)
   end
 
   def belong_to_job?(job)
@@ -127,7 +132,7 @@ class JobsController < ApplicationController
 
   def waiting_for_me?(job)
     # Find out if the current user is the one we are waiting on.
-    if belong_to_job?(job) && @job.stage_attributes[:waiting_for] == current_user.user_type
+    if belong_to_job?(job) && job.stage_attributes[:waiting_for] == current_user.user_type
       @waiting_for_me = true
     else
       @waiting_for_me = false

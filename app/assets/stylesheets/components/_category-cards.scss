@@ -1,0 +1,38 @@
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.category-card {
+  width: 90px;
+  padding: 8px;
+  border-radius: $border-radius;
+  border: 2px solid $light-gray;
+  text-align: center;
+  margin: 16px 8px;
+  flex-grow: 1;
+}
+
+.category-card {
+  .card-body {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+}
+
+
+.category-card {
+  .card-title {
+  font-size: 50px;
+  color: $primary;
+  }
+  p {
+    margin-bottom: 0;
+  }
+}
+
+
+

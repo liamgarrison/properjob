@@ -1,4 +1,2 @@
-<%= render 'jobs/user_show_cards/show_card', stage_number: 6 do %>
-  <p>The job is happening on <%= @job.date %></p>
-<% end %>
-
+<p><i class="fas fa-pound-sign mr-1"></i> <%= @job.final_price %></p>
+<a class="final-job-details btn btn-primary btn-sm mb-3" target="_blank" href="<%= cl_image_path @job.invoice %>"><i class="fas fa-file-pdf mr-1"></i> View PDF</a>

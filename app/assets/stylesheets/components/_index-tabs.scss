@@ -1,0 +1,36 @@
+.incomplete-tab, .completed-tab {
+  // border-bottom: 4px solid $blue;
+  z-index: 40;
+  width: 50%;
+}
+
+.line-tab {
+  border-top: 4px solid $light-gray;
+  position: absolute;
+  top: 241px;
+  width: 100%;
+}
+
+.index-tab {
+  border-bottom: 4px solid $light-gray;
+  cursor: pointer;
+}
+
+
+.show-tab {
+  display: block !important;
+}
+
+
+.tab-info {
+  display: none;
+}
+
+.index-tabs {
+  width: 100%;
+}
+
+.index-tab.active-tab {
+  border-bottom-color: $blue;
+}
+

@@ -1,4 +1,3 @@
-<%= render 'jobs/user_show_cards/show_card', stage_number: 7 do %>
-  <p>Final price: £<%= @job.final_price %></p>
-<% end %>
 
+  <p ><i class="fas fa-check mr-1"></i> <% if @job.resolved %> <%= "Issue resolved" %> <% else %> <%= "Unresolved issue" %> <% end %></p>
+  <p ><i class="fas fa-star mr-1"></i> <%= pluralize(@job.rating, "star")%>!</p>

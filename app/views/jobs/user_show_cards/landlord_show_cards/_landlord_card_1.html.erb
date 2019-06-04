@@ -1,7 +1,6 @@
-<%= render 'jobs/user_show_cards/show_card', stage_number: 1 do %>
-  <p>Description: <%= @job.description %></p>
-  <p>Category: <%= @job.category %></p>
-  <p>Photo 1</p>
-  <p>Photo 2</p>
+<% @job.quotes.each do |quote| %>
+  <div class="d-flex align-items-center mb-3">
+    <%= cl_image_tag quote.contractor.avatar, class: 'avatar small' %>
+    <p class="ml-3 mb-0"><%= quote.contractor.first_name %></p>
+  </div>
 <% end %>
-

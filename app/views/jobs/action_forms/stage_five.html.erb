@@ -1,20 +1,14 @@
-<div class="container">
-  <h1>Select Preferred Date:</h1>
+<%= render('shared/wrapper', title: "#{@job.contractor.first_name} has picked some dates for you", illustration_url:  cl_image_tag('select_dates_ywmjqo'))%>
 
+<div class="container py-5">
+  <p><strong>When are you free, <%= @job.property.tenant.first_name %>?</strong></p>
   <form action="<%= job_path(@job) %>" method="post">
    <input type="hidden" name="_method" value="patch">
+      <div class="popover-datepicker d-flex p-3 align-items-center" data-contractor-dates="<%= @contractor_dates %>">
+      </div>
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <%= hidden_field_tag :time_selectors, value="" %>
-      <% @job.contractor_availabilities.each do |date|  %>
-        <div class="card my-3 shadow-sm rounded time-card" data-date="<%= date.date_available %>">
-          <div class="card-body" >
-            <p><%= date.date_available %></p>
-          </div>
-        </div>
-      <% end %>
-    <div class="w-100 sticky-btn">
      <input type="submit" value="Submit" class="btn btn-primary w-100">
-    </div>
   </form>
 </div>
 

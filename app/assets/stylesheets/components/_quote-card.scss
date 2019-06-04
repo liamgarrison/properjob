@@ -1,3 +1,54 @@
 .quote-card {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
   cursor: pointer;
+  border-left: 6px transparent solid;
+  border-radius: $border-radius-md;
+}
+
+.quote-card img {
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+}
+
+.contractor-card h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.quote-card p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.quote-card .card-product-infos {
+  padding: 16px;
+}
+
+.card-text-rating {
+  color: #eded1a;
+  opacity: 1;
+}
+
+.quote-card.contractor-active {
+  cursor: pointer;
+  border-left: 6px $primary solid;
+}
+
+#quote-price {
+  color: $danger;
+  opacity: 1;
+  font-size: 24px;
+  font: $body-font;
+  text-align: center;
 }

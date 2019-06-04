@@ -1,16 +1,50 @@
-<div class="container">
-  <h1>Confirm Payment:</h1>
+<%= render('shared/wrapper', title: "Please review and pay for the job", illustration_url:  cl_image_tag('approve_and_pay_ftwtwr'))%>
 
-  <form action="<%= job_payments_path(@job) %>" method="post" id="payment-form">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <%= hidden_field_tag :confirmation_selectors, value="" %>
-        <div class="card my-3 shadow-sm rounded">
-          <div class="card-body confirmation-card contractor-active">
+<div class="container py-5">
+
+ <div class="container">
+  <p><strong>Property Details</strong></p>
+  <p class="final-job-details"><i class="fas fa-home mr-1"></i> <%= @job.property.address %></p>
+  <p class="final-job-details"><i class="fas fa-user mr-1"></i> <%= @job.property.tenant.first_name %> <%= @job.property.tenant.last_name %></p>
+
+  <p><strong>Job Details</strong></p>
+  <p class="final-job-details"><i class="far fa-question-circle mr-1"></i> <%= @job.description %></p>
+  <p class="final-job-details"><i class="fas fa-user-plus mr-1"></i> <%= (@job.category).capitalize %> requested</p>
+
+  <p><strong>Quote Selected</strong></p>
+  <p class="final-job-details"><i class="fas fa-pound-sign mr-1"></i> <%= @job.quotes.find_by_accepted(true).price %></p>
+  <p class="final-job-details"><i class="fas fa-user mr-1"></i> <%= @job.contractor.first_name %> <%= @job.contractor.last_name %></p>
+
+  <p><strong>Final Job Details</strong></p>
+  <p class="final-job-details"><i class="fas fa-calendar-alt mr-1"></i> <%= @job.date %></p>
+  <p class="final-job-details"><i class="fas fa-pound-sign mr-1"></i> <%= @job.final_price %></p>
+  <a class="final-job-details btn btn-primary btn-sm mb-3" target="_blank" href="<%= cl_image_path @job.invoice %>"><i class="fas fa-file-pdf mr-1"></i> View PDF</a>
+
+
+  <p><strong>Tenant Report</strong></p>
+  <p class="final-job-details"><i class="fas fa-check mr-1"></i> <% if @job.resolved %> <%= "Issue resolved" %> <% else %> <%= "Unresolved issue" %> <% end %></p>
+  <p class="final-job-details"><i class="fas fa-star mr-1"></i> <%= pluralize(@job.rating, "star")%>!</p>
+ </div>
+
+</div>
+  <div class="payment-field">
+    <h3 class="mb-3">Pay by card now</h3>
+    <form action="<%= job_payments_path(@job) %>" method="post" id="payment-form">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%= hidden_field_tag :confirmation_selectors, value="" %>
+        <!-- <div class="card my-3 shadow-sm rounded">
+          <div class="card-body confirmation-card">
             <p class="text-center" id="agree_to_job">I agree that the job is completed</p>
           </div>
+        </div> -->
+        <div id="card-element">
+        <!-- A Stripe Element will be inserted here. -->
         </div>
-    <div class="w-100 sticky-btn">
-     <input type="submit" value="Submit" class="btn btn-primary w-100">
-    </div>
-  </form>
+        <!-- Used to display Element errors. -->
+        <div id="card-errors" role="alert"></div>
+        <input class="mt-3 btn btn-primary w-100" type="submit" value="Pay £<%= @job.final_price %>.00 now">
+        <!-- <input type="submit" value="Submit" class="btn btn-primary w-100"> -->
+    </form>
 </div>
+
+

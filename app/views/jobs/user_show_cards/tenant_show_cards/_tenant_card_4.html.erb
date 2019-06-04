@@ -1,4 +1,4 @@
-<%= render 'jobs/user_show_cards/show_card', stage_number: 4 do %>
-<p><%= @job.contractor.first_name %> will be doing your job</p>
-<p>Here's his email: <%= @job.contractor.email %></p>
+<p><%= @job.contractor.first_name %> can do these dates:</p>
+<% @job.available_dates.each do |date| %>
+  <p><i class="fas fa-calendar-alt mr-1"></i> <%= date %></p>
 <% end %>

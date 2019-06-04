@@ -1,0 +1,10 @@
+<div class="w-100 progress_bar">
+  <% job.current_stage.times do %>
+  <div class="progress-solid"></div>
+    <%#= image_tag("pinkdash", width: 37) %>
+  <% end %>
+  <% (9 - job.current_stage).times do %>
+    <div class="progress-empty"></div>
+    <%#= image_tag("graydash", width: 37) %>
+  <% end %>
+</div>
