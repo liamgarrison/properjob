@@ -23,6 +23,10 @@ class Job < ApplicationRecord
     created_at.strftime("%e %b %Y")
   end
 
+  def date
+    super.strftime("%e %b %Y")
+  end
+
   def available_dates
     contractor_availabilities.map do |contractor_availability|
       contractor_availability.date_available.strftime("%e %b %Y")
@@ -107,6 +111,10 @@ class Job < ApplicationRecord
   def stage_attributes
     # Instance method for a job's stage attributes
     Job.stage_attributes[current_stage]
+  end
+
+  def accepted_quote
+    quotes.find_by_accepted(true)
   end
 
   private

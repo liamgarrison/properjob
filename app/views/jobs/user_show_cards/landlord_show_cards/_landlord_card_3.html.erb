@@ -1,3 +1,5 @@
-<% @job.quotes.each do |quote| %>
-    <p>You selected <%= quote.contractor.first_name %></p>
-  <% end %>
+<div class="d-flex align-items-center mb-3">
+  <%= cl_image_tag @job.contractor.avatar, class: 'avatar' %>
+  <p class="ml-3 mb-0"><%= @job.accepted_quote.contractor.first_name %> (£<%= @job.accepted_quote.price %>)</p>
+</div>
+
