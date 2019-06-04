@@ -19,10 +19,6 @@ class Job < ApplicationRecord
     job_stages.find_by_stage(stage).changed_at.strftime("%e %b %Y %H:%M")
   end
 
-  def submitted_at
-    created_at.strftime("%e %b %Y")
-  end
-
   def date
     super.strftime("%e %b %Y")
   end
