@@ -1,19 +1,19 @@
 <div id="wrapper">
-  <div class="container pt-5">
+  <div class="container">
     <% if @job && @job.id %>
-      <%= link_to job_path(@job), class: "back-button ml-3" do %>
+      <%= link_to job_path(@job), class: "back-button" do %>
         <i class="fa fa-chevron-left"></i>
       <% end %>
     <% elsif @job %>
-      <%= link_to jobs_path, class: "back-button ml-3" do %>
+      <%= link_to jobs_path, class: "back-button" do %>
         <i class="fa fa-chevron-left"></i>
       <% end %>
     <% else %>
-      <%= link_to root_path, class: "back-button ml-3" do %>
+      <%= link_to root_path, class: "back-button" do %>
         <i class="fa fa-chevron-left"></i>
       <% end %>
     <% end %>
     <div class="cloudinary-illustration"> <%= illustration_url %></div>
-    <h2 class= "ml-3 pt-5"><%= title %></h2>
+    <h2 class= "pt-5"><%= title %></h2>
   </div>
 </div>
