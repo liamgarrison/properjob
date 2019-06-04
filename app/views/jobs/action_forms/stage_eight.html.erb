@@ -9,7 +9,7 @@
 
   <p><strong>Job Details</strong></p>
   <p class="final-job-details"><i class="far fa-question-circle mr-1"></i> <%= @job.description %></p>
-  <p class="final-job-details"><i class="fas fa-user-plus mr-1"></i> <%= (@job.category).capitalize %> requested</p>
+  <p class="final-job-details"><i class="fas fa-user-plus mr-1"></i> <%= (@job.category).capitalize %> problem</p>
 
   <p><strong>Quote Selected</strong></p>
   <p class="final-job-details"><i class="fas fa-pound-sign mr-1"></i> <%= @job.quotes.find_by_accepted(true).price %></p>
