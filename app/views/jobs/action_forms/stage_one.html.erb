@@ -1,18 +1,19 @@
 <%= render('shared/wrapper', title: "Who would you like to quote for this job?", illustration_url:  cl_image_tag('choose_contractor_yuyj3c'))%>
 
 
-<div class="container py-5">
-<h1 class="mb-4">Select Contractors:</h1>
+<div class="container pt-3 pb-5">
 
 <form action="<%= job_quotes_path(@job) %>" method="post">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <%= hidden_field_tag :contractor_selected, value="," %>
     <% @contractors.each do |contractor| %>
-      <div class="contractor-card">
-        <%= cl_image_tag(contractor.avatar, crop: :thumb, radius: :max, gravity: :face) %>
+      <div class="contractor-card" data-id="<%= contractor.id %>">
+        <div class="ml-3">
+          <%= cl_image_tag(contractor.avatar, crop: :thumb, radius: :max, gravity: :face) %>
+        </div>
         <div class="card-product-infos">
           <h4><%= contractor.first_name %></h4>
-          <p>P<%= contractor.contractor_type.capitalize %></p>
+          <p><i class="fas fa-tools"></i>  <%= contractor.contractor_type.capitalize %></p>
           <p class="card-text">
             <% [1,2,3,4,5].sample.times do %>
               <i class='fas fa-star'></i>

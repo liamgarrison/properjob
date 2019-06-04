@@ -7,15 +7,18 @@
   overflow: hidden;
   height: 120px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   margin-bottom: 24px;
+  cursor: pointer;
+  border-left: 6px transparent solid;
+  border-radius: $border-radius-md;
 }
 
 .contractor-card img {
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   object-fit: cover;
 }
 
