@@ -6,14 +6,13 @@ const initLightpick = () => {
 
   if (parentEl && timeSelectors) {
     const contractorDates = JSON.parse(parentEl.dataset.contractorDates).map((date) => new Date(date))
-    const daysToShow = 91
+    const daysToShow = 90
     const disableDates = []
 
     let placeholderDate = new Date()
     for (let i = 1; i <= daysToShow; i++) {
       let isDisabled = true;
       contractorDates.forEach((contractorDate) => {
-        console.log(contractorDate, placeholderDate)
         if (contractorDate.toDateString() === placeholderDate.toDateString()) {
           isDisabled = false;
         }
@@ -30,7 +29,7 @@ const initLightpick = () => {
       singleDate: true,
       inline:true,
       disableDates: disableDates,
-      maxDate: placeholderDate,
+      maxDate: placeholderDate.setDate(placeholderDate.getDate() - 1),
       minDate: new Date(),
       parentEl: '.popover-datepicker'
     });
