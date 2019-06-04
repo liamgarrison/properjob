@@ -6,6 +6,12 @@ class JobsController < ApplicationController
     @jobs = @jobs.sort_by(&:created_at).reverse
     # @jobs = @jobs.select { |job| belong_to_job?(job) }
     @incompleted_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage < 9 }
+    @jobs_waiting_for_user = []
+    @jobs_not_for_user = []
+    @incompleted_jobs.each do |job|
+      waiting_for_me?(job) ? @jobs_waiting_for_user << job : @jobs_not_for_user << job
+    end
+    @user_jobs = @jobs_waiting_for_user + @jobs_not_for_user
     @completed_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage == 9 }
   end
 
@@ -126,7 +132,7 @@ class JobsController < ApplicationController
 
   def waiting_for_me?(job)
     # Find out if the current user is the one we are waiting on.
-    if belong_to_job?(job) && @job.stage_attributes[:waiting_for] == current_user.user_type
+    if belong_to_job?(job) && job.stage_attributes[:waiting_for] == current_user.user_type
       @waiting_for_me = true
     else
       @waiting_for_me = false
