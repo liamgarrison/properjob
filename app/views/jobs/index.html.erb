@@ -34,8 +34,7 @@
       </div>
 
       <div class="tab-info show-tab" data-tab-id="1">
-        <% sorted_jobs = @incompleted_jobs.sort_by { |job| job.stage_attributes[:waiting_for]} %>
-        <% sorted_jobs.reverse.each do |job| %>
+        <% @user_jobs.each do |job| %>
           <%= link_to job_path(job), class: 'text-dark text-decoration-none' do %>
             <div class="index-card">
               <div class="index-card-image" style="background-image: url('<%= cl_image_path job.photo_videos.first.photo_video %>'">
