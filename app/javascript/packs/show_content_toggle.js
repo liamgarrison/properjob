@@ -1,6 +1,6 @@
 const showContentToggle = () => {
   const showContentTogglers = document.querySelectorAll('[data-show-toggler]');
-  const showContent = document.querySelectorAll('[data-show-content')
+  const showContent = document.querySelectorAll('[data-show-content]')
 
   if (showContentTogglers) {
     showContentTogglers.forEach((toggler) => {
