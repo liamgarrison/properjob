@@ -80,7 +80,7 @@
                 <h6 class="mb-2"><%= job.description %></h6>
                 <p class="job-description mb-0"><%= job.stage_attributes[:stage_name_present] %></p>
                 <p class="text-right mt-0 mb-0 timestamp">
-                  Submitted <%= time_ago_in_words(job.submitted_at) %> ago</p>
+                  Submitted <%= time_ago_in_words(job.created_at, include_seconds: true) %> ago</p>
               </div>
             </div>
           <% end %>
