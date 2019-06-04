@@ -2,7 +2,7 @@ const showContentToggle = () => {
   const showContentTogglers = document.querySelectorAll('[data-show-toggler]');
   const showContent = document.querySelectorAll('[data-show-content]')
 
-  if (showContentTogglers) {
+  if (showContentTogglers && showContent) {
     showContentTogglers.forEach((toggler) => {
       toggler.querySelector('i')
       toggler.addEventListener("click", (event) => {
