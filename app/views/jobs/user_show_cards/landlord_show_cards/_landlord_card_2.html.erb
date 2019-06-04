@@ -1,6 +1,6 @@
 <% @job.quotes.each do |quote| %>
   <div class="d-flex align-items-center mb-3">
     <%= cl_image_tag quote.contractor.avatar, class: 'avatar small' %>
-    <p class="ml-3 mb-0"><%= quote.contractor.first_name %> (£<%= quote.price %>)</p>
+    <p class="ml-3 mb-0"><%= quote.contractor.first_name %> (£<%= quote.price %>) <a class="final-job-details btn btn-primary btn-sm mb-3" target="_blank" href="<%= cl_image_path quote.quote %>"><i class="fas fa-file-pdf mr-1"></i> View PDF</a></p>
   </div>
 <% end %>
