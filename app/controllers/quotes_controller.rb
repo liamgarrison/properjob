@@ -28,7 +28,7 @@ class QuotesController < ApplicationController
   private
 
   def quote_params
-    params.require(:quote).permit(:price, :quote_url)
+    params.require(:quote).permit(:price, :quote)
   end
 
   def set_job
