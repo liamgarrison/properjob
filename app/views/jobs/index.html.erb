@@ -25,11 +25,21 @@
 
 
           <div class="index-tab tab-selectors active-tab pb-2" data-id="1">
-            <h6 class="load-progress"><i class="far fa-clock px-2"></i> In Progress</h6>
+            <% if @jobs_in_progress.select do |job| job.stage_attributes[:waiting_for] == current_user.user_type
+                end.count > 0 %>
+
+                <div class="updates">
+                  <p><%= @jobs_in_progress.select do |job| job.stage_attributes[:waiting_for] == current_user.user_type
+                    end.count %>
+                  </p>
+                </div>
+              <% end %>
+
+            <p class="load-progress"><i class="far fa-clock px-2"></i> In Progress</p>
           </div>
 
           <div class="index-tab tab-selectors pb-2" data-id="2">
-            <h6 class="load-completed"><i class="far fa-check-circle px-2"></i> Completed</h6>
+            <p class="load-completed"><i class="far fa-check-circle px-2"></i> Completed</p>
           </div>
 
         </div>
