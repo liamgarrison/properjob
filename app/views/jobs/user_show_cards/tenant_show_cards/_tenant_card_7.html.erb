@@ -1,1 +1,2 @@
-  <p>You rated <%= @job.contractor.first_name %> <%= @job.rating %> stars!</p>
+<p ><i class="fas fa-check mr-1"></i> <% if @job.resolved %> <%= "Issue resolved" %> <% else %> <%= "Unresolved issue" %> <% end %></p>
+<p ><i class="fas fa-star mr-1"></i> <%= pluralize(@job.rating, "star")%>!</p>

@@ -1,6 +1,4 @@
-  <p>Here are the dates <%= @job.contractor.first_name %> can do.</p>
-  <% @job.available_dates.each do |date| %>
-    <p>
-      <%= date%>
-    </p>
-  <% end %>
+<p><%= @job.contractor.first_name %> can do these dates:</p>
+<% @job.available_dates.each do |date| %>
+  <p><i class="fas fa-calendar-alt mr-1"></i> <%= date %></p>
+<% end %>
