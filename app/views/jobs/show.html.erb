@@ -1,7 +1,8 @@
 <div class="show-background">
   <div class="show-hero-image" style="background-image: url('<%= cl_image_path @job.photo_videos.first.photo_video %>'">
+    <div class="container pt-4">
     <div class="button-status-wrapper">
-      <%= link_to jobs_path, class: "back-button ml-3" do %>
+      <%= link_to jobs_path, class: "back-button" do %>
             <i class="fa fa-chevron-left"></i>
           <% end %>
       <% if @waiting_for_me %>
@@ -11,6 +12,8 @@
       <% else %>
         <p class="show-status-badge bg-primary">Waiting for <%= @job.stage_attributes[:waiting_for] %></p>
       <% end %>
+    </div>
+
     </div>
   </div>
   <div class="show-content">
