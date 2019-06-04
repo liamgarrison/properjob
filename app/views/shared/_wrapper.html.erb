@@ -1,7 +1,11 @@
 <div id="wrapper">
   <div class="container pt-5">
-    <% if @job %>
+    <% if @job.id %>
       <%= link_to job_path(@job), class: "back-button ml-3" do %>
+        <i class="fa fa-chevron-left"></i>
+      <% end %>
+    <% elsif @job %>
+      <%= link_to jobs_path, class: "back-button ml-3" do %>
         <i class="fa fa-chevron-left"></i>
       <% end %>
     <% else %>
