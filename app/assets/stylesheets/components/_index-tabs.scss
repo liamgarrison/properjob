@@ -14,13 +14,12 @@
 .index-tab {
   border-bottom: 4px solid $light-gray;
   cursor: pointer;
+  position: relative;
 }
-
 
 .show-tab {
   display: block !important;
 }
-
 
 .tab-info {
   display: none;
@@ -28,9 +27,41 @@
 
 .index-tabs {
   width: 100%;
+
 }
 
 .index-tab.active-tab {
   border-bottom-color: $blue;
 }
 
+.notification {
+  border: 3px solid $hot-pink;
+  border-radius: 50%;
+}
+
+.load-progress {
+
+}
+
+.updates {
+  background-color: $hot-pink;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+
+
+  p {
+  font-size: 10px;
+  line-height: 17px;
+  color: white;
+  margin-bottom: 0;
+  }
+
+}
