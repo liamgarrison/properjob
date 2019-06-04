@@ -1,6 +1,6 @@
 <%= render('shared/wrapper', title: "Pick the best contractor for the job", illustration_url:  cl_image_tag('select_contractors_eihz0p'))%>
 
-<div class="container py-5">
+<div class="container pt-3 pb-5">
   <form action="<%= job_path(@job) %>" method="post">
    <input type="hidden" name="_method" value="patch">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
