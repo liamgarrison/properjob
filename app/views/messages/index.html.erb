@@ -2,7 +2,7 @@
   <%= render('shared/wrapper', title: "Job messages", illustration_url:  cl_image_tag('report_problem_utwngt'))%>
   <div class="messages">
     <% @messages.each do |message| %>
-      <%= render(partial: "messages/message", locals: { message: message, belongs_to: message.user == current_user ? 'ours' : 'theirs', message_owner_id: current_user.id}) %>
+      <%= render(partial: "messages/message", locals: { message: message, belongs_to: message.user == current_user ? 'ours' : 'theirs' }) %>
     <% end %>
 
   </div>
@@ -18,19 +18,20 @@
     function scrollIntoView() {
       const messages = document.querySelectorAll(".message");
       const lastMessage = messages[messages.length - 1];
-      lastMessage.scrollIntoView()
+      if (lastMessage) {
+        lastMessage.scrollIntoView()
+      }
     };
     scrollIntoView();
-    App['messages'] = App.cable.subscriptions.create(
+    App['messages_<%= @job.id %>'] = App.cable.subscriptions.create(
       {
-        channel: 'MessagesChannel'
+        channel: 'MessagesChannel', job_id: <%= @job.id %>
       },
       {
         received: (data) => {
           if (data.message_owner_id !== <%= current_user.id %>) {
-            const messages = document.querySelectorAll(".message");
-            const lastMessage = messages[messages.length - 1];
-            lastMessage.insertAdjacentHTML('afterend', data.message_partial)
+            const messagesWrapper = document.querySelector(".messages");
+            messagesWrapper.insertAdjacentHTML('beforeend', data.message_partial)
             scrollIntoView()
           }
         }
