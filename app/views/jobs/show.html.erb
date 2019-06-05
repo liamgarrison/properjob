@@ -71,6 +71,13 @@
           <div data-show-content="<%= index + 1 %>" class="show-stage-content-inner">
             <% if index + 1 < @job.current_stage  %>
               <%= render("jobs/user_show_cards/#{current_user.user_type}_show_cards/#{current_user.user_type}_card_#{index + 1}") %>
+            <p class="show-stage-top-date">
+            <% if index + 1  < @job.current_stage || @job.current_stage == 9 %>
+              <%= time_ago_in_words(@job.stage_changed_at(index + 1)).capitalize %> ago
+            <% elsif index + 1 == @job.current_stage %>
+              Now
+            <% end %>
+          </p>
             <% end %>
           </div>
         </div>
