@@ -85,12 +85,21 @@
 
 
 
+// .resolved-card.contractor-active {
+// border-left: 6px $primary solid;
+//  box-sizing: border-box;
+// }
+
 .resolved-card.contractor-active {
-border-left: 6px $primary solid;
- box-sizing: border-box;
+  border-radius: $border-radius;
+  border: 2px solid $primary;
+  text-align: center;
+  flex-grow: 1;
+  color: $primary;
 }
 
 .resolved-card {
  cursor: pointer;
-border-left: 6px rgba(0, 0, 0, 0) solid;
+ border: 2px solid $light-gray;
+ color: $light-gray;
 }

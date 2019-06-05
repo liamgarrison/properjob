@@ -134,7 +134,6 @@ $('.rating').starRating({
   }
 })
 
-
 // Confirmation Selection
 
 // const confirmationTiles = document.querySelector('.confirmation-card');
