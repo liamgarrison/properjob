@@ -1,3 +1,4 @@
+Message.destroy_all
 ContractorAvailability.destroy_all
 PhotoVideo.destroy_all
 Quote.destroy_all
