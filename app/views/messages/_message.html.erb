@@ -19,7 +19,9 @@
     <p class="message-author-separator">•</p>
     <p class="message-author-role"><%= message.user.user_type.capitalize %></p>
   </div>
-  <div class="message-content <%= belongs_to %>">
-    <%= message.content %>
+  <div class="message-content-wrapper <%= belongs_to %>">
+    <div class="message-content <%= belongs_to %>">
+      <%= message.content %>
+    </div>
   </div>
 </div>

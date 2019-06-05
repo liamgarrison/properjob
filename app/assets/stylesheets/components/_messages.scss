@@ -1,11 +1,19 @@
 
-.messages {
+.messages-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
+.messages {
+  padding: 24px 0;
+  overflow: scroll;
+  flex-grow: 1;
 }
 
 .message {
-  padding: 24px;
-  margin-bottom: 12px;
+  padding: 12px 24px;
+  margin-bottom: 0px;
 }
 
 .message-datetime {
@@ -47,6 +55,16 @@
   }
 }
 
+.message-content-wrapper {
+  display: flex;
+  &.theirs {
+    justify-content: flex-start;
+  }
+  &.ours {
+    justify-content: flex-end;
+  }
+}
+
 .message-content {
   font-size: 14px;
   padding: 12px 18px;
@@ -57,28 +75,20 @@
   border-top-left-radius: 0;
   background-color: $light-gray;
   color: $gray;
-  float: left;
-  clear: right;
-  text-align: left;
 
   }
   &.ours {
     border-top-right-radius: 0;
     background-color: $primary;
     color: $white;
-    float: right;
-    clear: left;
-    text-align: right;
   }
 }
 
 .message-input {
   padding: 16px 8px;
   background-color: $white;
-  box-shadow: $box-shadow;
-  position: fixed;
-  bottom: 0px;
-  width: 375px;
+  border-top: 1px solid $light-gray;
+  width: 100%;
   .form-group {
     margin: 0;
   }

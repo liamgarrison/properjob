@@ -1,37 +1,14 @@
-<%= render('shared/wrapper', title: "Job messages", illustration_url:  cl_image_tag('report_problem_utwngt'))%>
-<div class="messages">
-  <% @messages.each do |message| %>
-    <%= render('message', message: message) %>
-  <% end %>
+<div class="messages-container">
+  <%= render('shared/wrapper', title: "Job messages", illustration_url:  cl_image_tag('report_problem_utwngt'))%>
+  <div class="messages">
+    <% @messages.each do |message| %>
+      <%= render('message', message: message) %>
+    <% end %>
 
+  </div>
   <div class="message-input">
     <%= simple_form_for [@job, Message.new], remote: true do |f| %>
       <%= f.input :content, input_html: { placeholder: "Type a message...", autocomplete: 'off'}, as: "citext", label: false %>
     <% end %>
   </div>
 </div>
-
-<!-- <script>
-const form  = document.querySelector('#new_message');
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const input = document.querySelector('#message_content');
-  postMessage(input.value);
-
-});
-
-
-const postMessage = (input) => {
-  const messagesContainer = document.querySelector('.messages');
-  console.log(input);
-  let message =
-  `<div class="message">
-    ${input}
-  </div>`
-  messagesContainer.insertAdjacentHTML('beforeend', message);
-  // input.value = '';
-  // input.blur();
-}
-
-</script>
- -->

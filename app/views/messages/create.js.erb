@@ -1,31 +1,14 @@
-// const form  = document.querySelector('#new_message');
-// form.addEventListener('submit', (event) => {
-//   event.preventDefault();
-//   const input = event.currentTarget.querySelector('#message_content');
-//   postMessage(input.value);
-// });
-
-
-// const postMessage = (input) => {
-//   const messagesContainer = document.querySelector('.messages');
-//   console.log(input);
-//   messagesContainer.insertAdjacentHTML('beforeend', input);
-//   input.value = '';
-//   input.blur();
-// }
-
-
 function clearInput() {
   const input = document.getElementById("message_content");
   input.value = "";
-//   const form  = document.querySelector('#new_message');
-//   form.
+  input.blur();
 }
 
 function insertMessage(html) {
   const messages = document.querySelectorAll(".message");
   const lastMessage = messages[messages.length - 1];
   lastMessage.insertAdjacentHTML('afterend', html)
+  lastMessage.scrollIntoView()
 }
 
 clearInput();
