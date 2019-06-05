@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_29_141527) do
+ActiveRecord::Schema.define(version: 2019_06_04_170329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,16 @@ ActiveRecord::Schema.define(version: 2019_05_29_141527) do
     t.integer "rating"
     t.index ["contractor_id"], name: "index_jobs_on_contractor_id"
     t.index ["property_id"], name: "index_jobs_on_property_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id"
+    t.bigint "job_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_messages_on_job_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "photo_videos", force: :cascade do |t|
@@ -106,6 +116,8 @@ ActiveRecord::Schema.define(version: 2019_05_29_141527) do
   add_foreign_key "job_stages", "jobs"
   add_foreign_key "jobs", "properties"
   add_foreign_key "jobs", "users", column: "contractor_id"
+  add_foreign_key "messages", "jobs"
+  add_foreign_key "messages", "users"
   add_foreign_key "photo_videos", "jobs"
   add_foreign_key "properties", "users", column: "landlord_id"
   add_foreign_key "properties", "users", column: "tenant_id"
