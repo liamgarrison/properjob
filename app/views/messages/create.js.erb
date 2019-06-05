@@ -5,11 +5,15 @@ function clearInput() {
 }
 
 function insertMessage(html) {
+  const messagesWrapper = document.querySelector(".messages");
+  messagesWrapper.insertAdjacentHTML('beforeend', html)
   const messages = document.querySelectorAll(".message");
   const lastMessage = messages[messages.length - 1];
-  lastMessage.insertAdjacentHTML('afterend', html)
-  lastMessage.scrollIntoView()
+  if (lastMessage) {
+    lastMessage.scrollIntoView()
+  }
 }
 
 clearInput();
-insertMessage("<%= j render 'messages/message', message: @message %>");
+console.log('<%= @message %>')
+insertMessage("<%= j render 'messages/message', message: @message, belongs_to: 'ours' %>");
