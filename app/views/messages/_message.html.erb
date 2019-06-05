@@ -1,6 +1,6 @@
 <div class="message">
   <div class="message-datetime">
-    <%= message.created_at.strftime("%e %b %Y %H:%m") %>
+    <%= message.created_at.strftime("%e %b %Y %H:%M") %>
   </div>
   <div class="message-author <%= belongs_to %>">
     <%= cl_image_tag message.user.avatar, class: "avatar", height: 100, width: 100, crop: :fill%>
