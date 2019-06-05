@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   def index
     @job = Job.find(params[:job_id])
-    @messages = Message.all
+    @messages = Message.where(job: @job)
   end
 
   def create
