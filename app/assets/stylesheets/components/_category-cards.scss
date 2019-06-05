@@ -27,10 +27,20 @@
 .category-card {
   .card-title {
   font-size: 50px;
-  color: $primary;
+  color: $light-gray;
   }
   p {
     margin-bottom: 0;
+  }
+}
+
+
+
+.category-card.contractor-active {
+  border: 2px $primary solid;
+  color: $primary;
+  .card-title {
+    color: $primary;
   }
 }
 

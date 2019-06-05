@@ -79,12 +79,11 @@
 .category-card {
   border: 2px transparent solid;
   cursor:pointer;
+  color: $light-gray;
 
 }
 
-.category-card.contractor-active {
-  border: 2px $primary solid;
-}
+
 
 .resolved-card.contractor-active {
 border-left: 6px $primary solid;
