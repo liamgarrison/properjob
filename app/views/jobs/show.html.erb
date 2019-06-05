@@ -17,6 +17,11 @@
     </div>
   </div>
   <div class="show-content">
+    <%= link_to job_messages_path(@job) do %>
+      <div class="message-icon">
+        <i class="fas fa-comment-alt"></i>
+      </div>
+    <% end %>
     <p class="show-content-title">
       <%= truncate @job.description, length: 75, separator: ' ' %>
     </p>

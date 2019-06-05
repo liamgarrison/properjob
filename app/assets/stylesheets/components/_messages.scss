@@ -1,0 +1,23 @@
+
+.messages {
+
+}
+
+.message-input {
+  padding: 16px 8px;
+  background-color: $white;
+  box-shadow: $box-shadow;
+  position: fixed;
+  bottom: 0px;
+  width: 375px;
+  .form-group {
+    margin: 0;
+  }
+  .form-control {
+    border-radius: $border-radius-lg;
+    background-color: $light-gray;
+    color: $mid-gray;
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
