@@ -28,20 +28,13 @@
 
       <div class="show-stage-wrapper">
         <div class="show-stage-top">
-          <p class="show-stage-top-date">
-            <% if index + 1  < @job.current_stage || @job.current_stage == 9 %>
-              <%= time_ago_in_words(@job.stage_changed_at(index + 1)) %> ago
-            <% elsif index + 1 == @job.current_stage %>
-              Now
-            <% end %>
-          </p>
           <p class="show-stage-top-check">
             <% if index + 1 < @job.current_stage %>
               <i class="far fa-check-circle"></i>
             <% elsif index + 1 == @job.current_stage %>
-              <i class="far fa-dot-circle"></i>
+              <i class="far fa-dot-circle hot-pink"></i>
             <% else %>
-              <i class="far fa-circle"></i>
+              <i class="far fa-circle show-grayed"></i>
             <% end %>
           </p>
           <% if index + 1 == @job.current_stage %>
@@ -49,7 +42,7 @@
           <% elsif index + 1 > @job.current_stage %>
             <% show_title_style = 'show-grayed' %>
           <% else %>
-            <% show_title_style = 'show-grayed show-clickable' %>
+            <% show_title_style = 'show-clickable' %>
           <% end %>
           <p data-show-toggler="<%= index + 1 %>" class="show-stage-top-title  <%= show_title_style %>">
             <% if index + 1 < @job.current_stage %>
@@ -67,7 +60,7 @@
         <% if index + 1 == 9 %>
           <% show_border = 'show-border-none' %>
         <% elsif index + 1 >= @job.current_stage %>
-          <% show_border = 'show-border-dashed show-grayed' %>
+          <% show_border = 'show-border-dashed' %>
         <% end %>
         <div class="show-stage-content-outer <%= show_border %>">
           <div data-show-content="<%= index + 1 %>" class="show-stage-content-inner">
