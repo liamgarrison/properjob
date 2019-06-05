@@ -4,7 +4,13 @@
     <div class="message-datetime">
       13th April 13:15
     </div>
-    <div class="message-content">
+    <div class="message-author theirs">
+      <%= cl_image_tag User.first.avatar, class: "avatar", height: 100, width: 100, crop: :fill%>
+      <p class="message-author-name">Miguel Santos</p>
+      <p class="message-author-separator">•</p>
+      <p class="message-author-role">Contractor</p>
+    </div>
+    <div class="message-content theirs">
       Hey Liam, I’ll be completing your job on Wednesday - could you let me know what time works best for you? Thanks, Miguel
     </div>
   </div>
@@ -12,7 +18,13 @@
     <div class="message-datetime">
       13th April 13:15
     </div>
-    <div class="message-content">
+    <div class="message-author ours">
+      <%= cl_image_tag User.first.avatar, class: "avatar", height: 100, width: 100, crop: :fill%>
+      <p class="message-author-name">Miguel Santos</p>
+      <p class="message-author-separator">•</p>
+      <p class="message-author-role">Contractor</p>
+    </div>
+    <div class="message-content ours">
       Sure, 9am works well for me. Can you give me a ring when you’re here?
     </div>
   </div>
