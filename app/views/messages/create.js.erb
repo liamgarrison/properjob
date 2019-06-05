@@ -12,4 +12,4 @@ function insertMessage(html) {
 }
 
 clearInput();
-insertMessage("<%= j render 'messages/message', message: @message %>");
+insertMessage("<%= j render 'messages/message', message: @message, belongs_to: 'ours', message_owner_id: @message.user.id %>");

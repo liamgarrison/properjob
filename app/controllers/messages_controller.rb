@@ -14,6 +14,7 @@ class MessagesController < ApplicationController
       format.html { redirect_to job_messages_path(job) }
       format.js
     end
+    puts @message.content
   end
 
   def message_params

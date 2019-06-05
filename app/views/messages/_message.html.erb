@@ -2,18 +2,13 @@
   <div class="message-datetime">
     <%= message.created_at.strftime("%e %b %Y %H:%m") %>
   </div>
-  <% if message.user == current_user %>
-  <% belongs_to = 'ours' %>
-  <% else %>
-  <% belongs_to = 'theirs' %>
-  <% end %>
   <div class="message-author <%= belongs_to %>">
     <%= cl_image_tag message.user.avatar, class: "avatar", height: 100, width: 100, crop: :fill%>
     <p class="message-author-name">
-      <% if message.user == current_user %>
-      You
+      <% if message_owner_id == message.user.id %>
+        You
       <% else %>
-      <%= "#{message.user.first_name} #{message.user.last_name}" %>
+        <%= "#{message.user.first_name} #{message.user.last_name}" %>
       <% end %>
     </p>
     <p class="message-author-separator">•</p>
