@@ -1,17 +1,17 @@
-<div class="messages-container">
+<div class="messages-fixed-wrapper">
   <%= render('shared/wrapper', title: "Job messages", illustration_url:  cl_image_tag('report_problem_utwngt'))%>
-  <div class="messages">
-    <% @messages.each do |message| %>
-      <%= render(partial: "messages/message", locals: { message: message, belongs_to: message.user == current_user ? 'ours' : 'theirs' }) %>
-    <% end %>
-
-  </div>
-  <div class="message-input">
-    <%= simple_form_for [@job, Message.new], remote: true do |f| %>
-      <%= f.input :content, input_html: { placeholder: "Type a message...", autocomplete: 'off'}, as: "citext", label: false %>
-    <% end %>
-  </div>
 </div>
+<div class="messages">
+  <% @messages.each do |message| %>
+    <%= render(partial: "messages/message", locals: { message: message, belongs_to: message.user == current_user ? 'ours' : 'theirs' }) %>
+  <% end %>
+</div>
+<div class="message-input">
+  <%= simple_form_for [@job, Message.new], remote: true do |f| %>
+    <%= f.input :content, input_html: { placeholder: "Type a message...", autocomplete: 'off'}, as: "citext", label: false %>
+  <% end %>
+</div>
+
 
 <% content_for :after_js do %>
   <script>
