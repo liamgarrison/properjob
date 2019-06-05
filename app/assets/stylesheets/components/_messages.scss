@@ -49,17 +49,26 @@
 .message-content {
   font-size: 14px;
   padding: 18px;
+  display: inline-block;
+  max-width: 80%;
+  min-width: 20%;
   border-radius: $border-radius-lg;
   &.theirs {
   border-top-left-radius: 0;
   background-color: $light-gray;
   color: $gray;
+  float: left;
+  clear: right;
+  text-align: left;
 
   }
   &.ours {
     border-top-right-radius: 0;
     background-color: $primary;
     color: $white;
+    float: right;
+    clear: left;
+    text-align: right;
   }
 }
 
