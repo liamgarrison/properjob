@@ -148,7 +148,7 @@ job_tap = Job.create! ({
   current_stage: 1,
   final_price: 200,
   remote_invoice_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709664/ohkjr1mehg1bisbuuq8e.pdf",
-  date: Date.today + 5
+  date: Date.today -3
 })
 
 PhotoVideo.create(
@@ -180,7 +180,7 @@ quote_tap_2 = Quote.create! ({
   ContractorAvailability.create! ({
     contractor: contractor_5,
     job: job_tap,
-    date_available: [Date.today+ 1, Date.today+ 3, Date.today + 5, Date.today + 9][index]
+    date_available: [Date.today - 2, Date.today - 3, Date.today - 7, Date.today - 9][index]
   })
 end
 
@@ -203,7 +203,7 @@ job_toilet = Job.create! ({
   remote_invoice_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709664/ohkjr1mehg1bisbuuq8e.pdf",
   rating: 5,
   resolved: true,
-  date: Date.today + 7
+  date: Date.today - 2
 })
 
 PhotoVideo.create(
@@ -231,11 +231,11 @@ quote_tap_2 = Quote.create! ({
 })
 
 
-5.times do |index|
+3.times do |index|
   ContractorAvailability.create! ({
     contractor: contractor_4,
     job: job_toilet,
-    date_available: [Date.today+ 1, Date.today+ 3, Date.today + 7, Date.today + 9, Date.today + 11][index]
+    date_available: [Date.today - 2, Date.today - 3, Date.today - 7][index]
   })
 end
 
