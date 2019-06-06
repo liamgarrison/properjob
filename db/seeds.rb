@@ -94,7 +94,7 @@ job_fusebox = Job.create! ({
 
 PhotoVideo.create(
   job: job_fusebox,
-  stage: 5,
+  stage: 1,
   remote_photo_video_url: 'https://www.localelectriciansdirect.co.uk/sites/www.localelectriciansdirect.co.uk/files/styles/gallery_image/public/Electric%20Problems.jpg?itok=SIjwbNbJ'
 )
 
@@ -148,13 +148,12 @@ job_tap = Job.create! ({
   current_stage: 1,
   final_price: 200,
   remote_invoice_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709664/ohkjr1mehg1bisbuuq8e.pdf",
-  rating: 5,
   date: Date.today + 5
 })
 
 PhotoVideo.create(
   job: job_tap,
-  stage: 7,
+  stage: 1,
   remote_photo_video_url: 'https://www.reicheltplumbing.com/images/broken-sink.jpg'
 )
 
@@ -177,7 +176,7 @@ quote_tap_2 = Quote.create! ({
 })
 
 
-3.times do |index|
+4.times do |index|
   ContractorAvailability.create! ({
     contractor: contractor_5,
     job: job_tap,
@@ -191,3 +190,59 @@ job_tap.update(current_stage: 4)
 job_tap.update(current_stage: 5)
 job_tap.update(current_stage: 6)
 job_tap.update(current_stage: 7)
+
+# Job completed at stage 9
+
+job_toilet = Job.create! ({
+  property: property_1,
+  category: "plumbing",
+  description: "My sink is blocked and it won't drain properly",
+  contractor: contractor_4,
+  current_stage: 1,
+  final_price: 200,
+  remote_invoice_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709664/ohkjr1mehg1bisbuuq8e.pdf",
+  rating: 5,
+  date: Date.today + 7
+})
+
+PhotoVideo.create(
+  job: job_toilet,
+  stage: 1,
+  remote_photo_video_url: 'https://metropha.com/wp-content/uploads/2018/12/The-Dreadful-Consequences-of-a-Clogged-Drain-_-Plumber-in-Cleveland-TN.jpg'
+)
+
+quote_tap_1 = Quote.create! ({
+  contractor: contractor_4,
+  job: job_toilet,
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  price: 180,
+  submitted: true,
+  accepted: true
+})
+
+quote_tap_2 = Quote.create! ({
+  contractor: contractor_5,
+  job: job_toilet,
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  price: 210,
+  submitted: true,
+  accepted: false
+})
+
+
+5.times do |index|
+  ContractorAvailability.create! ({
+    contractor: contractor_4,
+    job: job_toilet,
+    date_available: [Date.today+ 1, Date.today+ 3, Date.today + 7, Date.today + 9, Date.today + 11][index]
+  })
+end
+
+job_toilet.update(current_stage: 2)
+job_toilet.update(current_stage: 3)
+job_toilet.update(current_stage: 4)
+job_toilet.update(current_stage: 5)
+job_toilet.update(current_stage: 6)
+job_toilet.update(current_stage: 7)
+job_toilet.update(current_stage: 8)
+job_toilet.update(current_stage: 9)
