@@ -8,154 +8,117 @@ Property.destroy_all
 User.destroy_all
 
 tenant_1 = User.create! ({
-  first_name: "Tim",
-  last_name:"Woods",
-  email: "timmy@gmail.com",
+  first_name: "Tom",
+  last_name:"Dove",
+  email: "tom@gmail.com",
   password: 123456,
-  remote_avatar_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558707960/beyi17egfookljd2i2gp.png",
+  remote_avatar_url: "https://kitt.lewagon.com/placeholder/users/dovet1",
   user_type: "tenant"
 })
 
 landlord_1 = User.create! ({
-  first_name: "Bob",
-  last_name: "Jones",
-  email: "bobby@gmail.com",
+  first_name: "Corrie",
+  last_name: "Mosely",
+  email: "corrie@gmail.com",
   password: 123456,
-  remote_avatar_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558707946/joerhdoalcduig8nenwp.png",
+  remote_avatar_url: "https://kitt.lewagon.com/placeholder/users/corrieam",
   user_type: "landlord"
 })
 
 contractor_1 = User.create! ({
-  first_name: "Ellie",
-  last_name: "Electric",
-  email: "ellie@gmail.com",
+  first_name: "Liam",
+  last_name: "Garrison",
+  email: "liam@gmail.com",
   password: 123456,
-  remote_avatar_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558707923/mwfv7xkl9uquzqadgjmy.png",
+  remote_avatar_url: "https://kitt.lewagon.com/placeholder/users/liamgarrison",
   user_type: "contractor",
   contractor_type: "electrical"
 })
 
 contractor_2 = User.create! ({
-  first_name: "Sparky",
-  last_name: "Anderson",
-  email: "sparky@gmail.com",
+  first_name: "Luca",
+  last_name: "Kuhn",
+  email: "luca@gmail.com",
   password: 123456,
-  remote_avatar_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558707979/u8hld1cp17rshv2pkay6.png",
+  remote_avatar_url: "https://kitt.lewagon.com/placeholder/users/lucakuhn1912",
   user_type: "contractor",
   contractor_type: "electrical"
 })
 
 contractor_3 = User.create! ({
-  first_name: "Miguel",
-  last_name: "San Pedro",
+  first_name: "Julius",
+  last_name: "Lehmann",
   email: "miguel@gmail.com",
   password: 123456,
-  remote_avatar_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558707971/ugszwtmxvsiyrc5xud2c.png",
+  remote_avatar_url: "https://kitt.lewagon.com/placeholder/users/jcslehmann",
   user_type: "contractor",
   contractor_type: "electrical"
 })
 
+contractor_4 = User.create! ({
+  first_name: "Che",
+  last_name: "To",
+  email: "che@gmail.com",
+  password: 123456,
+  remote_avatar_url: "https://kitt.lewagon.com/placeholder/users/cheeto1",
+  user_type: "contractor",
+  contractor_type: "plumbing"
+})
+
+contractor_5 = User.create! ({
+  first_name: "David",
+  last_name: "Gordon",
+  email: "david@gmail.com",
+  password: 123456,
+  remote_avatar_url: "https://kitt.lewagon.com/placeholder/users/davidgordon2211",
+  user_type: "contractor",
+  contractor_type: "plumbing"
+})
+
 property_1 = Property.create! ({
   landlord: landlord_1,
-  address: "10 Downing Street, London, SW1A 2AA",
+  address: "138 Kingsland Road, London",
   tenant: tenant_1
 })
 
-# Job at stage 1 - Landlord Selecting Contractor
-
-job_lights = Job.create! ({
-  property: property_1,
-  category: "electrical",
-  description: "There was a big bang when I turned my bedroom light on.",
-  current_stage: 1
-})
-
-PhotoVideo.create(
-  job: job_lights,
-  stage: 1,
-  remote_photo_video_url: 'https://images.pexels.com/photos/1123262/pexels-photo-1123262.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
-)
-
-# Job at stage 3 - Landlord Reviewing Quotes
-
-job_tv = Job.create! ({
-  property: property_1,
-  category: "electrical",
-  description: "My TV won't turn on",
-  current_stage: 1
-})
-
-PhotoVideo.create(
-  job: job_tv,
-  stage: 3,
-  remote_photo_video_url: 'https://images.pexels.com/photos/2251206/pexels-photo-2251206.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
-)
-
-
-quote_tv_1 = Quote.create! ({
-  contractor: contractor_1,
-  job: job_tv,
-  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
-  price: 100,
-  submitted: true
-})
-
-quote_tv_2 = Quote.create! ({
-  contractor: contractor_2,
-  job: job_tv,
-  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
-  price: 150,
-  submitted: true
-})
-
-quote_tv_3 = Quote.create! ({
-  contractor: contractor_3,
-  job: job_tv,
-  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
-  price: 200,
-  submitted: true
-})
-
-job_tv.update(current_stage: 2)
-job_tv.update(current_stage: 3)
 
 # Job at stage 5 - Tenant selecting date and times
 
-job_sockets = Job.create! ({
+job_fusebox = Job.create! ({
   property: property_1,
   category: "electrical",
-  description: "My sockets are full of mice",
+  description: "My power keeps going out and my fuse box is tripping",
   contractor: contractor_1,
   current_stage: 1,
 })
 
 PhotoVideo.create(
-  job: job_sockets,
+  job: job_fusebox,
   stage: 5,
-  remote_photo_video_url: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+  remote_photo_video_url: 'https://www.localelectriciansdirect.co.uk/sites/www.localelectriciansdirect.co.uk/files/styles/gallery_image/public/Electric%20Problems.jpg?itok=SIjwbNbJ'
 )
 
-quote_sockets_1 = Quote.create! ({
+quote_fusebox_1 = Quote.create! ({
   contractor: contractor_1,
-  job: job_sockets,
+  job: job_fusebox,
   remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
-  price: 100,
+  price: 175,
   submitted: true,
   accepted: true
 })
 
-quote_sockets_2 = Quote.create! ({
+quote_fusebox_2 = Quote.create! ({
   contractor: contractor_2,
-  job: job_sockets,
+  job: job_fusebox,
   remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 150,
   submitted: true,
   accepted: false
 })
 
-quote_sockets_3 = Quote.create! ({
+quote_fusebox_3 = Quote.create! ({
   contractor: contractor_3,
-  job: job_sockets,
+  job: job_fusebox,
   remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
   price: 200,
   submitted: true,
@@ -165,140 +128,66 @@ quote_sockets_3 = Quote.create! ({
 3.times do |index|
   ContractorAvailability.create! ({
     contractor: contractor_1,
-    job: job_sockets,
+    job: job_fusebox,
     date_available: [Date.today+ 2, Date.today + 4, Date.today + 8][index]
   })
 end
 
-job_sockets.update(current_stage: 2)
-job_sockets.update(current_stage: 3)
-job_sockets.update(current_stage: 4)
-job_sockets.update(current_stage: 5)
+job_fusebox.update(current_stage: 2)
+job_fusebox.update(current_stage: 3)
+job_fusebox.update(current_stage: 4)
+job_fusebox.update(current_stage: 5)
 
 # Job at stage 7 - waiting for tenant feedback
 
-job_fuses = Job.create! ({
+job_tap = Job.create! ({
   property: property_1,
-  category: "electrical",
-  description: "My fuse board has blown",
-  contractor: contractor_1,
+  category: "plumbing",
+  description: "My tap is leaking and spraying water everywhere!",
+  contractor: contractor_5,
   current_stage: 1,
-  final_price: 75,
+  final_price: 200,
   remote_invoice_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709664/ohkjr1mehg1bisbuuq8e.pdf",
   rating: 5,
   date: Date.today + 5
 })
 
 PhotoVideo.create(
-  job: job_fuses,
+  job: job_tap,
   stage: 7,
-  remote_photo_video_url: 'https://images.unsplash.com/photo-1558816051-0a1efe688f41?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80'
+  remote_photo_video_url: 'https://www.reicheltplumbing.com/images/broken-sink.jpg'
 )
 
-job_fuses_1 = Quote.create! ({
-  contractor: contractor_1,
-  job: job_fuses,
+quote_tap_1 = Quote.create! ({
+  contractor: contractor_4,
+  job: job_tap,
   remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
-  price: 75,
+  price: 170,
+  submitted: true,
+  accepted: false
+})
+
+quote_tap_2 = Quote.create! ({
+  contractor: contractor_5,
+  job: job_tap,
+  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
+  price: 190,
   submitted: true,
   accepted: true
 })
 
-job_fuses_2 = Quote.create! ({
-  contractor: contractor_2,
-  job: job_fuses,
-  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
-  price: 80,
-  submitted: true,
-  accepted: false
-})
-
-job_fuses_3 = Quote.create! ({
-  contractor: contractor_3,
-  job: job_fuses,
-  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
-  price: 80,
-  submitted: true,
-  accepted: false
-})
 
 3.times do |index|
   ContractorAvailability.create! ({
-    contractor: contractor_1,
-    job: job_fuses,
-    date_available: [Date.today+ 2, Date.today + 4, Date.today + 8][index]
+    contractor: contractor_5,
+    job: job_tap,
+    date_available: [Date.today+ 1, Date.today+ 3, Date.today + 5, Date.today + 9][index]
   })
 end
 
-job_fuses.update(current_stage: 2)
-job_fuses.update(current_stage: 3)
-job_fuses.update(current_stage: 4)
-job_fuses.update(current_stage: 5)
-job_fuses.update(current_stage: 6)
-job_fuses.update(current_stage: 7)
-
-# Job at stage 8 - Final Review
-
-job_hoover = Job.create! ({
-  property: property_1,
-  category: "electrical",
-  description: "I don't know how to turn my hoover off, it's really loud",
-  contractor: contractor_2,
-  current_stage: 1,
-  final_price: 150,
-  resolved: true,
-  remote_invoice_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709664/ohkjr1mehg1bisbuuq8e.pdf",
-  rating: 4,
-  date: Date.today + 5
-})
-
-PhotoVideo.create(
-  job: job_hoover,
-  stage: 8,
-  remote_photo_video_url: 'https://images.pexels.com/photos/38325/vacuum-cleaner-carpet-cleaner-housework-housekeeping-38325.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
-)
-
-
-quote_hoover_1 = Quote.create! ({
-  contractor: contractor_1,
-  job: job_hoover,
-  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
-  price: 100,
-  submitted: true,
-  accepted: false
-})
-
-quote_hoover_2 = Quote.create! ({
-  contractor: contractor_2,
-  job: job_hoover,
-  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
-  price: 150,
-  submitted: true,
-  accepted: true
-})
-
-quote_hoover_3 = Quote.create! ({
-  contractor: contractor_3,
-  job: job_hoover,
-  remote_quote_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709144/ycdegazxv9w8boqz3p8a.pdf",
-  price: 200,
-  submitted: true,
-  accepted: false
-})
-
-3.times do |index|
-  ContractorAvailability.create! ({
-    contractor: contractor_2,
-    job: job_hoover,
-    date_available: [Date.today+ 2, Date.today + 4, Date.today + 8][index]
-  })
-end
-
-job_hoover.update(current_stage: 2)
-job_hoover.update(current_stage: 3)
-job_hoover.update(current_stage: 4)
-job_hoover.update(current_stage: 5)
-job_hoover.update(current_stage: 6)
-job_hoover.update(current_stage: 7)
-job_hoover.update(current_stage: 8)
-
+job_tap.update(current_stage: 2)
+job_tap.update(current_stage: 3)
+job_tap.update(current_stage: 4)
+job_tap.update(current_stage: 5)
+job_tap.update(current_stage: 6)
+job_tap.update(current_stage: 7)
