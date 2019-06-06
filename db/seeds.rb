@@ -202,6 +202,7 @@ job_toilet = Job.create! ({
   final_price: 200,
   remote_invoice_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709664/ohkjr1mehg1bisbuuq8e.pdf",
   rating: 5,
+  resolved: true,
   date: Date.today + 7
 })
 
