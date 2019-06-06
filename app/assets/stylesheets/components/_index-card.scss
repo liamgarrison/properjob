@@ -21,6 +21,7 @@
   height: 180px;
   background-size: cover;
   border-radius: $border-radius $border-radius 0 0;
+  position: relative;
 }
 
 .progress_bar {
@@ -43,14 +44,15 @@
 }
 
 .action-required-alert {
-  width: 90px;
+  position: absolute;
   background-color: $hot-pink;
-  float: right;
+  top: 16px;
+  right: 16px;
   border-radius: $border-radius;
-  margin: 16px;
-  padding: 8px 0px;
+  padding: 8px 16px;
     p {
-      font-size: 10px;
+      font-size: 12px;
+      font-weight: bold;
       margin-bottom: 0px;
     }
 }

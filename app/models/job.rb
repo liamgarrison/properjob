@@ -94,7 +94,7 @@ class Job < ApplicationRecord
         stage_name_present: "Landlord reviewing job",
         stage_name_future: "Landlord to review job",
         waiting_for: "landlord",
-        call_to_action: "Approve and Pay"
+        call_to_action: "Review and Pay"
       },
       9 => {
         stage_name_past: "Job completed",
