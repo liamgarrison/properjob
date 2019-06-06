@@ -26,7 +26,7 @@
 .quote-card p {
   font-size: 12px;
   line-height: 1.4;
-  opacity: .7;
+  // opacity: .7;
   margin-bottom: 0;
   margin-top: 8px;
 }
@@ -36,7 +36,7 @@
 }
 
 .card-text-rating {
-  color: #eded1a;
+  color: $mid-gray;
   opacity: 1;
 }
 
@@ -46,6 +46,7 @@
 }
 
 #quote-price {
+  flex-grow:1;
   color: $danger;
   opacity: 1;
   font-size: 24px;

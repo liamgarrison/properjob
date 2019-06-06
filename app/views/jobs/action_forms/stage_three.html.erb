@@ -10,7 +10,7 @@
           <div class="ml-3">
             <%= cl_image_tag(quote.contractor.avatar, crop: :thumb, radius: :max, gravity: :face) %>
           </div>
-          <div class="card-product-infos">
+          <div class="card-product-infos flex-grow-1">
             <h4><%= quote.contractor.first_name %></h4>
             <p><i class="fas fa-tools"></i>  <%= quote.contractor.contractor_type.capitalize %></p>
             <p class="card-text-rating">
@@ -19,7 +19,7 @@
               <% end %>
             </p>
           </div>
-          <div class="ml-3 pt-1">
+          <div class="pr-5 pt-1">
             <p class="mb-1" id="quote-price">£<%= quote.price %></p>
             <a class="final-job-details btn btn-primary btn-sm mb-3" href="<%=cl_image_path(quote.quote)%>"><i class="fas fa-file-pdf mr-1"></i> Quote</a>
           </div>

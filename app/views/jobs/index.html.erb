@@ -7,7 +7,7 @@
     <% when 'tenant' %>
       <p><%= current_user.rented_properties.first.address %></p>
     <% when 'landlord' %>
-      <p>Here are all jobs submitted at <%= current_user.owned_properties.first.address %>:</p>
+      <p><%= current_user.owned_properties.first.address %></p>
     <% when 'contractor' %>
       <p>Here are the jobs you've been involved in:</p>
     <% end %>
