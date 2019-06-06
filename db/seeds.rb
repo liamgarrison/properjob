@@ -129,7 +129,7 @@ quote_fusebox_3 = Quote.create! ({
   ContractorAvailability.create! ({
     contractor: contractor_1,
     job: job_fusebox,
-    date_available: [Date.today+ 2, Date.today + 4, Date.today + 8][index]
+    date_available: [Date.today + 2, Date.today + 4, Date.today + 8][index]
   })
 end
 
@@ -148,7 +148,7 @@ job_tap = Job.create! ({
   current_stage: 1,
   final_price: 200,
   remote_invoice_url: "https://res.cloudinary.com/dzxwfflob/image/upload/v1558709664/ohkjr1mehg1bisbuuq8e.pdf",
-  date: Date.today -3
+  date: Date.today - 3
 })
 
 PhotoVideo.create(
