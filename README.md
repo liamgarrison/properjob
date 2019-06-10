@@ -1,1 +1,1 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+Property maintenance app that allows landlords and tenants to get things fixed in their homes faster. Can be found [here](https://properjob.app).
