@@ -1,11 +1,29 @@
 class Api::V1::JobsController < Api::V1::BaseController
-  skip_after_action :verify_authorized
-
+  acts_as_token_authentication_handler_for User, except: [ :index, :show ]
   def index
-    @jobs = Job.all
+    @jobs = policy_scope(Job)
   end
 
   def show
-    @jobs = Job.find(params[:id])
+    @job = Job.find(params[:id])
+    authorize @job
+  end
+
+  def update
+    @job = Job.find(params[:id])
+    if @job.update(job_params)
+      render :show
+    else
+      render_error
+    end
+  end
+
+  def job_params
+    params.require(:job).permit(:name, :address)
+  end
+
+  def render_error
+    render json: { errors: @job.errors.full_messages },
+      status: :unprocessable_entity
   end
 end
