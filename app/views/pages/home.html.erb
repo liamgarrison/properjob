@@ -1,28 +1,18 @@
 <%= render 'shared/navbar' %>
 
-<div class="home-container vh-100" style="background-image: url(<%= cl_image_path("landing-background_2_m2seqf") %>)">
-
-  <div class="container">
-
-
-    <div class="heading-container py-3 px-5">
-      <span>
-        <h1 class="text-light font-weight-bold pt-5">Proper Job</h1>
-        <h5 class="text-light font-weight-light pt-3">The fastest way to get stuff fixed in your home</h5>
-      </span>
-    </div>
+<div class="home-wrapper">
+  <div class="home-title">
+    <h1>Proper Job</h1>
+    <p>The fastest way to get stuff fixed in your home</p>
   </div>
 
-  <div class="button-and-image">
-    <%= cl_image_tag("jhslh89z8vvsmc0jc9pb", height: 250, class: "chair-img") %>
-    <div class="home-page-btn">
-      <% if user_signed_in? %>
-        <%= link_to "View Your Jobs", jobs_path, class: "btn btn-light mb-3 text-primary" %>
-      <% else %>
-        <%= link_to "Log In", new_user_session_path, class: "btn btn-light mb-3 text-primary" %>
-        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-light text-light" %>
-      <% end %>
-    </div>
+  <div class="home-btn-wrapper">
+    <% if user_signed_in? %>
+      <%= link_to "View Your Jobs", jobs_path, class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to "Log In", new_user_session_path, class: "w-100 btn btn-light mb-3" %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "w-100 btn btn-outline-light" %>
+    <% end %>
   </div>
 
 </div>

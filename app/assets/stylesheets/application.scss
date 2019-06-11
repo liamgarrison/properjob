@@ -12,8 +12,9 @@
 @import "components/index";
 @import "pages/index";
 
-.application-wrapper {
-  width: 375px;
+.mobile-wrapper {
+  width: 100%;
+  max-width: 414px; // Iphone 8 plus
   min-height: 100vh;
   margin: 0 auto;
   position: relative;
