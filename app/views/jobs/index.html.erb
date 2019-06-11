@@ -3,13 +3,17 @@
 <div class="bg-primary text-white d-flex align-items-center justify-content-start">
   <div class="container pt-5 pb-5">
     <h2 class="pt-3">Hi, <%= current_user.first_name %></h2>
-    <% case current_user.user_type %>
-    <% when 'tenant' %>
-      <p><%= current_user.rented_properties.first.address %></p>
-    <% when 'landlord' %>
-      <p><%= current_user.owned_properties.first.address %></p>
-    <% when 'contractor' %>
-      <p>Here are the jobs you've been involved in:</p>
+    <% if current_user.rented_properties.empty? %>
+      <p>You have no properties at the moment</p>
+    <% else %>
+      <% case current_user.user_type %>
+      <% when 'tenant' %>
+        <p><%= current_user.rented_properties.first.address %></p>
+      <% when 'landlord' %>
+        <p><%= current_user.owned_properties.first.address %></p>
+      <% when 'contractor' %>
+        <p>Here are the jobs you've been involved in:</p>
+      <% end %>
     <% end %>
   </div>
 </div>
