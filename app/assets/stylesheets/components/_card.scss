@@ -6,16 +6,30 @@
   padding:24px;
 }
 
+.card-selection-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .card-selection {
-  width: 100%;
+  width: calc(100% - 16px);
   padding: 24px;
+  flex-shrink: 0;
   border-radius: $border-radius;
   box-shadow: $box-shadow;
   border: 2px solid transparent;
   margin-bottom: 16px;
   text-align: center;
+  margin-left: 8px;
+  margin-right: 8px;
+  cursor: pointer;
   &.active {
     border: 2px solid $primary;
   }
-  cursor: pointer;
+  &.half {
+    width: calc(50% - 16px);
+  }
+  &.third {
+    width: calc(33.333333333333% - 16px);
+  }
 }

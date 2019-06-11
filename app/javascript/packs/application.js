@@ -7,6 +7,7 @@ import { initLightpick } from "./plugins/init_lightpick"
 import { initNavbar } from './navbar'
 import { showContentToggle } from './show_content_toggle'
 import cardSelection from './card_selection'
+import { newUser } from './forms'
 
 // Initialize plugins
 
@@ -17,6 +18,9 @@ initLightpick();
 // Initialize other JS functions
 showContentToggle();
 cardSelection();
+
+// Form files
+newUser();
 
 // Contractor Selection
 

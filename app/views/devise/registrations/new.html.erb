@@ -1,58 +1,101 @@
 <%= render('shared/wrapper', title: "Sign up to proper job", illustration_url:  cl_image_tag('zfd3liaawmeqbhmevu7x'))%>
 <div class="container py-5">
-  <div class="signup-wrapper">
-    <div class="signup-stage-1">
-      <p class='font-weight-bold'>Which of the following best describes you?</p>
-      <div class="card-selection">
-        <p>Tenant</p>
+  <div class="signup-user-type mb-3">
+    <p class='font-weight-bold'>Which of the following best describes you?</p>
+    <div class="card-selection-wrapper" data-single-toggle='true'>
+      <div class="card-selection user-type-card" data-value="tenant">
+      <h4><i class="fas fa-couch"></i></h4>
+        <p class='mb-0'>Tenant</p>
       </div>
-      <div class="card-selection">
-        <p>Landlord</p>
+      <div class="card-selection user-type-card" data-value="landlord">
+      <h4><i class="fas fa-clipboard-check"></i></h4>
+        <p class='mb-0'>Landlord</p class='mb-0'>
       </div>
-      <div class="card-selection">
-        <p>Contractor</p>
+      <div class="card-selection user-type-card" data-value="contractor">
+      <h4><i class="fas fa-tools"></i></h4>
+        <p class='mb-0'>Contractor</p>
       </div>
-      
     </div>
   </div>
 
+  <div class="singup-contractor-type d-none mb-3">
+    <p class='font-weight-bold'>What type of contractor are you?</p>
+    <div class="card-selection-wrapper" data-single-toggle='true'>
+
+      <div class="card-selection half contractor-type-card" data-value="electrical">
+        <h4><i class="fas fa-bolt"></i></h4>
+        <p class='mb-0'>Electrical</p>
+      </div>
+      <div class="card-selection half contractor-type-card" data-value="plumbing">
+            <h4><i class="fas fa-tint"></i></h4>
+          <p class='mb-0'>Plumbing</p>
+      </div>
+      <div class="card-selection half contractor-type-card" data-value="handyman">
+          <h4><i class="fas fa-wrench"></i></h4>
+          <p class='mb-0'>Handyman</p>
+      </div>
+      <div class="card-selection half contractor-type-card" data-value="windows">
+          <h4><i class="fas fa-wifi"></i></h4>
+            <p class='mb-0'>Internet</p>
+      </div>
+      <div class="card-selection half contractor-type-card" data-value="damp">
+          <h4><i class="fas fa-water"></i></h4>
+            <p class='mb-0'>Damp</p>
+      </div>
+      <div class="card-selection half contractor-type-card" data-value="pests">
+          <h4><i class="fas fa-pastafarianism"></i></h4>
+            <p class='mb-0'>Pests</p>
+      </div>
+      <div class="card-selection half contractor-type-card" data-value="appliances">
+          <h4><i class="fas fa-tv"></i></h4>
+            <p class='mb-0'>Appliances</p>
+      </div>
+      <div class="card-selection half contractor-type-card" data-value="locksmith">
+          <h4><i class="fas fa-key"></i></h4>
+            <p class='mb-0'>Locksmith</p>
+      </div>
+      <div class="card-selection half contractor-type-card" data-value="other">
+          <h4><i class="fas fa-home"></i></h4>
+            <p class='mb-0'>Other</p>
+      </div>
+
+
+    </div>
+  </div>
+
+
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= f.error_notification %>
-
+    <p class="font-weight-bold">Please enter your details</p>
     <div class="form-inputs">
+    <div class="row">
+      <div class="col">
+        <%= f.input :first_name, placeholder: "First Name",
+                  label: false  %>
+      </div>
+      <div class="col">
+        <%= f.input :last_name, placeholder: "Last Name",
+                  label: false  %>
+      </div>
+    </div>
       <%= f.input :email,
                   required: false,
                   placeholder: "Email Address",
-                  label: false  %>
-      <%= f.input :first_name, placeholder: "First Name",
-                  label: false  %>
-      <%= f.input :last_name, placeholder: "Last Name",
-                  label: false  %>
-      <%= f.input :phone_number, placeholder: "Phone Number",
-                  label: false  %>
+                  label: false  %>      
       <%= f.input :user_type,
-                  collection: [['Tenant', 'tenant'], ['Landlord', 'landlord'], ['Contractor', 'contractor']],
-                  label_method: :first,
-                  value_method: :second,
-                  selected: "Tenant",
-                  label: false  %>
+                  label: false,
+                  as: :hidden  %>
       <%= f.input :contractor_type,
                   required: false,
                   placeholder: "Contractor Type (if applicable)",
-                  label: false %>
+                  label: false,
+                  as: :hidden %>
       <%= f.input :password,
                   required: false,
-                  placeholder: "Create a Password",
-                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  placeholder: "Create a Password (6 chars min)",
                   input_html: { autocomplete: "new-password" },
                   label: false %>
-      <%= f.input :password_confirmation,
-                  required: true,
-                  placeholder: "Confirm Your Password",
-                  input_html: { autocomplete: "new-password" },
-                  label: false %>
-      <%= f.input :avatar,  label: "Upload a profile photo"  %>
-      <%= f.input :avatar_cache, as: :hidden %>
+      
     </div>
 
     <div class="form-actions mb-4">
