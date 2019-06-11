@@ -12,8 +12,10 @@
   border-radius: $border-radius;
   box-shadow: $box-shadow;
   border: 2px solid transparent;
-  margin: 0 8px 16px 8px;
+  margin-bottom: 16px;
+  text-align: center;
   &.active {
     border: 2px solid $primary;
   }
+  cursor: pointer;
 }

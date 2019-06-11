@@ -6,6 +6,7 @@ import { initStripe } from "./plugins/initStripe"
 import { initLightpick } from "./plugins/init_lightpick"
 import { initNavbar } from './navbar'
 import { showContentToggle } from './show_content_toggle'
+import cardSelection from './card_selection'
 
 // Initialize plugins
 
@@ -15,6 +16,7 @@ initLightpick();
 
 // Initialize other JS functions
 showContentToggle();
+cardSelection();
 
 // Contractor Selection
 
