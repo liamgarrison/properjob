@@ -14,7 +14,7 @@
 
 .mobile-wrapper {
   width: 100%;
-  max-width: 414px; // Iphone 8 plus
+  max-width: $mobile-max-width; // Iphone 8 plus
   min-height: 100vh;
   margin: 0 auto;
   position: relative;

@@ -8,7 +8,7 @@
 
   <div class="home-btn-wrapper">
     <% if user_signed_in? %>
-      <%= link_to "View Your Jobs", jobs_path, class: "btn btn-primary" %>
+      <%= link_to "View Your Jobs", jobs_path, class: "w-100 btn btn-light" %>
     <% else %>
       <%= link_to "Log In", new_user_session_path, class: "w-100 btn btn-light mb-3" %>
       <%= link_to "Sign Up", new_user_registration_path, class: "w-100 btn btn-outline-light" %>
