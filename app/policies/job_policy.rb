@@ -6,7 +6,8 @@ class JobPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    raise
+    user.properties.include?(record.property)
   end
 
   def create?

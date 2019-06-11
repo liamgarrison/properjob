@@ -129,7 +129,7 @@ class JobsController < ApplicationController
 
   def belong_to_job?(job)
     contractors_that_belong = job.quotes.reject { |quote| quote.accepted == false }.map(&:contractor)
-    contractors_that_belong.include?(current_user) || current_user == job.contractor || current_user == job.property.tenant || current_user == job.property.landlord
+    # contractors_that_belong.include?(current_user) || current_user == job.contractor || current_user == job.property.tenant || current_user == job.property.landlord
   end
 
   def waiting_for_me?(job)

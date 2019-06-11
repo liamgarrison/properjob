@@ -1,0 +1,8 @@
+<h1><%= current_user.email %>'s tenancies</h1>
+<% @tenancies.each do |tenancy| %>
+<h3><%= tenancy.property.address %></h3>
+<p>Tenant: <%= tenancy.tenants.first.first_name %></p>
+<p>Landlord: <%= tenancy.property.landlord.first_name %></p>
+  
+ 
+<% end %>
