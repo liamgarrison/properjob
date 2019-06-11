@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:index, :create]
   end
 
+  resources :properties, only: [:index, :show, :new, :create]
+
   devise_for :users
 
   namespace :api, defaults: { format: :json } do
