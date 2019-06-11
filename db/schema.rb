@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_10_164402) do
+ActiveRecord::Schema.define(version: 2019_06_11_173549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,27 @@ ActiveRecord::Schema.define(version: 2019_06_10_164402) do
     t.index ["job_id"], name: "index_quotes_on_job_id"
   end
 
+  create_table "tenancies", force: :cascade do |t|
+    t.bigint "property_id"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "deposit"
+    t.boolean "deposit_refunded"
+    t.integer "rent_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_tenancies_on_property_id"
+  end
+
+  create_table "tenants_tenancies", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.bigint "tenancy_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tenancy_id"], name: "index_tenants_tenancies_on_tenancy_id"
+    t.index ["tenant_id"], name: "index_tenants_tenancies_on_tenant_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -125,4 +146,7 @@ ActiveRecord::Schema.define(version: 2019_06_10_164402) do
   add_foreign_key "properties", "users", column: "tenant_id"
   add_foreign_key "quotes", "jobs"
   add_foreign_key "quotes", "users", column: "contractor_id"
+  add_foreign_key "tenancies", "properties"
+  add_foreign_key "tenants_tenancies", "tenancies"
+  add_foreign_key "tenants_tenancies", "users", column: "tenant_id"
 end
