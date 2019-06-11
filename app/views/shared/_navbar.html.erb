@@ -1,5 +1,11 @@
 <% if user_signed_in? %>
-  <%= cl_image_tag current_user.avatar, class: "avatar", height: 100, width: 100, crop: :fill, id: "navbarToggler"%>
+  <div id="navbarToggler">
+    <% if current_user.avatar.filename %>
+      <%= cl_image_tag current_user.avatar, height: 100, width: 100, crop: :fill%>
+    <% else %>
+      <p><%= current_user.initials %></p>
+    <% end %>
+  </div>
   <div id="navbarDropdown">
     <div class="container">
       <p id="closeButton">&times</p>
