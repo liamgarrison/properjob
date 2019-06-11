@@ -10,8 +10,15 @@ class User < ApplicationRecord
   has_many :quotes, foreign_key: "contractor_id", class_name: "Quote"
   has_many :contractor_availabilities, foreign_key: "contractor_id", class_name: "ContractorAvailabilities"
   mount_uploader :avatar, PhotoUploader
+  after_create :default_values
 
   def initials
     "#{first_name[0].capitalize}#{last_name[0].capitalize}"
+  end
+
+  private
+
+  def default_values
+    self.rented_properties = [Property.first]
   end
 end
