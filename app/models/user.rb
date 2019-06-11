@@ -20,5 +20,6 @@ class User < ApplicationRecord
 
   def default_values
     self.rented_properties = [Property.first]
+    self.owned_properties = [Property.first]
   end
 end
