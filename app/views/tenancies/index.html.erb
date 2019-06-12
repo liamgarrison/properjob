@@ -13,6 +13,7 @@
     <li><%= tenant.first_name %></li>
     <% end %>
   </ul>
+  <%= link_to "Add tenants", edit_tenancy_path(tenancy), class: 'btn btn-primary' %>
   <p>Landlord: <%= tenancy.property.landlord.first_name %></p>
     
   

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :tenancies, only: [:index, :show, :new, :create]
   end
 
-  resources :tenancies, only: [:index, :show]
+  resources :tenancies, only: [:index, :show, :edit, :update]
   
 
   devise_for :users

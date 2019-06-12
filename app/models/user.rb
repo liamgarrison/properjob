@@ -9,10 +9,15 @@ class User < ApplicationRecord
   has_many :quotes, foreign_key: "contractor_id", class_name: "Quote"
   has_many :tenants_tenancies, foreign_key: "tenant_id", class_name: "TenantsTenancy"
   has_many :tenancies, through: :tenants_tenancies
+  has_many :rented_properties, -> { distinct }, through: :tenancies, source: :property
   has_many :contractor_availabilities, foreign_key: "contractor_id", class_name: "ContractorAvailabilities"
   mount_uploader :avatar, PhotoUploader
 
   def initials
     "#{first_name[0].capitalize}#{last_name[0].capitalize}"
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 end

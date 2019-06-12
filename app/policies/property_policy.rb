@@ -1,10 +1,13 @@
 class PropertyPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.user_type == 'landlord'
+      case user.user_type
+      when 'landlord'
         scope.where(landlord: user)
-      else
-        scope.all
+      when 'tenant'
+        scope.all.select do |property|
+          property.tenants.include? user
+        end
       end
     end
   end

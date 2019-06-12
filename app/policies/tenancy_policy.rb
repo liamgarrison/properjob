@@ -13,7 +13,19 @@ class TenancyPolicy < ApplicationPolicy
     user.owned_properties.include?(record.property)
   end
 
+  def show?
+    new?
+  end
+
   def create?
+    new?
+  end
+
+  def edit?
+    new?
+  end
+
+  def update?
     new?
   end
 end

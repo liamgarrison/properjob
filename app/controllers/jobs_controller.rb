@@ -2,7 +2,7 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update]
 
   def index
-    @jobs = Job.all
+    @jobs = policy_scope(Job)
     @jobs = @jobs.sort_by(&:created_at).reverse
     # @jobs = @jobs.select { |job| belong_to_job?(job) }
     @incompleted_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage < 9 }

@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Edit tenancy</h1>
+  <%= simple_form_for [@tenancy] do |f| %>
+    <%= f.input :start_date  %>
+    <%= f.input :end_date  %>
+    <%= f.association :tenants,  label_method: :full_name, as: :check_boxes %>
+    <%= f.button :submit, "Submit", class: 'btn btn-primary w-100' %>
+  <% end %>
+</div>

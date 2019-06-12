@@ -34,9 +34,26 @@ class TenanciesController < ApplicationController
     end
   end
 
+  def edit
+    @tenancy = Tenancy.find(params[:id])
+    @tenants = User.where(user_type: 'tenant')
+    authorize @tenancy
+  end
+
+  def update
+    @tenancy = Tenancy.find(params[:id])
+    @tenancy.assign_attributes(tenancy_params)
+    authorize @tenancy
+    if @tenancy.save
+      redirect_to property_tenancies_path(@tenancy.property)
+    else
+      render :edit
+    end
+  end
+    
   private
 
   def tenancy_params
-    params.require(:tenancy).permit(:start_date, :end_date, :deposit, :deposit_refunded, :rent_amount)
+    params.require(:tenancy).permit(:start_date, :end_date, :deposit, :deposit_refunded, :rent_amount, tenant_ids: [])
   end
 end
