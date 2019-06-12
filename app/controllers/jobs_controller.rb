@@ -3,17 +3,21 @@ class JobsController < ApplicationController
 
   def index
     @jobs = policy_scope(Job)
-    @jobs = @jobs.sort_by(&:created_at).reverse
-    # @jobs = @jobs.select { |job| belong_to_job?(job) }
-    @incompleted_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage < 9 }
-    @jobs_waiting_for_user = []
-    @jobs_not_for_user = []
-    @incompleted_jobs.each do |job|
-      waiting_for_me?(job) ? @jobs_waiting_for_user << job : @jobs_not_for_user << job
+    if @jobs
+      @jobs = @jobs.sort_by(&:created_at).reverse
+    else
+      @jobs = []
     end
-    @user_jobs = @jobs_waiting_for_user + @jobs_not_for_user
-    @completed_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage == 9 }
-    @jobs_in_progress = @incompleted_jobs
+    # @jobs = @jobs.select { |job| belong_to_job?(job) }
+    # @incompleted_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage < 9 }
+    # @jobs_waiting_for_user = []
+    # @jobs_not_for_user = []
+    # @incompleted_jobs.each do |job|
+    #   waiting_for_me?(job) ? @jobs_waiting_for_user << job : @jobs_not_for_user << job
+    # end
+    # @user_jobs = @jobs_waiting_for_user + @jobs_not_for_user
+    # @completed_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage == 9 }
+    # @jobs_in_progress = @incompleted_jobs
   end
 
   def show

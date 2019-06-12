@@ -12,7 +12,7 @@
       <ul class="mt-5">
         <% if user_signed_in? %>
           <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Your Jobs", jobs_path %></li>
+          <li><%= link_to "Your Jobs", jobs_path(@tenancy) %></li>
           <li><%= link_to "Log out", destroy_user_session_path, method: :delete%></li>
         <% end %>
       </ul>

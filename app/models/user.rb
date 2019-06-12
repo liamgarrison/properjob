@@ -20,4 +20,12 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def current_tenancy
+    tenancies.find do |tenancy| 
+      if tenancy.start_date && tenancy.end_date
+        tenancy.start_date <= Date.today && tenancy.end_date >= Date.today 
+      end
+    end
+  end
 end
