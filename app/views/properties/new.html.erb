@@ -1,1 +1,7 @@
-new property
+<div class="container">
+  <h1>Create a property</h1>
+  <%= simple_form_for(@property) do |f| %>
+    <%= f.input :address, placeholder: "10 Downing St, London"  %>
+    <%= f.button :submit, "Submit", class: 'btn btn-primary w-100' %>
+  <% end %>
+</div>

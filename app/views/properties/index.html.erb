@@ -1,0 +1,14 @@
+<%= render('shared/wrapper', 
+title: "Here are your properties", 
+illustration_url:  cl_image_tag('zfd3liaawmeqbhmevu7x'))%>
+<div class="container">
+  <% @properties.each do |property| %>
+    <p><%= property.address %></p>
+    <p class="mb-5"><%= link_to "View tenancies", property_tenancies_path(property), class: 'btn btn-primary' %>
+    <%= link_to "Create tenancy", new_property_tenancy_path(property), class: 'btn btn-primary' %>
+    </p>
+  <% end %>
+
+  <%= link_to "Create property", new_property_path, class: 'btn btn-primary' %>
+
+</div>

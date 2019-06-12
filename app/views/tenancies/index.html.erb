@@ -1,8 +1,21 @@
-<h1><%= current_user.email %>'s tenancies</h1>
-<% @tenancies.each do |tenancy| %>
-<h3><%= tenancy.property.address %></h3>
-<p>Tenant: <%= tenancy.tenants.first.first_name %></p>
-<p>Landlord: <%= tenancy.property.landlord.first_name %></p>
+<div class="container">
+  <% if @property %>
+    <h1>Tenancies for <%= @property.address %></h1>
+      <%= link_to "Create tenancy", new_property_tenancy_path(@property), class: 'btn btn-primary' %>
+
+  <% else %>
+    <h1>All tenancies</h1>
+  <% end %>
+  <% @tenancies.each do |tenancy| %>
+  <h3><%= tenancy.start_date %> - <%= tenancy.end_date %></h3>
+  <p>Tenants: </p>
+  <ul><%tenancy.tenants.each do |tenant| %>
+    <li><%= tenant.first_name %></li>
+    <% end %>
+  </ul>
+  <p>Landlord: <%= tenancy.property.landlord.first_name %></p>
+    
   
- 
-<% end %>
+  <% end %>
+  <%= link_to "View properties", properties_path %>
+</div>

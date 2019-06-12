@@ -1,2 +1,8 @@
-<h1>Tenancies#new</h1>
-<p>Find me in app/views/tenancies/new.html.erb</p>
+<div class="container">
+  <h1>Create a tenancy for <%= @property.address %></h1>
+  <%= simple_form_for [@property, @tenancy] do |f| %>
+    <%= f.input :start_date  %>
+    <%= f.input :end_date  %>
+    <%= f.button :submit, "Submit", class: 'btn btn-primary w-100' %>
+  <% end %>
+</div>

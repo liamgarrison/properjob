@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :properties, only: [:index, :show, :new, :create] do
     resources :tenancies, only: [:index, :show, :new, :create]
   end
+
+  resources :tenancies, only: [:index, :show]
   
 
   devise_for :users
