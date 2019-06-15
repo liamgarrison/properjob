@@ -15,10 +15,10 @@
   border-bottom-right-radius: $border-radius-lg;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   min-height: 270px;
-  h2 {
+  h1 {
     color: $white;
   }
 }
@@ -32,7 +32,7 @@
   justify-content: center;
   align-items: flex-start;
   min-height: 200px;
-  h2 {
+  h1 {
     color: $white;
   }
   p {

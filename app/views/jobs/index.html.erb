@@ -28,25 +28,31 @@
       <p class="load-completed"><i class="far fa-check-circle px-2"></i> Completed</p>
     </div>
   </div>
-  <div class="container pt-4 pb-5">
-      <div class="tab-info show-tab" data-tab-id="1">
-        <% @jobs.reject(&:completed?).each do |job| %>
-         <%= render('shared/job_index_card', job: job) %>
-        <% end %>
-      </div>
+  <div class="container py-3">
+    <div class="tab-info show-tab" data-tab-id="1">
+      <% @jobs.reject(&:completed?).each do |job| %>
+        <%= render('shared/job_index_card', job: job) %>
+      <% end %>
+    </div>
 
-      <div class="tab-info" data-tab-id="2">
-        <% @jobs.select(&:completed?).each do |job| %>
-          <%= render('shared/job_index_card', job: job) %>
-        <% end %>
+    <div class="tab-info" data-tab-id="2">
+      <% @jobs.select(&:completed?).each do |job| %>
+        <%= render('shared/job_index_card', job: job) %>
+      <% end %>
+    </div>
+    <% if @jobs.empty? %>
+      <div class="jobs-index-no-jobs">
+        <%= image_tag 'job_index_no_jobs.png' %>
+        <p>Looks like there are no jobs yet...</p>
       </div>
-    </div>
-  <% if current_user.user_type == 'tenant' %>
-    <div class="sticky-btn">
-      <%= link_to "Submit new job", new_job_path, class: "btn btn-primary w-100" %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
+<% if current_user.user_type == 'tenant' %>
+  <div class="sticky-btn">
+    <%= link_to "Submit new job", new_job_path, class: "btn btn-primary w-100" %>
+  </div>
+<% end %>
 
 
 <%= javascript_pack_tag "tabs" %>

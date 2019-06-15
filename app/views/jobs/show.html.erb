@@ -85,7 +85,7 @@
     <% end %>
   </div>
 </div>
-<% if @waiting_for_me %>
+<% if @job.action_required?(current_user) %>
   <div class="sticky-btn">
     <%= link_to @job.stage_attributes[:call_to_action], edit_job_path(@job), class: "btn btn-danger" %>
   </div>
