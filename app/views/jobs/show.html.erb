@@ -5,7 +5,7 @@
       <%= link_to jobs_path, class: "back-button" do %>
             <i class="fa fa-chevron-left"></i>
           <% end %>
-      <% if @waiting_for_me %>
+      <% if @job.action_required?(current_user) %>
         <p class="show-status-badge">Action Required</p>
       <% elsif @job.current_stage == 9 %>
         <p class="show-status-badge bg-success">Job Completed</p>

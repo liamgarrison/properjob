@@ -12,7 +12,7 @@ class JobsController < ApplicationController
   end
 
   def show
-    @waiting_for_me = waiting_for_me?(@job)
+    authorize @job
   end
 
   def new
