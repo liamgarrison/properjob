@@ -29,6 +29,15 @@ class Job < ApplicationRecord
     tenancy.property.address
   end
 
+  def action_required?(user)
+    # Helper method to work out whether job is waiting for me to take action
+    stage_attributes[:waiting_for] == user.user_type
+  end
+
+  def completed?
+    current_stage == 9
+  end
+
   def available_dates
     contractor_availabilities.map do |contractor_availability|
       contractor_availability.date_available.strftime("%e %b %Y")

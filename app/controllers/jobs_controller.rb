@@ -5,7 +5,7 @@ class JobsController < ApplicationController
     @jobs = policy_scope(Job)
     if @jobs
       # If pundit returns jobs, sort them in reverse order of creation
-      @jobs = @jobs.sort_by(&:created_at).reverse
+      @jobs = @jobs.sort_by(&:updated_at).reverse
     else
       @jobs = []
     end
