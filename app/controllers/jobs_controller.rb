@@ -41,6 +41,7 @@ class JobsController < ApplicationController
   end
 
   def update
+    authorize @job
     case @job.current_stage
     when 3
       @quote_accepted = Quote.find(quote_params[:quote_selected])
@@ -73,6 +74,7 @@ class JobsController < ApplicationController
   end
 
   def edit
+    authorize @job
     case @job.current_stage
     when 1
       @contractors = User.where(contractor_type: @job.category)

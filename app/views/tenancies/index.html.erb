@@ -1,8 +1,7 @@
+<%= render('shared/index_page_wrapper', title: 'All Tenancies', subtitle: "#{@property.address}") %>
 <div class="container">
   <% if @property %>
-    <h1>Tenancies for <%= @property.address %></h1>
-      <%= link_to "Create tenancy", new_property_tenancy_path(@property), class: 'btn btn-primary' %>
-
+    <%= link_to "Create tenancy", new_property_tenancy_path(@property), class: 'btn btn-primary' %>
   <% else %>
     <h1>All tenancies</h1>
   <% end %>

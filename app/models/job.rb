@@ -43,7 +43,7 @@ class Job < ApplicationRecord
       user.owned_properties.include?(tenancy.property)
     when 'contractor'
       # Find the quotes where submitted is nil (pending) or it has been accepted
-      pending_or_accepted_quotes = quotes.select { |quote| quote.accepted || quote.submitted.nil? }
+      pending_or_accepted_quotes = quotes.select { |quote| quote.accepted.nil? || quote.accepted }
       contractors_who_see_job = pending_or_accepted_quotes.map(&:contractor)
       contractors_who_see_job.include?(user)
     end
