@@ -124,18 +124,4 @@ class JobsController < ApplicationController
   def job_params
     params.require(:job).permit(:category, :description, :resolved, :rating, :photo_videos, :final_price, :invoice)
   end
-
-  def belong_to_job?(job)
-    contractors_that_belong = job.quotes.reject { |quote| quote.accepted == false }.map(&:contractor)
-    # contractors_that_belong.include?(current_user) || current_user == job.contractor || current_user == job.property.tenant || current_user == job.property.landlord
-  end
-
-  def waiting_for_me?(job)
-    # Find out if the current user is the one we are waiting on.
-    if belong_to_job?(job) && job.stage_attributes[:waiting_for] == current_user.user_type
-      @waiting_for_me = true
-    else
-      @waiting_for_me = false
-    end
-  end
 end

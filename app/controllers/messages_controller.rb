@@ -1,7 +1,12 @@
 class MessagesController < ApplicationController
+  # Use authorization for all actions for messages not policy scope
+  after_action :verify_authorized, only: :index
+
   def index
     @job = Job.find(params[:job_id])
     @messages = Message.where(job: @job)
+    policy_scope @messages
+    authorize @job, :show_messages?
   end
 
   def create

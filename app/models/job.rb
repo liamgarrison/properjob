@@ -34,6 +34,21 @@ class Job < ApplicationRecord
     stage_attributes[:waiting_for] == user.user_type
   end
 
+  def associated?(user)
+    # Method for testing if a user is associated with a job
+    case user.user_type
+    when 'tenant'
+      tenancy == user.current_tenancy
+    when 'landlord'
+      user.owned_properties.include?(tenancy.property)
+    when 'contractor'
+      # Find the quotes where submitted is nil (pending) or it has been accepted
+      pending_or_accepted_quotes = quotes.select { |quote| quote.accepted || quote.submitted.nil? }
+      contractors_who_see_job = pending_or_accepted_quotes.map(&:contractor)
+      contractors_who_see_job.include?(user)
+    end
+  end
+
   def completed?
     current_stage == 9
   end
