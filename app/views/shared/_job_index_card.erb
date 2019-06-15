@@ -8,20 +8,20 @@
       <% end %>
     </div>
     <div class="w-100 progress_bar">
-<% job.current_stage.times do %>
-<div class="progress-solid"></div>
-<%#= image_tag("pinkdash", width: 37) %>
-<% end %>
-<% (9 - job.current_stage).times do %>
-<div class="progress-empty"></div>
-<%#= image_tag("graydash", width: 37) %>
-<% end %>
-</div>
-<div class="index-card-text">
-<h6 class="mb-2"><%= job.description %></h6>
-<p class="job-description mb-0"><%= job.stage_attributes[:stage_name_present] %></p>
-<p class="text-right mt-0 mb-0 timestamp">
-Submitted <%= time_ago_in_words(job.created_at, include_seconds: true) %> ago</p>
-</div>
-</div>
+      <% job.current_stage.times do %>
+        <div class="progress-solid"></div>  
+      <% end %>
+      <% (9 - job.current_stage).times do %>
+        <div class="progress-empty"></div>
+      <% end %>
+    </div>
+    <div class="index-card-text">
+      <h6 class="mb-2"><%= job.description %></h6>
+      <p class="job-description mb-3">
+        <%= job.stage_attributes[:stage_name_present] %></p>
+      <p class="text-right mb-0 timestamp">
+      <%= current_user.user_type != 'tenant' ? "#{job.address} •" : "" %>
+      Submitted <%= time_ago_in_words(job.created_at, include_seconds: true) %> ago</p>
+    </div>
+  </div>
 <% end %>

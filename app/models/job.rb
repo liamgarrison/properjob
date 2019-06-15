@@ -24,6 +24,11 @@ class Job < ApplicationRecord
     super.strftime("%e %b %Y")
   end
 
+  def address
+    # Address for the job
+    tenancy.property.address
+  end
+
   def available_dates
     contractor_availabilities.map do |contractor_availability|
       contractor_availability.date_available.strftime("%e %b %Y")
