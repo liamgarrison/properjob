@@ -18,19 +18,22 @@ class JobsController < ApplicationController
   def new
     @job = Job.new
     @job.photo_videos.build
-    # authorize @job
+    authorize @job
   end
 
   def create
     @job = Job.new(category: params[:category_selected], description: params[:description])
-    @job.property = Property.first
+    @job.tenancy = current_user.current_tenancy
     @job.current_stage = 1
-    if @job.save
-      if params[:job][:photo_videos][:photo_video]
-        params[:job][:photo_videos][:photo_video].each do |photo_video|
-          @job.photo_videos.create(photo_video: photo_video, stage: @job.current_stage)
-        end
+    authorize @job
+    if params[:job][:photo_videos][:photo_video]
+      params[:job][:photo_videos][:photo_video].each do |photo_video|
+        @job.photo_videos << PhotoVideo.create(photo_video: photo_video, stage: @job.current_stage)
+      end
+      if @job.save
         redirect_to job_path(@job)
+      else
+        render :new
       end
     else
       render :new
