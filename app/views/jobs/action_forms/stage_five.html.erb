@@ -1,4 +1,4 @@
-<%= render('shared/wrapper', title: "#{@job.contractor.first_name} has picked some dates for you", illustration_url:  cl_image_tag('select_dates_ywmjqo'))%>
+<%= render('shared/action_page_wrapper', title: "#{@job.contractor.first_name} has picked some dates for you", illustration_url:  cl_image_tag('select_dates_ywmjqo'))%>
 
 <div class="container py-5">
   <p><strong>When are you free, <%= @job.property.tenant.first_name %>?</strong></p>

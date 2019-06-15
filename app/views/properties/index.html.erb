@@ -1,6 +1,4 @@
-<%= render('shared/wrapper', 
-title: "Here are your properties", 
-illustration_url:  cl_image_tag('zfd3liaawmeqbhmevu7x'))%>
+<%= render('shared/index_page_wrapper', title: 'Manage Properties', subtitle: 'Create and add tenancies here') %>
 <div class="container">
   <% @properties.each do |property| %>
     <p><%= property.address %></p>

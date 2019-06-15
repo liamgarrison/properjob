@@ -1,42 +1,34 @@
-<%= render('shared/navbar') %>
-
-<div class="bg-primary text-white d-flex align-items-center justify-content-start">
-  <div class="container pt-5 pb-5">
-    <h2 class="pt-3">Jobs</h2>
-    <% case current_user.user_type %>
-    <% when 'tenant' %>
-      <% if current_user.current_tenancy %>
-        <%# If the user has a current tenancy %>
-        <p><%= current_user.current_tenancy.property.address %></p>
-      <% else %>
-        <p>You currently have no active tenancies</p>
-      <% end %>
-    <% when 'landlord' %>
-      <p>All properties</p>
-    <% when 'contractor' %>
-      <p>Jobs for all properties you've been involved in</p>
-    <% end %>
-  </div>
-</div>
+<% case current_user.user_type %>
+<% when 'tenant' %>
+  <% if current_user.current_tenancy %>
+    <%# If the user has a current tenancy %>
+    <% subtitle = current_user.current_tenancy.property.address %>
+  <% else %>
+    <% subtitle = 'You currently have no active tenancies' %>
+  <% end %>
+<% when 'landlord' %>
+  <% subtitle = 'All properties' %>
+<% when 'contractor' %>
+  <% subtitle = "Jobs for all properties you've been involved in" %>
+<% end %>
+<%= render('shared/index_page_wrapper', title: 'Jobs', subtitle: subtitle) %>
 
 <div class="jobs-index-wrapper">
-  <div class="container pt-4 pb-5">
-      <div class="mb-3">
-        <div class=" d-flex justify-content-around text-center tabs-wrapper mb-4">
-          <div class="index-tab tab-selectors active-tab pb-2" data-id="1">
-            <% action_required_jobs = @jobs.select { |job| job.action_required?(current_user) } %>
-            <% if action_required_jobs.count > 0 %>
-              <div class="updates">
-                <p><%= action_required_jobs.count %></p>
-              </div>
-            <% end %>
-            <p class="load-progress"><i class="far fa-clock px-2"></i> In Progress</p>
-          </div>
-          <div class="index-tab tab-selectors pb-2" data-id="2">
-            <p class="load-completed"><i class="far fa-check-circle px-2"></i> Completed</p>
-          </div>
+  <div class=" d-flex justify-content-around text-center pt-4">
+    <div class="index-tab tab-selectors active-tab pb-2" data-id="1">
+      <% action_required_jobs = @jobs.select { |job| job.action_required?(current_user) } %>
+      <% if action_required_jobs.count > 0 %>
+        <div class="jobs-action-required-badge">
+          <p><%= action_required_jobs.count %></p>
         </div>
-      </div>
+      <% end %>
+      <p class="load-progress"><i class="far fa-clock px-2"></i> In Progress</p>
+    </div>
+    <div class="index-tab tab-selectors pb-2" data-id="2">
+      <p class="load-completed"><i class="far fa-check-circle px-2"></i> Completed</p>
+    </div>
+  </div>
+  <div class="container pt-4 pb-5">
       <div class="tab-info show-tab" data-tab-id="1">
         <% @jobs.reject(&:completed?).each do |job| %>
          <%= render('shared/job_index_card', job: job) %>
