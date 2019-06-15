@@ -22,10 +22,8 @@ class User < ApplicationRecord
   end
 
   def current_tenancy
-    tenancies.find do |tenancy| 
-      if tenancy.start_date && tenancy.end_date
-        tenancy.start_date <= Date.today && tenancy.end_date >= Date.today 
-      end
+    tenancies.find do |tenancy|
+      tenancy.start_date <= Date.today && tenancy.end_date >= Date.today if tenancy.start_date && tenancy.end_date
     end
   end
 end

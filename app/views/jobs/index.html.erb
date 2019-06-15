@@ -5,26 +5,24 @@
     <h2 class="pt-3">Hi, <%= current_user.first_name %></h2>
     <% case current_user.user_type %>
     <% when 'tenant' %>
-      <p><%= current_user.current_tenancy.property.address %></p>
-      <p><%= current_user.current_tenancy.start_date %> - <%= current_user.current_tenancy.end_date %></p>
+      <% if current_user.current_tenancy %>
+        <%# If the user has a current tenancy %>
+        <p><%= current_user.current_tenancy.property.address %></p>
+      <% else %>
+        <p>You currently have no active tenancies</p>
+      <% end %>
     <% when 'landlord' %>
-      <p><%= current_user.owned_properties.first.address %></p>
+      <p>All properties</p>
     <% when 'contractor' %>
-      <p>Here are the jobs you've been involved in:</p>
+      <p>Jobs for all properties you've been involved in</p>
     <% end %>
   </div>
 </div>
 
-<div class="tenant-wrapper">
+<div class="jobs-index-wrapper">
   <div class="container pt-4 pb-5">
-    <% if @jobs.empty? %>
-      <h3>Looks like you haven't submitted any jobs yet!</h3>
-      <p>Click below to add a new one...</p>
-    <% else %>
       <div class="mb-3">
         <div class=" d-flex justify-content-around text-center tabs-wrapper mb-4">
-
-
           <div class="index-tab tab-selectors active-tab pb-2" data-id="1">
             <% if @jobs.select do |job| job.stage_attributes[:waiting_for] == current_user.user_type
                 end.count > 0 %>
@@ -73,7 +71,7 @@
       <div class="tab-info" data-tab-id="2">
        
       </div>
-    <% end %>
+    
   </div>
 
     <% if current_user.user_type == 'tenant' %>
