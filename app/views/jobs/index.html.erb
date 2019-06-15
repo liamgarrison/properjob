@@ -2,16 +2,16 @@
 <% when 'tenant' %>
   <% if current_user.current_tenancy %>
     <%# If the user has a current tenancy %>
-    <% subtitle = current_user.current_tenancy.property.address %>
+    <% subtitle = "Jobs for #{current_user.current_tenancy.property.address}" %>
   <% else %>
     <% subtitle = 'You currently have no active tenancies' %>
   <% end %>
 <% when 'landlord' %>
-  <% subtitle = 'All properties' %>
+  <% subtitle = 'Jobs for all your properties' %>
 <% when 'contractor' %>
   <% subtitle = "Jobs for all properties you've been involved in" %>
 <% end %>
-<%= render('shared/index_page_wrapper', title: 'Jobs', subtitle: subtitle) %>
+<%= render('shared/index_page_wrapper', title: "Hi, #{current_user.first_name}", subtitle: subtitle) %>
 
 <div class="jobs-index-wrapper">
   <div class=" d-flex justify-content-around text-center pt-4">
