@@ -2,7 +2,7 @@
 
 <div class="bg-primary text-white d-flex align-items-center justify-content-start">
   <div class="container pt-5 pb-5">
-    <h2 class="pt-3">Hi, <%= current_user.first_name %></h2>
+    <h2 class="pt-3">Jobs</h2>
     <% case current_user.user_type %>
     <% when 'tenant' %>
       <% if current_user.current_tenancy %>
@@ -26,46 +26,23 @@
           <div class="index-tab tab-selectors active-tab pb-2" data-id="1">
             <% if @jobs.select do |job| job.stage_attributes[:waiting_for] == current_user.user_type
                 end.count > 0 %>
-
-                <div class="updates">
-                  <p><%= @jobs.select do |job| job.stage_attributes[:waiting_for] == current_user.user_type
-                    end.count %>
-                  </p>
-                </div>
-              <% end %>
-
+              <div class="updates">
+                <p><%= @jobs.select do |job| job.stage_attributes[:waiting_for] == current_user.user_type
+                  end.count %>
+                </p>
+              </div>
+            <% end %>
             <p class="load-progress"><i class="far fa-clock px-2"></i> In Progress</p>
           </div>
-
           <div class="index-tab tab-selectors pb-2" data-id="2">
             <p class="load-completed"><i class="far fa-check-circle px-2"></i> Completed</p>
           </div>
-
         </div>
       </div>
-
       <div class="tab-info show-tab" data-tab-id="1">
         <% @jobs.each do |job| %>
-          <%= link_to job_path(job), class: 'text-dark text-decoration-none' do %>
-            <div class="index-card">
-              <div class="index-card-image" style="background-image: url('<%= cl_image_path job.photo_videos.first.photo_video %>'">
-                <% if job.stage_attributes[:waiting_for] == current_user.user_type %>
-                  <div class="action-required-alert text-center">
-                    <p class="text-white">Action Required</p>
-                  </div>
-                <% end %>
-              </div>
-
-              <%= render('shared/progress_bar', job:job) %>
-              <div class="index-card-text">
-                <h6 class="mb-2"><%= job.description %></h6>
-                <p class="job-description mb-0"><%= job.stage_attributes[:stage_name_present] %></p>
-                <p class="text-right mt-0 mb-0 timestamp">
-                  Submitted <%= time_ago_in_words(job.created_at, include_seconds: true) %> ago</p>
-              </div>
-            </div>
-           <% end %>
-         <% end %>
+         <%= render('shared/job_index_card', job: job) %>
+        <% end %>
       </div>
 
       <div class="tab-info" data-tab-id="2">
