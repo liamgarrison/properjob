@@ -10,16 +10,16 @@ class MessagesController < ApplicationController
   end
 
   def create
-    job = Job.find(params[:job_id])
+    @job = Job.find(params[:job_id])
+    authorize @job, :create_messages?
     @message = Message.new(message_params)
     @message.user = current_user
-    @message.job = job
+    @message.job = @job
     @message.save
     respond_to do |format|
-      format.html { redirect_to job_messages_path(job) }
+      format.html { redirect_to job_messages_path(@job) }
       format.js
     end
-    puts @message.content
   end
 
   def message_params

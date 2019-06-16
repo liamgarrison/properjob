@@ -1,28 +1,9 @@
 #navbarToggler {
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   top: 24px;
   right: 24px;
   cursor: pointer;
   z-index: 999;
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  background-color: $light-gray;
-  img {
-    border-radius: 50%;
-    width: 100%;
-    height: 100%;
-  }
-  p {
-    margin-bottom: 0px;
-    color: $mid-gray;
-    font-size: 20px;
-    text-align: center;
-    letter-spacing: 1px;
-  }
 }
 
 #navbarDropdown {

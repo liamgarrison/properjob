@@ -30,6 +30,11 @@ class JobPolicy < ApplicationPolicy
     record.associated?(user)
   end
 
+  def create_messages?
+    # For authorizing whether a user should be able to create job's messages
+    record.associated?(user)
+  end
+
   def create_payment?
     record.associated?(user) && user.user_type == 'landlord'
   end

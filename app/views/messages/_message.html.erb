@@ -3,7 +3,11 @@
     <%= message.created_at.strftime("%e %b %Y %H:%M") %>
   </div>
   <div class="message-author <%= belongs_to %>">
-    <%= cl_image_tag message.user.avatar, class: "avatar", height: 100, width: 100, crop: :fill%>
+    <% if message.user.avatar.filename %>
+      <div class="avatar message-avatar">
+        <%= cl_image_tag message.user.avatar, height: 100, width: 100, crop: :fill%>
+      </div>
+    <% end %>
     <p class="message-author-name">
       <% if belongs_to == 'ours' %>
         You
