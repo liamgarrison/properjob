@@ -21,6 +21,11 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def full_name_with_email
+    # For the create tenancy form
+    "#{first_name} #{last_name} (#{email})"
+  end
+
   def current_tenancy
     tenancies.find do |tenancy|
       tenancy.start_date <= Date.today && tenancy.end_date >= Date.today if tenancy.start_date && tenancy.end_date
