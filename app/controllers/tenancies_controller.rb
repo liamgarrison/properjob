@@ -1,4 +1,6 @@
 class TenanciesController < ApplicationController
+  after_action :verify_authorized, only: :index
+
   def index
     if params[:property_id]
       @property = Property.find(params[:property_id])
@@ -10,9 +12,7 @@ class TenanciesController < ApplicationController
     end
     # Scope based on user
     @tenancies = policy_scope @tenancies
-  end
-
-  def show
+    authorize @property, :show_tenancies?
   end
 
   def new
@@ -28,29 +28,12 @@ class TenanciesController < ApplicationController
     @tenancy.property = @property
     authorize @tenancy
     if @tenancy.save
-      redirect_to tenancies_path
+      redirect_to property_tenancies_path
     else
       render :new
     end
   end
 
-  def edit
-    @tenancy = Tenancy.find(params[:id])
-    @tenants = User.where(user_type: 'tenant')
-    authorize @tenancy
-  end
-
-  def update
-    @tenancy = Tenancy.find(params[:id])
-    @tenancy.assign_attributes(tenancy_params)
-    authorize @tenancy
-    if @tenancy.save
-      redirect_to property_tenancies_path(@tenancy.property)
-    else
-      render :edit
-    end
-  end
-    
   private
 
   def tenancy_params

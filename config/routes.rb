@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'tenancies/index'
-  get 'tenancies/show'
-  get 'tenancies/new'
-  get 'tenancies/create'
   root to: 'pages#home'
   resources :jobs, only: [:show, :new, :create, :edit, :update, :index] do
     resources :quotes, only: [:create, :update]

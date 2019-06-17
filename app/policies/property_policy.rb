@@ -1,15 +1,12 @@
 class PropertyPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      case user.user_type
-      when 'landlord'
-        scope.where(landlord: user)
-      when 'tenant'
-        scope.all.select do |property|
-          property.tenants.include? user
-        end
-      end
+      scope.where(landlord: user)
     end
+  end
+
+  def index?
+    user.user_type == 'landlord'
   end
 
   def new?
@@ -18,5 +15,9 @@ class PropertyPolicy < ApplicationPolicy
 
   def create?
     new?
+  end
+
+  def show_tenancies?
+    record.landlord == user
   end
 end

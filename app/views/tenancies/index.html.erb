@@ -1,21 +1,20 @@
-<%= render('shared/index_page_wrapper', title: 'All Tenancies', subtitle: "#{@property.address}") %>
-<div class="container">
-  <% if @property %>
-    <%= link_to "Create tenancy", new_property_tenancy_path(@property), class: 'btn btn-primary' %>
-  <% else %>
-    <h1>All tenancies</h1>
-  <% end %>
+<%= render('shared/index_page_wrapper', title: 'Manage Tenancies', subtitle: "#{@property.address}") %>
+<div class="container py-3">
   <% @tenancies.each do |tenancy| %>
-  <h3><%= tenancy.start_date %> - <%= tenancy.end_date %></h3>
-  <p>Tenants: </p>
-  <ul><%tenancy.tenants.each do |tenant| %>
-    <li><%= tenant.first_name %></li>
-    <% end %>
-  </ul>
-  <%= link_to "Add tenants", edit_tenancy_path(tenancy), class: 'btn btn-primary' %>
-  <p>Landlord: <%= tenancy.property.landlord.first_name %></p>
-    
+  <div class="property-card">
+  <p class="font-weight-bold">End Date:</p>
+    <p><%= tenancy.end_date %></p>
+  <p class="font-weight-bold">Start Date:</p>
+    <p><%= tenancy.start_date %></p>
+    <p class="font-weight-bold">Tenants: </p>
+    <ul class="list-group"><%tenancy.tenants.each do |tenant| %>
+      <li class="list-group-item"><%= tenant.first_name %></li>
+      <% end %>
+    </ul>    
+  </div>
   
   <% end %>
-  <%= link_to "View properties", properties_path %>
 </div>
+
+<%= render 'shared/sticky_btn', title: "Create Tenancy", link: new_property_tenancy_path(@property) %>
+

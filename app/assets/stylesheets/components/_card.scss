@@ -33,3 +33,11 @@
     width: calc(33.333333333333% - 16px);
   }
 }
+
+.property-card {
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  padding: 24px;
+  width: 100%;
+  margin-bottom: 16px;
+}
