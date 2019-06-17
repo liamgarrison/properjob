@@ -2,16 +2,12 @@ class TenanciesController < ApplicationController
   after_action :verify_authorized, only: :index
 
   def index
-    if params[:property_id]
-      @property = Property.find(params[:property_id])
-      # If nested route inside property, filter for just the properties
-      @tenancies = Tenancy.where(property: @property)
-    else
-      # Otherwise, get all the tenancies
-      @tenancies = Tenancy.all
-    end
+    @property = Property.find(params[:property_id])
+
     # Scope based on user
-    @tenancies = policy_scope @tenancies
+    @tenancies = policy_scope Tenancy
+    @tenancies = @tenancies.select { |tenancy| tenancy.property == @property }.sort_by(&:end_date).reverse
+
     authorize @property, :show_tenancies?
   end
 
