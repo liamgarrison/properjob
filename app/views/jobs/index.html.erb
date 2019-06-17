@@ -2,7 +2,7 @@
 <% when 'tenant' %>
   <% if current_user.current_tenancy %>
     <%# If the user has a current tenancy %>
-    <% subtitle = "Jobs for #{current_user.current_tenancy.property.address}" %>
+    <% subtitle = "#{current_user.current_tenancy.property.address} • #{current_user.current_tenancy.property.landlord.full_name}" %>
   <% else %>
     <% subtitle = 'You currently have no active tenancies' %>
   <% end %>
