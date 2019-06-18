@@ -6,6 +6,13 @@ Rails.application.routes.draw do
     resources :messages, only: [:index, :create]
   end
 
+  resources :properties, only: [:index, :show, :new, :create] do
+    resources :tenancies, only: [:index, :show, :new, :create]
+  end
+
+  resources :tenancies, only: [:index, :show, :edit, :update]
+  
+
   devise_for :users
 
   namespace :api, defaults: { format: :json } do

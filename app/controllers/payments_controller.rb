@@ -2,6 +2,7 @@ class PaymentsController < ApplicationController
   before_action :set_job, only: [:create]
 
   def create
+    authorize @job, :create_payment?
     customer = Stripe::Customer.create(
        source: params[:stripeToken],
        email:  current_user.email

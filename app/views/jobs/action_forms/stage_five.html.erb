@@ -1,7 +1,7 @@
-<%= render('shared/wrapper', title: "#{@job.contractor.first_name} has picked some dates for you", illustration_url:  cl_image_tag('select_dates_ywmjqo'))%>
+<%= render('shared/action_page_wrapper', title: "#{@job.contractor.first_name} has picked some dates for you", illustration_url:  cl_image_tag('select_dates_ywmjqo'))%>
 
 <div class="container py-5">
-  <p><strong>When are you free, <%= @job.property.tenant.first_name %>?</strong></p>
+  <p><strong>When are you free, <%= current_user.first_name %>?</strong></p>
   <form action="<%= job_path(@job) %>" method="post">
    <input type="hidden" name="_method" value="patch">
       <div class="popover-datepicker d-flex p-3 align-items-center" data-contractor-dates="<%= @contractor_dates %>">

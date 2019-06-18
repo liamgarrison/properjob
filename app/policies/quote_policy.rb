@@ -5,7 +5,11 @@ class QuotePolicy < ApplicationPolicy
     end
   end
 
-  def index?
+  def create?
+    true
+  end
+
+  def update?
     true
   end
 end

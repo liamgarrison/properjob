@@ -2,40 +2,38 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update]
 
   def index
-    @jobs = Job.all
-    @jobs = @jobs.sort_by(&:created_at).reverse
-    # @jobs = @jobs.select { |job| belong_to_job?(job) }
-    @incompleted_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage < 9 }
-    @jobs_waiting_for_user = []
-    @jobs_not_for_user = []
-    @incompleted_jobs.each do |job|
-      waiting_for_me?(job) ? @jobs_waiting_for_user << job : @jobs_not_for_user << job
+    @jobs = policy_scope(Job)
+    if @jobs
+      # If pundit returns jobs, sort them in reverse order of creation
+      @jobs = @jobs.sort_by(&:updated_at).reverse
+    else
+      @jobs = []
     end
-    @user_jobs = @jobs_waiting_for_user + @jobs_not_for_user
-    @completed_jobs = @jobs.select { |job| belong_to_job?(job) && job.current_stage == 9 }
-    @jobs_in_progress = @incompleted_jobs
   end
 
   def show
-    @waiting_for_me = waiting_for_me?(@job)
+    authorize @job
   end
 
   def new
     @job = Job.new
     @job.photo_videos.build
-    # authorize @job
+    authorize @job
   end
 
   def create
     @job = Job.new(category: params[:category_selected], description: params[:description])
-    @job.property = Property.first
+    @job.tenancy = current_user.current_tenancy
     @job.current_stage = 1
-    if @job.save
-      if params[:job][:photo_videos][:photo_video]
-        params[:job][:photo_videos][:photo_video].each do |photo_video|
-          @job.photo_videos.create(photo_video: photo_video, stage: @job.current_stage)
-        end
+    authorize @job
+    if params[:job][:photo_videos][:photo_video]
+      params[:job][:photo_videos][:photo_video].each do |photo_video|
+        @job.photo_videos << PhotoVideo.create(photo_video: photo_video, stage: @job.current_stage)
+      end
+      if @job.save
         redirect_to job_path(@job)
+      else
+        render :new
       end
     else
       render :new
@@ -43,6 +41,7 @@ class JobsController < ApplicationController
   end
 
   def update
+    authorize @job
     case @job.current_stage
     when 3
       @quote_accepted = Quote.find(quote_params[:quote_selected])
@@ -75,6 +74,7 @@ class JobsController < ApplicationController
   end
 
   def edit
+    authorize @job
     case @job.current_stage
     when 1
       @contractors = User.where(contractor_type: @job.category)
@@ -125,19 +125,5 @@ class JobsController < ApplicationController
 
   def job_params
     params.require(:job).permit(:category, :description, :resolved, :rating, :photo_videos, :final_price, :invoice)
-  end
-
-  def belong_to_job?(job)
-    contractors_that_belong = job.quotes.reject { |quote| quote.accepted == false }.map(&:contractor)
-    contractors_that_belong.include?(current_user) || current_user == job.contractor || current_user == job.property.tenant || current_user == job.property.landlord
-  end
-
-  def waiting_for_me?(job)
-    # Find out if the current user is the one we are waiting on.
-    if belong_to_job?(job) && job.stage_attributes[:waiting_for] == current_user.user_type
-      @waiting_for_me = true
-    else
-      @waiting_for_me = false
-    end
   end
 end

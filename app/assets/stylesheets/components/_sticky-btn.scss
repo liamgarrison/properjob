@@ -1,13 +1,18 @@
 .sticky-btn {
-  position: fixed;
-  max-width: $mobile-max-width;
-  bottom: 0;
-  width: 100%;
-  padding: 16px;
-  border-top: 1px solid $light-gray;
-  background-color: $white;
-  box-shadow: $box-shadow;
-  .btn {
+  height: 70px;
+  div {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: $mobile-max-width;
     width: 100%;
+    padding: 0 16px ;
+    bottom: 0;
+    height: 70px;
+    border-top: 1px solid $light-gray;
+    background-color: $white;
+    box-shadow: $box-shadow;
   }
 }
+

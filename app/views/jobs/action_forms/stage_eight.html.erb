@@ -1,11 +1,10 @@
-<%= render('shared/wrapper', title: "Please review and pay for the job", illustration_url:  cl_image_tag('approve_and_pay_ftwtwr'))%>
+<%= render('shared/action_page_wrapper', title: "Please review and pay for the job", illustration_url:  cl_image_tag('approve_and_pay_ftwtwr'))%>
 
 <div class="container py-5">
 
  <div class="container">
   <p><strong>Property Details</strong></p>
-  <p class="final-job-details"><i class="fas fa-home mr-1"></i> <%= @job.property.address %></p>
-  <p class="final-job-details"><i class="fas fa-user mr-1"></i> <%= @job.property.tenant.first_name %> <%= @job.property.tenant.last_name %></p>
+  <p class="final-job-details"><i class="fas fa-home mr-1"></i> <%= @job.address %></p>
 
   <p><strong>Job Details</strong></p>
   <p class="final-job-details"><i class="far fa-question-circle mr-1"></i> <%= @job.description %></p>

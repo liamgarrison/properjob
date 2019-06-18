@@ -1,7 +1,7 @@
 class Job < ApplicationRecord
-  belongs_to :property
+  belongs_to :tenancy
   belongs_to :contractor, foreign_key: :contractor_id, class_name: "User", optional: true
-  has_many :job_stages, dependent: :destroy
+  has_many :job_stages
   has_many :messages
   has_many :contractor_availabilities
   has_many :quotes
@@ -22,6 +22,35 @@ class Job < ApplicationRecord
 
   def date
     super.strftime("%e %b %Y")
+  end
+
+  def address
+    # Address for the job
+    tenancy.property.address
+  end
+
+  def action_required?(user)
+    # Helper method to work out whether job is waiting for me to take action
+    stage_attributes[:waiting_for] == user.user_type
+  end
+
+  def associated?(user)
+    # Method for testing if a user is associated with a job
+    case user.user_type
+    when 'tenant'
+      tenancy == user.current_tenancy
+    when 'landlord'
+      user.owned_properties.include?(tenancy.property)
+    when 'contractor'
+      # Find the quotes where submitted is nil (pending) or it has been accepted
+      pending_or_accepted_quotes = quotes.select { |quote| quote.accepted.nil? || quote.accepted }
+      contractors_who_see_job = pending_or_accepted_quotes.map(&:contractor)
+      contractors_who_see_job.include?(user)
+    end
+  end
+
+  def completed?
+    current_stage == 9
   end
 
   def available_dates

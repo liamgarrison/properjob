@@ -1,0 +1,11 @@
+<%= render('shared/index_page_wrapper', title: 'Manage Properties', subtitle: 'Create and add tenancies here') %>
+<div class="container py-3">
+  <% @properties.each do |property| %>
+    <div class="property-card">
+      <p><%= property.address %></p>
+      <p ><%= link_to "View tenancies", property_tenancies_path(property), class: 'btn btn-primary' %>
+    </div>
+    </p>
+  <% end %>
+</div>
+<%= render 'shared/sticky_btn', title: "Create property", link: new_property_path %>

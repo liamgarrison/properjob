@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_10_164402) do
+ActiveRecord::Schema.define(version: 2019_06_12_103617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 2019_06_10_164402) do
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.bigint "property_id"
     t.string "category"
     t.text "description"
     t.bigint "contractor_id"
@@ -47,8 +46,9 @@ ActiveRecord::Schema.define(version: 2019_06_10_164402) do
     t.string "invoice"
     t.boolean "resolved"
     t.integer "rating"
+    t.bigint "tenancy_id"
     t.index ["contractor_id"], name: "index_jobs_on_contractor_id"
-    t.index ["property_id"], name: "index_jobs_on_property_id"
+    t.index ["tenancy_id"], name: "index_jobs_on_tenancy_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -73,11 +73,9 @@ ActiveRecord::Schema.define(version: 2019_06_10_164402) do
   create_table "properties", force: :cascade do |t|
     t.bigint "landlord_id"
     t.string "address"
-    t.bigint "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["landlord_id"], name: "index_properties_on_landlord_id"
-    t.index ["tenant_id"], name: "index_properties_on_tenant_id"
   end
 
   create_table "quotes", force: :cascade do |t|
@@ -91,6 +89,27 @@ ActiveRecord::Schema.define(version: 2019_06_10_164402) do
     t.string "quote"
     t.index ["contractor_id"], name: "index_quotes_on_contractor_id"
     t.index ["job_id"], name: "index_quotes_on_job_id"
+  end
+
+  create_table "tenancies", force: :cascade do |t|
+    t.bigint "property_id"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "deposit"
+    t.boolean "deposit_refunded"
+    t.integer "rent_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_tenancies_on_property_id"
+  end
+
+  create_table "tenants_tenancies", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.bigint "tenancy_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tenancy_id"], name: "index_tenants_tenancies_on_tenancy_id"
+    t.index ["tenant_id"], name: "index_tenants_tenancies_on_tenant_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -116,13 +135,15 @@ ActiveRecord::Schema.define(version: 2019_06_10_164402) do
   add_foreign_key "contractor_availabilities", "jobs"
   add_foreign_key "contractor_availabilities", "users", column: "contractor_id"
   add_foreign_key "job_stages", "jobs"
-  add_foreign_key "jobs", "properties"
+  add_foreign_key "jobs", "tenancies"
   add_foreign_key "jobs", "users", column: "contractor_id"
   add_foreign_key "messages", "jobs"
   add_foreign_key "messages", "users"
   add_foreign_key "photo_videos", "jobs"
   add_foreign_key "properties", "users", column: "landlord_id"
-  add_foreign_key "properties", "users", column: "tenant_id"
   add_foreign_key "quotes", "jobs"
   add_foreign_key "quotes", "users", column: "contractor_id"
+  add_foreign_key "tenancies", "properties"
+  add_foreign_key "tenants_tenancies", "tenancies"
+  add_foreign_key "tenants_tenancies", "users", column: "tenant_id"
 end
