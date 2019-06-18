@@ -4,7 +4,7 @@
   <%= simple_form_for [@property, @tenancy] do |f| %>
     <%= f.input :start_date  %>
     <%= f.input :end_date  %>
-    <%= f.association :tenants, collection: User.where(user_type: 'tenant'), label_method: :full_name_with_email, as: :check_boxes, label: 'Select Tenants:' %>
+    <%= f.association :tenants, collection: User.where(user_type: 'tenant'), label_method: :full_name, as: :check_boxes, label: 'Select Tenants:' %>
     <%= f.button :submit, "Submit", class: 'btn btn-primary w-100' %>
   <% end %>
 </div>
