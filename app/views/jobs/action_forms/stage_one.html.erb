@@ -3,27 +3,27 @@
 
 <div class="container pt-3 pb-5">
 
-<form action="<%= job_quotes_path(@job) %>" method="post">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <%= hidden_field_tag :contractor_selected, value="," %>
-    <% @contractors.each do |contractor| %>
-      <div class="contractor-card" data-id="<%= contractor.id %>">
-        <div class="ml-3">
-          <%= cl_image_tag(contractor.avatar, crop: :thumb, radius: :max, gravity: :face) %>
+  <form action="<%= job_quotes_path(@job) %>" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :contractor_selected, value="," %>
+      <% @contractors.each do |contractor| %>
+        <div class="contractor-card" data-id="<%= contractor.id %>">
+          <div class="ml-3">
+            <%= cl_image_tag(contractor.avatar, crop: :thumb, radius: :max, gravity: :face) %>
+          </div>
+          <div class="card-product-infos">
+            <h4><%= contractor.first_name %></h4>
+            <p><i class="fas fa-tools"></i>  <%= contractor.contractor_type.capitalize %></p>
+            <p class="card-text">
+              <% [4,5].sample.times do %>
+                <i class='fas fa-star'></i>
+              <% end %>
+            </p>
+          </div>
         </div>
-        <div class="card-product-infos">
-          <h4><%= contractor.first_name %></h4>
-          <p><i class="fas fa-tools"></i>  <%= contractor.contractor_type.capitalize %></p>
-          <p class="card-text">
-            <% [4,5].sample.times do %>
-              <i class='fas fa-star'></i>
-            <% end %>
-          </p>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    <input type="submit" value="Submit" class="btn btn-primary w-100">
+  </form>
 </div>
-<div class="sticky-btn">
-  <input type="submit" value="Submit" class="btn btn-primary">
-</div>
-</form>
+
+
