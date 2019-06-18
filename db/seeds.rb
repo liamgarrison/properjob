@@ -1,11 +1,18 @@
+puts "Emptying database"
+
 Message.destroy_all
 ContractorAvailability.destroy_all
 PhotoVideo.destroy_all
 Quote.destroy_all
 JobStage.destroy_all
 Job.destroy_all
+TenantsTenancy.destroy_all
+Tenancy.destroy_all
 Property.destroy_all
 User.destroy_all
+
+puts "Emptied database"
+
 
 tenant_1 = User.create! ({
   first_name: "Tom",
@@ -13,6 +20,15 @@ tenant_1 = User.create! ({
   email: "tom@gmail.com",
   password: 123456,
   remote_avatar_url: "https://kitt.lewagon.com/placeholder/users/dovet1",
+  user_type: "tenant"
+})
+
+tenant_2 = User.create! ({
+  first_name: "Aisa",
+  last_name:"Mukukenova",
+  email: "aisa@gmail.com",
+  password: 123456,
+  remote_avatar_url: "https://kitt.lewagon.com/placeholder/users/ollesu",
   user_type: "tenant"
 })
 
@@ -48,7 +64,7 @@ contractor_2 = User.create! ({
 contractor_3 = User.create! ({
   first_name: "Julius",
   last_name: "Lehmann",
-  email: "miguel@gmail.com",
+  email: "julius@gmail.com",
   password: 123456,
   remote_avatar_url: "https://kitt.lewagon.com/placeholder/users/jcslehmann",
   user_type: "contractor",
@@ -75,17 +91,26 @@ contractor_5 = User.create! ({
   contractor_type: "plumbing"
 })
 
+
 property_1 = Property.create! ({
   landlord: landlord_1,
   address: "138 Kingsland Road, London",
-  tenant: tenant_1
 })
+
+tenancy_1 = Tenancy.create!({
+  property: property_1,
+  start_date: Date.today - 100,
+  end_date: Date.today + 100
+})
+
+tenancy_1.tenants << tenant_1
+tenancy_1.tenants << tenant_2
 
 
 # Job at stage 5 - Tenant selecting date and times
 
 job_fusebox = Job.create! ({
-  property: property_1,
+  tenancy: tenancy_1,
   category: "electrical",
   description: "My power keeps going out and my fuse box is tripping",
   contractor: contractor_1,
@@ -141,7 +166,7 @@ job_fusebox.update(current_stage: 5)
 # Job at stage 7 - waiting for tenant feedback
 
 job_tap = Job.create! ({
-  property: property_1,
+  tenancy: tenancy_1,
   category: "plumbing",
   description: "My tap is leaking and spraying water everywhere!",
   contractor: contractor_5,
@@ -194,7 +219,7 @@ job_tap.update(current_stage: 7)
 # Job completed at stage 9
 
 job_toilet = Job.create! ({
-  property: property_1,
+  tenancy: tenancy_1,
   category: "plumbing",
   description: "My sink is blocked and it won't drain properly",
   contractor: contractor_4,
